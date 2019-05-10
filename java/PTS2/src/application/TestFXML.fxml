@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="1000.0" prefWidth="1000.0">
+      <bottom>
+        <Pane prefHeight="100.0" prefWidth="1000.0" />
+      </bottom>
+      <center>
+        <Pane prefHeight="-1.0" prefWidth="-1.0">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+          </children>
+        </Pane>
+      </center>
+      <left>
+        <Pane prefHeight="800.0" prefWidth="200.0" />
+      </left>
+      <right>
+        <GridPane prefHeight="912.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Button" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Button" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefWidth="200.0" text="Button" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </right>
+      <top>
+        <Pane prefHeight="100.0" prefWidth="1000.0">
+          <children>
+            <Text layoutX="360.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sample text">
+              <font>
+                <Font name="System Bold" size="50.0" />
+              </font>
+            </Text>
+          </children>
+        </Pane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
