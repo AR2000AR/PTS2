@@ -8,8 +8,40 @@ public class Piece {
 	public int[][] etat3 = new int[4][4];
 	public int[][] etat4 = new int[4][4];
 	
-	public Piece() {
-		etatActuel=etat1;
+	public Piece() {			
+			//piece2
+			
+			for(int i =0; i<4; i++)
+			{
+				for(int j =0; j<4; j++)
+				{
+					//que 2 ï¿½tats nï¿½cessaires
+					etat1[j][i]=0;
+					etat2[j][i]=0;
+					etat3[j][i]=0;
+					etat4[j][i]=0;
+					
+				}
+			
+			}
+			//ï¿½tat 1, vers le haut
+			etat1[2][1]=1;
+			etat1[2][2]=1;
+			etat1[2][3]=1;
+			
+			etat3[2][1]=1;
+			etat3[2][2]=1;
+			etat3[2][3]=1;
+			
+			//ï¿½tat 2, vers la droite
+			etat2[1][2]=1;
+			etat2[2][2]=1;
+			etat2[3][2]=1;
+			
+			etat4[1][2]=1;
+			etat4[2][2]=1;
+			etat4[3][2]=1;
+		
 	}
 	
 	
@@ -21,7 +53,7 @@ public class Piece {
 	
 	
 	
-	public void faireTourner() // se déclenchera avec un double clic et utilisera les rotations préfaites en les appliquant à l'état actuel
+	public void faireTourner() // se dï¿½clenchera avec un double clic et utilisera les rotations prï¿½faites en les appliquant ï¿½ l'ï¿½tat actuel
 	{
 		
 		switch(etatRotation)
@@ -46,7 +78,7 @@ public class Piece {
 			this.etatActuel=etat1;
 			etatRotation=1;
 			break;
-		default: System.out.println("la rotation a échouée");
+		default: System.out.println("la rotation a ï¿½chouï¿½e");
 		}
 		
 	}
