@@ -2,6 +2,7 @@ package consoleVersion;
 
 public class Piece1 extends Piece {
 
+<<<<<<< HEAD
 	
 	public void Piece1() {
 
@@ -51,4 +52,9 @@ public class Piece1 extends Piece {
 
 	}
 
+=======
+
+	
+	
+>>>>>>> branch 'master' of https://github.com/AR2000AR/PTS2.git
 }
