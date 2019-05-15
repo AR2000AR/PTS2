@@ -1,5 +1,6 @@
 package gestionDeDonnee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestionDeDonnee {
@@ -20,7 +21,14 @@ public class GestionDeDonnee {
 	  */
 	 public List<int[]> getLevel(boolean mode,int level) {
 		//A implementer
-		return null;
+		List<int[]> l = new ArrayList<int[]>();
+		int[] tmp = {2,0};
+		l.add(tmp);
+		tmp[1]=2;
+		l.add(tmp);
+		tmp[0]=3;
+		l.add(tmp);
+		return l;
 	 }
 	 
 	 /**
