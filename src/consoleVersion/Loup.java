@@ -2,7 +2,7 @@ package consoleVersion;
 
 public class Loup {
 	
-	public String nom = "Loup";
+	public String nom = "L";
 	public Loup() {
 		
 	}

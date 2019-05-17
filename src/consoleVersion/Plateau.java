@@ -18,6 +18,20 @@ public class Plateau {
 		plateau[3][0].setEc(EtatCase.INEXISTANT);
 	}
 
+	public void reInitialisation() {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				this.plateau[i][j] = new Case();
+			}
+
+		}
+
+		plateau[0][0].setEc(EtatCase.INEXISTANT);
+		plateau[0][3].setEc(EtatCase.INEXISTANT);
+		plateau[3][0].setEc(EtatCase.INEXISTANT);
+	
+	}
+	
 	public void afficherPlateau() {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -48,6 +62,8 @@ public class Plateau {
 		return test;
 	}
 
+	
+	
 //	public void deplacerPiece(Piece unePiece) {
 	// }
 }

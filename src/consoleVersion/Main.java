@@ -1,10 +1,13 @@
 package consoleVersion;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 
 		Object plateau[][] = new Object[4][4];
 		initialisation(plateau);
@@ -18,7 +21,7 @@ public class Main {
 		}
 	}
 
-	public static void initialisation(Object tab[][]) {
+	public static void initialisation(Object tab[][]) throws FileNotFoundException {
 
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab.length; j++) {
@@ -45,7 +48,11 @@ public class Main {
 		
 		tab[1][1] = c1;
 		tab[2][3] = c2;
+		
+		System.out.println();
 
+		
+		
 	}
 
 }
