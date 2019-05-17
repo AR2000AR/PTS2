@@ -1,24 +1,13 @@
 package application;
 
-import org.omg.CORBA.portable.InputStream;
+import java.io.InputStream;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//import javafx.scene.image.cochon1;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -38,7 +27,7 @@ public class Main extends Application {
 
 		Class<?> Cochon = this.getClass();
 
-		java.io.InputStream input = Cochon.getResourceAsStream("/image/pig.png");
+		InputStream input = Cochon.getResourceAsStream("/image/pig.png");
 		Image image = new Image("/image/pig.png", 100, 100, false, false);
 
 		// Image image = new Image(input);
@@ -49,18 +38,15 @@ public class Main extends Application {
 		VBox vbox = new VBox();
 		root.getChildren().add(vbox);
 		vbox.getChildren().addAll(cochon1, tabView);
-		
-		cochon1.setOnMousePressed(e->{
-			System.out.println(" # "+e.getEventType());
-			if(e.getClickCount() == 2){
-                System.out.println("Double click");
-                cochon1.setRotate(cochon1.getRotate()+90);
-            }
+
+		cochon1.setOnMousePressed(e -> {
+			System.out.println(" # " + e.getEventType());
+			if (e.getClickCount() == 2) {
+				System.out.println("Double click");
+				cochon1.setRotate(cochon1.getRotate() + 90);
+			}
 		});
-		
-		
-			
-		
+
 	}
 
 }
