@@ -1,0 +1,8 @@
+<!ELEMENT root (niveau)*>
+<!ELEMENT niveau (score)*>
+<!ATTLIST niveau context CDATA #REQUIRED>
+<!ATTLIST niveau difficulte
+<!ATTLIST niveau numero
+<!ELEMENT score (joueur,temp)>
+<!ELEMENT joueur (#PCDATA)>
+<!ELEMENT temp (#PCDATA)>
