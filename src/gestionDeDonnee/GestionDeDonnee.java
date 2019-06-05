@@ -1,6 +1,7 @@
 package gestionDeDonnee;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -14,7 +15,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class GestionDeDonnee {
-	private static final String LEVEL_FILE = "./data/niveau.xml";
+	private static InputStream level_file = null;
 	private static Document xmlNiveaux;
 	private static final boolean VERBOSE = true;
 	static final String[] typeName = { "none", "Element", "Attr", "Text", "CDATA", "EntityRef", "Entity", "ProcInstr",
@@ -23,7 +24,10 @@ public class GestionDeDonnee {
 	public GestionDeDonnee() throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		xmlNiveaux = builder.parse(LEVEL_FILE);
+		if (level_file == null) {
+			level_file = getClass().getResourceAsStream("niveau.xml");
+		}
+		xmlNiveaux = builder.parse(level_file);
 	}
 
 	/**
@@ -93,4 +97,5 @@ public class GestionDeDonnee {
 	public void saveScore(boolean mode, int level, int score, String pseudo) {
 		// A implémenter
 	}
+
 }
