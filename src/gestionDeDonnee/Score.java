@@ -29,4 +29,5 @@ public class Score implements Comparable<Score> {
 	public int getTime() {
 		return time;
 	}
+
 }

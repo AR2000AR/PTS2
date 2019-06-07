@@ -8,7 +8,7 @@
     		<xsd:attribute name="nbNiveau" use="required">
     			<xsd:simpleType>
     				<xsd:restriction base="xsd:int">
-    					<xsd:maxInclusive value="5"></xsd:maxInclusive>
+    					<xsd:maxInclusive value="6"></xsd:maxInclusive>
     					<xsd:minInclusive value="0"></xsd:minInclusive>
     				</xsd:restriction>
     			</xsd:simpleType>
