@@ -262,26 +262,80 @@ public class PlateauController {
 		 */
 		if (empl[0] != -1 && empl[1] != -1) {
 			System.out.println(Arrays.toString(empl));
+
 			placerPiece(empl);
+
 		}
 
 	}
 
 	private void placerPiece(double[] empl) {
 
-		listeP.get(Main.temoin-1).setX(registreX[(int) empl[0]] - coorOrig[Main.temoin-1][0]);
-		listeP.get(Main.temoin-1).setY(registreY[(int) empl[1]] - coorOrig[Main.temoin-1][1] );
-		
+		listeP.get(Main.temoin - 1).setX(registreX[(int) empl[0]] - coorOrig[Main.temoin - 1][0] - leDecalage()[0]);
+		listeP.get(Main.temoin - 1).setY(registreY[(int) empl[1]] - coorOrig[Main.temoin - 1][1] - leDecalage()[1]);
+
 	}
-	
+
 	private double[] leDecalage() {
 		double retour[] = new double[2];
-		retour = decalageXY[Main.temoin-1][tabEtat[Main.temoin-1]];
+		retour = decalageXY[Main.temoin - 1][tabEtat[Main.temoin - 1]];
 		System.out.println(Arrays.toString(retour));
+
+		switch (Main.temoin) {
+
+		case 1:
+			retour[0] = 0;
+			retour[1] = 0;
+
+			if (etatP1 == 1) {
+				retour[1] = 100;
+			}
+			if (etatP1 == 3) {
+				retour[0] = 100;
+
+			}
+			if (etatP1 == 4) {
+				retour[0] = 100;
+				retour[1] = 100;
+			}
+			break;
+		case 2:
+
+			retour[0] = 0;
+			retour[1] = 0;
+
+			if (etatP2 == 1) {
+				retour[0] = 100;
+			}
+			if (etatP2 == 2) {
+				retour[1] = 100;
+
+			}
+
+			break;
+		case 3:
+			retour[0] = 0;
+			retour[1] = 0;
+
+			if (etatP3 == 1) {
+				retour[1] = 100;
+			}
+			if (etatP3 == 3) {
+				retour[0] = 200;
+			}
+			if (etatP3 == 4) {
+				retour[0] = 100;
+				retour[1] = 200;
+			}
+
+			break;
+
+		}
+
 		return retour;
-		
+
 	}
-	
+
 	private double[] emplacementPlateau(MouseEvent event) {
 		double x = 0;
 		double y = 0;
