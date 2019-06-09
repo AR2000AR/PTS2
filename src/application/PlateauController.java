@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.MouseInfo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -111,10 +112,7 @@ public class PlateauController {
 	@FXML
 	void tournerP(MouseEvent event) {
 		if (event.getButton().toString() == ("SECONDARY")) {
-			System.out.println(event.getButton().toString());
-
 			switch (Main.temoin) {
-
 			case 1:
 				switchHeightWidth(p1);
 				switch (etatP1) {
@@ -230,37 +228,33 @@ public class PlateauController {
 		case 3:
 			switch (etatP3) {
 			case 1:
-				p.setX(p.getX()-50);
-				p.setY(p.getY()-150);
+				p.setX(p.getX() - 50);
+				p.setY(p.getY() - 150);
 				break;
 
 			case 2:
-				System.out.println("COUCOU");
-				p.setX(p.getX()-50);
-				p.setY(p.getY()-50);
+				p.setX(p.getX() - 50);
+				p.setY(p.getY() - 50);
 				break;
 			case 3:
-				p.setX(p.getX()-250);
-				p.setY(p.getY()-50);
+				p.setX(p.getX() - 250);
+				p.setY(p.getY() - 50);
 				break;
 
 			case 4:
-				p.setX(p.getX()-150);
-				p.setY(p.getY()-250);
+				p.setX(p.getX() - 150);
+				p.setY(p.getY() - 250);
 				break;
 			}
 			break;
 
 		}
-
 	}
 
 	private void deplacerAvecSouris(MouseEvent event, ImageView p, int i) {
 		p.setOpacity(0.75);
-
-		System.out.println(event.getX() + "  " + event.getY());
-
 		Main.temoin = i;
+		coordSouris(event);
 		listeP.get(Main.temoin - 1).toFront();
 		System.out.println(Main.temoin);
 		centrerSurSouris(event, p);
@@ -283,20 +277,67 @@ public class PlateauController {
 		deplacerAvecSouris(event, p3, 3);
 	}
 
+	public static double[] coordSouris(MouseEvent event) {
+
+		double x = event.getX() + coorOrig[Main.temoin - 1][0];
+		double y = event.getY() + coorOrig[Main.temoin - 1][1];
+		double valeurRetour[] = new double[2];
+		valeurRetour[0] = x;
+		valeurRetour[1] = y;
+		System.out.println(Arrays.toString(valeurRetour));
+		return valeurRetour;
+	}
+
 	@FXML
 	void relache(MouseEvent event) {
 		if (event.getButton().toString() == ("PRIMARY")) {
 			if (listeP.get(Main.temoin - 1) != null) {
 				listeP.get(Main.temoin - 1).setOpacity(1);
-				map(event.getX(), event.getY());
-				System.out.println(Main.temoin);
-			} else {
-				placeOrigine();
-				System.out.println(Main.temoin);
+
+				double empl[] = new double[2];
+
+				empl = emplacementPlateau(event);
+
 			}
 
 			Main.temoin = 0;
 		}
+	}
+
+	private double[] emplacementPlateau(MouseEvent event) {
+		double x = 0;
+		double y = 0;
+
+		double registreX[] = { 440, 540, 640, 740, 840 };
+		double registreY[] = { 160, 260, 360, 460, 560 };
+
+		double retour[] = { -1, -1 };
+
+		x = coordSouris(event)[0];
+		y = coordSouris(event)[1];
+
+		boolean tx = false;
+		boolean ty = false;
+
+		if (x > 440 && y > 160) {
+			for (int i = 0; i < registreX.length; i++) {
+				if (!tx) {
+					if(x <= registreX[i]) {
+						tx =true;
+						retour[0]=i;
+					}
+				}
+				if (!ty) {
+					if(y <= registreY[i]) {
+						ty =true;
+						retour[1]=i;
+					}
+				}
+
+			}
+		}
+		System.out.println(Arrays.toString(retour));
+		return retour;
 	}
 
 	@FXML
@@ -399,47 +440,6 @@ public class PlateauController {
 		x /= 100;
 		y /= 100;
 		Main.plateau[(int) y][(int) x] = new Case(e);
-	}
-
-	private int map(double xSouris, double ySouris) {
-
-		int xtab;
-		int ytab;
-		/// fzire le delta des coordonnees
-
-		switch (Main.temoin) {
-		case 1:
-			System.out.println("yolo");
-			xSouris -= coorOrig[0][0];
-			ySouris -= coorOrig[0][1];
-
-			System.out.println(xSouris + "  " + ySouris);
-			break;
-
-		case 2:
-			xSouris -= coorOrig[1][0];
-			ySouris -= coorOrig[1][1];
-			break;
-
-		case 3:
-			xSouris -= coorOrig[2][0];
-			ySouris -= coorOrig[2][1];
-			break;
-		}
-
-		// if ((xSouris >= 440 && xSouris <= 840) && (ySouris >= 160 && ySouris <= 560))
-		// {
-		// traitement des cases inexistante
-		/*
-		 * if ((xSouris <= 540 && ySouris < 260) || (xSouris >= 740 && ySouris < 260) ||
-		 * (xSouris <= 540 && ySouris >= 460)) { return -1; }
-		 */
-		xtab = (int) Math.round(0.01 * xSouris - 4.4);
-		ytab = (int) Math.round(0.01 * xSouris - 1.6);
-		System.out.println("Avant switch");
-
-		System.out.println(nCase + "  " + xtab + " " + ytab);
-		return nCase;
 	}
 
 }
