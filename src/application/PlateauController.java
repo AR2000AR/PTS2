@@ -58,11 +58,28 @@ public class PlateauController {
 	static Image imgp33 = new Image("file:src/image/p33.png");
 	static Image imgp34 = new Image("file:src/image/p34.png");
 
+	static Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
+	static Image tabImageP2[] = { imgp21, imgp22 };
+	static Image tabImageP3[] = { imgp31, imgp32, imgp33, imgp34 };
+
 	static ArrayList<ImageView> listeP = new ArrayList<>();
 	static double[][] coorOrig = new double[3][2];
 	static private String s;
 
 	static int nCase = -1;
+
+	static double decalageXYP1[][] = { { 50, 150 }, { 50, 50 }, { 150, 50 }, { 150, 150 } };
+	static double decalageXYP2[][] = { { 150, 50 }, { 50, 150 } };
+	static double decalageXYP3[][] = { { 50, 150 }, { 50, 50 }, { 250, 50 }, { 150, 250 } };
+
+	static double decalageXY[][][] = { decalageXYP1, decalageXYP1, decalageXYP1 };
+	static int tabEtat[] = { etatP1, etatP2, etatP3 };
+
+	static double registreX[] = { 440, 540, 640, 740, 840 };
+	static double registreY[] = { 160, 260, 360, 460, 560 };
+
+	static double registreXtest[] = { 540, 640, 740, 840 };
+	static double registreYtest[] = { 260, 360, 460, 560 };
 
 	public void initialize() {
 		try {
@@ -115,25 +132,11 @@ public class PlateauController {
 			switch (Main.temoin) {
 			case 1:
 				switchHeightWidth(p1);
-				switch (etatP1) {
-				case 1:
-					etatP1++;
-					p1.setImage(imgp12);
-					break;
-				case 2:
-					etatP1++;
-					p1.setImage(imgp13);
-					break;
-				case 3:
-					etatP1++;
-					p1.setImage(imgp14);
-					break;
-				case 4:
+				etatP1++;
+				if (etatP1 == 5) {
 					etatP1 = 1;
-					p1.setImage(imgp11);
-					break;
 				}
-
+				p1.setImage(tabImageP1[etatP1 - 1]);
 				break;
 
 			case 2:
@@ -147,33 +150,17 @@ public class PlateauController {
 					etatP2 = 1;
 					p2.setImage(imgp21);
 					break;
-
 				}
-
 				break;
 
 			case 3:
+
 				switchHeightWidth(p3);
-				switch (etatP3) {
-				case 1:
-					etatP3++;
-					p3.setImage(imgp32);
-					break;
-				case 2:
-					etatP3++;
-					p3.setImage(imgp33);
-					break;
-				case 3:
-					etatP3++;
-					p3.setImage(imgp34);
-					break;
-				case 4:
+				etatP3++;
+				if (etatP3 == 5) {
 					etatP3 = 1;
-					p3.setImage(imgp31);
-					break;
-
 				}
-
+				p3.setImage(tabImageP3[etatP3 - 1]);
 				break;
 
 			}
@@ -185,67 +172,33 @@ public class PlateauController {
 	private void centrerSurSouris(MouseEvent event, ImageView p) {
 		p.setX(event.getX());
 		p.setY(event.getY());
+		double x;
+		double y;
 
 		switch (Main.temoin) {
 
 		case 1:
-			switch (etatP1) {
-			case 1:
-				p.setX(p.getX() - 50);
-				p.setY(p.getY() - 150);
-				break;
+			x = (decalageXYP1[etatP1 - 1][0]);
+			y = (decalageXYP1[etatP1 - 1][1]);
 
-			case 2:
-				p.setX(p.getX() - 50);
-				p.setY(p.getY() - 50);
-				break;
-			case 3:
-				p.setX(p.getX() - 150);
-				p.setY(p.getY() - 50);
-				break;
+			p.setX(p.getX() - x);
+			p.setY(p.getY() - y);
 
-			case 4:
-				p.setX(p.getX() - 150);
-				p.setY(p.getY() - 150);
-				break;
-			}
 			break;
 
 		case 2:
-			switch (etatP2) {
-			case 1:
-				p.setX(p.getX() - 150);
-				p.setY(p.getY() - 50);
-				break;
+			x = (decalageXYP2[etatP2 - 1][0]);
+			y = (decalageXYP2[etatP2 - 1][1]);
 
-			case 2:
-				p.setX(p.getX() - 50);
-				p.setY(p.getY() - 150);
-				break;
-			}
+			p.setX(p.getX() - x);
+			p.setY(p.getY() - y);
 			break;
-
 		case 3:
-			switch (etatP3) {
-			case 1:
-				p.setX(p.getX() - 50);
-				p.setY(p.getY() - 150);
-				break;
+			x = (decalageXYP3[etatP3 - 1][0]);
+			y = (decalageXYP3[etatP3 - 1][1]);
 
-			case 2:
-				p.setX(p.getX() - 50);
-				p.setY(p.getY() - 50);
-				break;
-			case 3:
-				p.setX(p.getX() - 250);
-				p.setY(p.getY() - 50);
-				break;
-
-			case 4:
-				p.setX(p.getX() - 150);
-				p.setY(p.getY() - 250);
-				break;
-			}
+			p.setX(p.getX() - x);
+			p.setY(p.getY() - y);
 			break;
 
 		}
@@ -261,6 +214,7 @@ public class PlateauController {
 	}
 
 	@FXML
+
 	void dragOnP1(MouseEvent event) {
 		deplacerAvecSouris(event, p1, 1);
 		Main.temoin = 1;
@@ -293,23 +247,44 @@ public class PlateauController {
 		if (event.getButton().toString() == ("PRIMARY")) {
 			if (listeP.get(Main.temoin - 1) != null) {
 				listeP.get(Main.temoin - 1).setOpacity(1);
-
 				double empl[] = new double[2];
-
 				empl = emplacementPlateau(event);
-
+				testPoserPiece(empl);
 			}
-
 			Main.temoin = 0;
 		}
 	}
 
+	private void testPoserPiece(double[] empl) {
+		/*
+		 * test si une piece peut être placer ou non et si oui la place
+		 * 
+		 */
+		if (empl[0] != -1 && empl[1] != -1) {
+			System.out.println(Arrays.toString(empl));
+			placerPiece(empl);
+		}
+
+	}
+
+	private void placerPiece(double[] empl) {
+
+		listeP.get(Main.temoin-1).setX(registreX[(int) empl[0]] - coorOrig[Main.temoin-1][0]);
+		listeP.get(Main.temoin-1).setY(registreY[(int) empl[1]] - coorOrig[Main.temoin-1][1] );
+		
+	}
+	
+	private double[] leDecalage() {
+		double retour[] = new double[2];
+		retour = decalageXY[Main.temoin-1][tabEtat[Main.temoin-1]];
+		System.out.println(Arrays.toString(retour));
+		return retour;
+		
+	}
+	
 	private double[] emplacementPlateau(MouseEvent event) {
 		double x = 0;
 		double y = 0;
-
-		double registreX[] = { 440, 540, 640, 740, 840 };
-		double registreY[] = { 160, 260, 360, 460, 560 };
 
 		double retour[] = { -1, -1 };
 
@@ -322,27 +297,26 @@ public class PlateauController {
 		if (x > 440 && y > 160) {
 			for (int i = 0; i < registreX.length; i++) {
 				if (!tx) {
-					if(x <= registreX[i]) {
-						tx =true;
-						retour[0]=i;
+					if (x <= registreXtest[i]) {
+						tx = true;
+						retour[0] = i;
 					}
 				}
 				if (!ty) {
-					if(y <= registreY[i]) {
-						ty =true;
-						retour[1]=i;
+					if (y <= registreYtest[i]) {
+						ty = true;
+						retour[1] = i;
 					}
 				}
 
 			}
 		}
-		System.out.println(Arrays.toString(retour));
 		return retour;
 	}
 
 	@FXML
 	void sourisEntrer(MouseEvent event) {
-		System.out.println(event.getX() + "  " + event.getY());
+		// System.out.println(event.getX() + " " + event.getY());
 	}
 
 	public static void placeOrigine() {
