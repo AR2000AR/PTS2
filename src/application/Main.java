@@ -40,6 +40,7 @@ public class Main extends Application {
 		boolean test = true;
 		test = testDessusDessousPiece((int) t[0], (int) t[1]);
 		
+		
 		return test;
 	}
 

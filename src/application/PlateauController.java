@@ -251,6 +251,7 @@ public class PlateauController {
 				empl = emplacementPlateau(event);
 				testPoserPiece(empl);
 			}
+			
 			Main.temoin = 0;
 		}
 	}
