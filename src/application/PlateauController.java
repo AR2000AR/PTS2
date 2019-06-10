@@ -209,7 +209,7 @@ public class PlateauController {
 		Main.temoin = i;
 		coordSouris(event);
 		listeP.get(Main.temoin - 1).toFront();
-		System.out.println(Main.temoin);
+		//System.out.println(Main.temoin);
 		centrerSurSouris(event, p);
 	}
 
@@ -238,7 +238,7 @@ public class PlateauController {
 		double valeurRetour[] = new double[2];
 		valeurRetour[0] = x;
 		valeurRetour[1] = y;
-		System.out.println(Arrays.toString(valeurRetour));
+		//System.out.println(Arrays.toString(valeurRetour));
 		return valeurRetour;
 	}
 
@@ -260,10 +260,11 @@ public class PlateauController {
 		 * test si une piece peut être placer ou non et si oui la place
 		 * 
 		 */
-		if (empl[0] != -1 && empl[1] != -1) {
-			System.out.println(Arrays.toString(empl));
-
-			placerPiece(empl);
+		if (empl[0] != -1 && empl[1] != -1 && empl[0] < 5 && empl[1] < 5) {
+			//System.out.println(Arrays.toString(empl));
+			if (Main.testPlacer(empl)) {
+				placerPiece(empl);
+			}
 
 		}
 
@@ -279,7 +280,7 @@ public class PlateauController {
 	private double[] leDecalage() {
 		double retour[] = new double[2];
 		retour = decalageXY[Main.temoin - 1][tabEtat[Main.temoin - 1]];
-		System.out.println(Arrays.toString(retour));
+		//System.out.println(Arrays.toString(retour));
 
 		switch (Main.temoin) {
 
@@ -395,7 +396,7 @@ public class PlateauController {
 		GestionDeDonnee g = new GestionDeDonnee();
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
-			s = g.getLevel(0, 2, 5);
+			s = g.getLevel(0, 3, 4);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
 			e.printStackTrace();
 			Platform.exit();
@@ -468,6 +469,11 @@ public class PlateauController {
 		x /= 100;
 		y /= 100;
 		Main.plateau[(int) y][(int) x] = new Case(e);
+
+		for (int i = 0; i < 4; i++) {
+			System.out.println(Arrays.toString(Main.plateau[i]));
+		}
+
 	}
 
 }
