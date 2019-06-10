@@ -70,7 +70,7 @@ public class PlateauController {
 
 	static double decalageXYP1[][] = { { 50, 150 }, { 50, 50 }, { 150, 50 }, { 150, 150 } };
 	static double decalageXYP2[][] = { { 150, 50 }, { 50, 150 } };
-	static double decalageXYP3[][] = { { 50, 150 }, { 50, 50 }, { 250, 50 }, { 150, 250 } };
+	static double decalageXYP3[][] = { { 250, 150 }, { 50, 250 }, { 50, 50 }, { 150, 50 } };
 
 	static double decalageXY[][][] = { decalageXYP1, decalageXYP1, decalageXYP1 };
 	static int tabEtat[] = { etatP1, etatP2, etatP3 };
@@ -318,14 +318,14 @@ public class PlateauController {
 			retour[1] = 0;
 
 			if (etatP3 == 1) {
+				retour[0] = 200;
 				retour[1] = 100;
 			}
-			if (etatP3 == 3) {
-				retour[0] = 200;
+			if (etatP3 == 2) {
+				retour[1] = 200;
 			}
 			if (etatP3 == 4) {
 				retour[0] = 100;
-				retour[1] = 200;
 			}
 
 			break;
