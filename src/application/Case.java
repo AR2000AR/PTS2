@@ -36,9 +36,16 @@ public class Case {
 		}
 	}
 
+	
+	
+	
 	@Override
 	public String toString() {
 		return this.nom;
+	}
+
+	public void setEtatCase(EnumCase etatCase) {
+		this.etatCase = etatCase;
 	}
 
 }

@@ -2,9 +2,11 @@ package application;
 
 import java.util.Arrays;
 
+import consoleVersion.EtatCase;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +19,11 @@ public class Main extends Application {
 
 	static int autourP3[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
 
-	public static Case[][] plateau = new Case[4][4];
+	static Case[][] plateau = new Case[4][4];
 
+	static boolean estPlacer[] = {false,false,false};
+	static int coorPestPlacer[][]= new int [3][2];
+	
 	public void start(Stage primaryStage) {
 		try {
 
@@ -32,15 +37,113 @@ public class Main extends Application {
 		}
 	}
 
-	public static boolean testPlacer(double[] t) {
-		System.out.println(Arrays.toString(t));
+	public static void affPlateau() {
 		for (int i = 0; i < 4; i++) {
 			System.out.println(Arrays.toString(plateau[i]));
 		}
+	}
+
+	public static boolean testPlacer(double[] t) {
+		System.out.println(Arrays.toString(t));
+		int x = (int) t[1];
+		int y = (int) t[0];
+
 		boolean test = true;
 		test = testDessusDessousPiece((int) t[0], (int) t[1]);
-		
-		
+		if (test) {
+			switch (temoin) {
+			case 1:
+				switch (PlateauController.etatP1) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+
+				case 3:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 4:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+
+				}
+				break;
+			case 2:
+				switch (PlateauController.etatP2) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+				}
+
+				break;
+			case 3:
+				switch (PlateauController.etatP3) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 2] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 2][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+
+				case 3:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 2] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 4:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 2][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
 		return test;
 	}
 
@@ -119,13 +222,33 @@ public class Main extends Application {
 			} else {
 				return false;
 			}
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
 
+	
+
+	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	
+	
+	
+	public static boolean estPlacerSurPlateau() {
+		boolean test = false;
+		test = estPlacer[temoin-1];		
+		return test;
+	}
+	
+	public static int[] retourneCoord() {
+		int result[] = new int[2];
+		result = coorPestPlacer[temoin];
+		return result;
+	}
+	
+	
 }

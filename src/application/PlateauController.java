@@ -127,7 +127,130 @@ public class PlateauController {
 	}
 
 	@FXML
+	void prendrePiece1(MouseEvent event) {
+		Main.temoin = 1;
+		int y = Main.coorPestPlacer[0][0];
+		int x = Main.coorPestPlacer[0][1];
+
+		if (Main.estPlacerSurPlateau()) {
+			Main.estPlacer[0] = false;
+
+			System.out.println("Entrer switch");
+			switch (etatP1) {
+			case 1:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+
+				break;
+			case 2:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+
+			case 3:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			case 4:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			default:
+				break;
+
+			}
+		}
+
+	}
+
+	@FXML
+	void prendrePiece2(MouseEvent event) {
+		Main.temoin = 2;
+
+		int y = Main.coorPestPlacer[1][0];
+		int x = Main.coorPestPlacer[1][1];
+
+		if (Main.estPlacerSurPlateau()) {
+			Main.estPlacer[1] = false;
+
+			switch (PlateauController.etatP2) {
+			case 1:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			case 2:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+
+	@FXML
+	void prendrePiece3(MouseEvent event) {
+		Main.temoin = 3;
+		
+		int y = Main.coorPestPlacer[2][0];
+		int x = Main.coorPestPlacer[2][1];
+
+		if (Main.estPlacerSurPlateau()) {
+			Main.estPlacer[2] = false;
+
+			switch (PlateauController.etatP3) {
+			case 1:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 2] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			case 2:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x - 2][y] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+
+			case 3:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y + 2] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			case 4:
+				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				Main.plateau[x + 2][y] = new Case(EnumCase.LIBRE);
+				Main.affPlateau();
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
+
+	@FXML
 	void tournerP(MouseEvent event) {
+
 		if (event.getButton().toString() == ("SECONDARY")) {
 			switch (Main.temoin) {
 			case 1:
@@ -209,26 +332,28 @@ public class PlateauController {
 		Main.temoin = i;
 		coordSouris(event);
 		listeP.get(Main.temoin - 1).toFront();
-		//System.out.println(Main.temoin);
+		// System.out.println(Main.temoin);
 		centrerSurSouris(event, p);
 	}
 
 	@FXML
-
 	void dragOnP1(MouseEvent event) {
 		deplacerAvecSouris(event, p1, 1);
 		Main.temoin = 1;
-
 	}
 
 	@FXML
 	void dragOnP2(MouseEvent event) {
 		deplacerAvecSouris(event, p2, 2);
+		Main.temoin = 2;
+
 	}
 
 	@FXML
 	void dragOnP3(MouseEvent event) {
 		deplacerAvecSouris(event, p3, 3);
+		Main.temoin = 3;
+
 	}
 
 	public static double[] coordSouris(MouseEvent event) {
@@ -238,7 +363,6 @@ public class PlateauController {
 		double valeurRetour[] = new double[2];
 		valeurRetour[0] = x;
 		valeurRetour[1] = y;
-		//System.out.println(Arrays.toString(valeurRetour));
 		return valeurRetour;
 	}
 
@@ -251,7 +375,7 @@ public class PlateauController {
 				empl = emplacementPlateau(event);
 				testPoserPiece(empl);
 			}
-			
+
 			Main.temoin = 0;
 		}
 	}
@@ -262,9 +386,14 @@ public class PlateauController {
 		 * 
 		 */
 		if (empl[0] != -1 && empl[1] != -1 && empl[0] < 5 && empl[1] < 5) {
-			//System.out.println(Arrays.toString(empl));
+			// System.out.println(Arrays.toString(empl));
 			if (Main.testPlacer(empl)) {
 				placerPiece(empl);
+				Main.coorPestPlacer[Main.temoin - 1][0] = (int) empl[0];
+				Main.coorPestPlacer[Main.temoin - 1][1] = (int) empl[1];
+				Main.estPlacer[Main.temoin - 1] = true;
+				System.out.println("LA LISTE DE PLACER" + Arrays.toString(Main.coorPestPlacer[Main.temoin - 1]));
+
 			}
 
 		}
@@ -281,7 +410,7 @@ public class PlateauController {
 	private double[] leDecalage() {
 		double retour[] = new double[2];
 		retour = decalageXY[Main.temoin - 1][tabEtat[Main.temoin - 1]];
-		//System.out.println(Arrays.toString(retour));
+		// System.out.println(Arrays.toString(retour));
 
 		switch (Main.temoin) {
 
@@ -397,7 +526,7 @@ public class PlateauController {
 		GestionDeDonnee g = new GestionDeDonnee();
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
-			s = g.getLevel(0, 3, 4);
+			s = g.getLevel(0, 2, 5);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
 			e.printStackTrace();
 			Platform.exit();
@@ -415,14 +544,14 @@ public class PlateauController {
 		x4 = 0;
 		y4 = 0;
 
-		x1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(1))));
-		y1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(2))));
-		x2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(4))));
-		y2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(5))));
-		x3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(7))));
-		y3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(8))));
-		x4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(10))));
-		y4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(11))));
+		y1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(1))));
+		x1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(2))));
+		y2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(4))));
+		x2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(5))));
+		y3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(7))));
+		x3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(8))));
+		y4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(10))));
+		x4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(11))));
 
 		System.out.println(x1);
 		System.out.println(y1);
