@@ -200,6 +200,21 @@ public class GestionDeDonnee {
 		return result;
 	}
 
+	public int getProgressionValue(String profilName) throws NoProfileException {
+		Boolean[][][] progTable = getProgression(profilName);
+		int prog = 0;
+		for (int i = 0; i < progTable.length; i++) {
+			for (int j = 0; j < progTable[i].length; j++) {
+				for (int k = 0; k < progTable[i][j].length; k++) {
+					if (progTable[i][j][k] == true) {
+						prog++;
+					}
+				}
+			}
+		}
+		return prog;
+	}
+
 	public List<Score> getScore(int context, int difficulte) {
 		return getScore(context, difficulte, 6);
 	}
