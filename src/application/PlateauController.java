@@ -85,7 +85,7 @@ public class PlateauController {
 	static double registreXtest[] = { 540, 640, 740, 840 };
 	static double registreYtest[] = { 260, 360, 460, 560 };
 
-	static int nbPPlace = 0;
+	static boolean niveauFini = false;
 
 	public void initialize() {
 		try {
@@ -386,11 +386,26 @@ public class PlateauController {
 				double empl[] = new double[2];
 				empl = emplacementPlateau(event);
 				testPoserPiece(empl);
+				testJeuFini();
 			}
 			temoin = 0;
 		}
 	}
 
+	public void testJeuFini() {
+		boolean test = false;
+		int k = 0;
+		for(int i=0;i<3;i++) {
+			if(estPlacer[i]) {
+				k++;
+			}
+			if(k==3){
+				test = true;
+				System.out.println("<#<|JEU FINI|>#>");
+			}
+		}
+	}
+	
 	private void testPoserPiece(double[] empl) {
 		/*
 		 * test si une piece peut être placer ou non et si oui la place
@@ -403,8 +418,7 @@ public class PlateauController {
 				coorPestPlacer[temoin - 1][0] = (int) empl[0];
 				coorPestPlacer[temoin - 1][1] = (int) empl[1];
 				estPlacer[temoin - 1] = true;
-				nbPPlace++;
-				System.out.println(nbPPlace);
+
 
 			} else {
 				retourOrigine();
