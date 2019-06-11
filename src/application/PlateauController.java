@@ -30,20 +30,20 @@ import javafx.stage.Stage;
 
 public class PlateauController {
 	@FXML
-	private ImageView p1;
+	protected ImageView p1;
 	static int etatP1 = 1;
 
 	@FXML
-	private ImageView p2;
+	protected ImageView p2;
 	static int etatP2 = 1;
 
 	@FXML
-	private ImageView p3;
+	protected ImageView p3;
 	static int etatP3 = 1;
 
 	@FXML
-	private Canvas canvas1;
-	private GraphicsContext gc1;
+	protected Canvas canvas1;
+	protected GraphicsContext gc1;
 
 	static Image imgPlateau = new Image("file:src/image/plateau.png");
 	static Image imgCochon = new Image("file:src/image/pig.png");
@@ -68,7 +68,7 @@ public class PlateauController {
 
 	static ArrayList<ImageView> listeP = new ArrayList<>();
 	static double[][] coorOrig = new double[3][2];
-	static private String s;
+	static protected String s;
 
 	static int nCase = -1;
 
@@ -104,11 +104,11 @@ public class PlateauController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		/*
 		Timer monTimer = new Timer(this);
 		Thread t = new Thread(monTimer);
 		t.start();
-		
+		*/
 		
 	}
 
@@ -310,7 +310,7 @@ public class PlateauController {
 
 	}
 
-	private void centrerSurSouris(MouseEvent event, ImageView p) {
+	protected void centrerSurSouris(MouseEvent event, ImageView p) {
 		p.setX(event.getX());
 		p.setY(event.getY());
 		double x;
@@ -345,7 +345,7 @@ public class PlateauController {
 		}
 	}
 
-	private void deplacerAvecSouris(MouseEvent event, ImageView p, int i) {
+	protected void deplacerAvecSouris(MouseEvent event, ImageView p, int i) {
 		p.setOpacity(0.75);
 		temoin = i;
 		coordSouris(event);
@@ -412,7 +412,7 @@ public class PlateauController {
 		}
 	}
 	
-	private void testPoserPiece(double[] empl) {
+	protected void testPoserPiece(double[] empl) {
 		/*
 		 * test si une piece peut être placer ou non et si oui la place
 		 * 
@@ -434,14 +434,14 @@ public class PlateauController {
 
 	}
 
-	private void placerPiece(double[] empl) {
+	protected void placerPiece(double[] empl) {
 
 		listeP.get(temoin - 1).setX(registreX[(int) empl[0]] - coorOrig[temoin - 1][0] - leDecalage()[0]);
 		listeP.get(temoin - 1).setY(registreY[(int) empl[1]] - coorOrig[temoin - 1][1] - leDecalage()[1]);
 
 	}
 
-	private double[] leDecalage() {
+	protected double[] leDecalage() {
 		double retour[] = new double[2];
 		retour = decalageXY[temoin - 1][tabEtat[temoin - 1]];
 		// System.out.println(Arrays.toString(retour));
@@ -501,7 +501,7 @@ public class PlateauController {
 
 	}
 
-	private double[] emplacementPlateau(MouseEvent event) {
+	protected double[] emplacementPlateau(MouseEvent event) {
 		double x = 0;
 		double y = 0;
 
@@ -763,7 +763,7 @@ public class PlateauController {
 		return test;
 	}
 
-	private static boolean testDessusDessousPiece(int x, int y) {
+	protected static boolean testDessusDessousPiece(int x, int y) {
 		boolean testPiecePoser = false;
 		boolean t1 = false;
 		boolean t2 = false;
@@ -830,7 +830,7 @@ public class PlateauController {
 		return testPiecePoser;
 	}
 
-	private static boolean testDessusDessous(double x, double y) {
+	protected static boolean testDessusDessous(double x, double y) {
 		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
 			Case c = plateau[(int) y][(int) x];
 			if (c.etatCase == EnumCase.LIBRE) {
