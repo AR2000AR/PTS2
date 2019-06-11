@@ -3,7 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -16,8 +16,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
-			Scene scene = new Scene(root, 1080, 720);
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/profilSelection.fxml"));
+			Scene scene = new Scene(root, 908, 678);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

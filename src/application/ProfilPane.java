@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ProfilePane extends HBox {
+public class ProfilPane extends HBox {
 
 	private String name = "";
 	private int prog = 0;
@@ -20,7 +20,7 @@ public class ProfilePane extends HBox {
 	private Label nameLabel;
 	private Label progLabel;
 
-	public ProfilePane(String name, int prog)
+	public ProfilPane(String name, int prog)
 			throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		super();
 		this.name = name;
@@ -30,6 +30,7 @@ public class ProfilePane extends HBox {
 		progLabel = new Label(Integer.toString(this.prog));
 		infoBox.getChildren().addAll(nameLabel, progLabel);
 		super.getChildren().add(infoBox);
+		super.setStyle("-fx-border-color: black");
 	}
 
 }
