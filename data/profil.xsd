@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.example.org/profil">
+
+    <xsd:element name="profils">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element ref="profil" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="profil">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="niveau" type="niv_prog"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="nom" type="xsd:string" use="required"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="niv_prog">
+    	<xsd:sequence>
+    		<xsd:element name="fini" minOccurs="1" maxOccurs="1">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:int">
+    					<xsd:minInclusive value="0"></xsd:minInclusive>
+    					<xsd:maxInclusive value="1"></xsd:maxInclusive>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="nbContext">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:int">
+    				<xsd:minInclusive value="0"></xsd:minInclusive>
+    				<xsd:maxExclusive value="1"></xsd:maxExclusive>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    	<xsd:attribute name="nbDifficulte">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:int">
+    				<xsd:minInclusive value="0"></xsd:minInclusive>
+    				<xsd:maxExclusive value="3"></xsd:maxExclusive>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    	<xsd:attribute name="nbNiveau">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:int">
+    				<xsd:minInclusive value="0"></xsd:minInclusive>
+    				<xsd:maxInclusive value="6"></xsd:maxInclusive>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    </xsd:complexType>
+</xsd:schema>
