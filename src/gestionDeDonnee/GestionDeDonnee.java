@@ -27,33 +27,44 @@ public class GestionDeDonnee {
 	private static final boolean VERBOSE = true;
 	private static final String[] typeName = { "none", "Element", "Attr", "Text", "CDATA", "EntityRef", "Entity",
 			"ProcInstr", "Comment", "Document", "DocType", "DocFragment", "Notation", };
-	// -------------------------------------------
+	// ------------------------------------------
 	private static InputStream level_file = null;
 	private static Document xmlNiveaux = null;
 	// ------------------------------------------
 	private static org.jdom2.Document xmlScores;
 	private static InputStream scores_file = null;
 	private static List<Score> scores = null;
+	// ------------------------------------------
+	private static org.jdom2.Document xmlProfiles;
+	private static InputStream profils_file = null;
 
 	// -------------------------------------------
 	public GestionDeDonnee() throws SAXException, IOException, ParserConfigurationException, JDOMException {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder levelBuilder = factory.newDocumentBuilder();
 		if (level_file == null) {
 			level_file = getClass().getClassLoader().getResourceAsStream("niveau.xml");
 		}
 		if (scores_file == null) {
 			scores_file = getClass().getClassLoader().getResourceAsStream("score.xml");
 		}
-		SAXBuilder scoreBuilder = new SAXBuilder();
+		if (profils_file == null) {
+			profils_file = getClass().getClassLoader().getResourceAsStream("profil.xml");
+		}
+
 		if (xmlScores == null) {
+			SAXBuilder scoreBuilder = new SAXBuilder();
 			xmlScores = scoreBuilder.build(scores_file);
 		}
 		if (xmlNiveaux == null) {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder levelBuilder = factory.newDocumentBuilder();
 			xmlNiveaux = levelBuilder.parse(level_file);
 		}
 		if (scores == null) {
 			scores = new ArrayList<Score>();
+		}
+		if (xmlProfiles == null) {
+			SAXBuilder profilBuilder = new SAXBuilder();
+			xmlProfiles = profilBuilder.build(profils_file);
 		}
 	}
 
@@ -72,7 +83,12 @@ public class GestionDeDonnee {
 		name.setText(score.getName());
 		newScore.addContent(time);
 		newScore.addContent(name);
-		trouveNiveauElement(context, difficulte, niveau).addContent(newScore);
+		getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context, difficulte, niveau)
+				.addContent(newScore);
+	}
+
+	private FileWriter getFileWriterFromName(String fileName) throws IOException {
+		return new FileWriter(getClass().getClassLoader().getResource(fileName).getPath());
 	}
 
 	/**
@@ -108,53 +124,8 @@ public class GestionDeDonnee {
 		throw new NiveauNonTrouve("Le niveau indiqué n'a pas été trouvé. Le fichier peut être endomagé");
 	}
 
-	public List<Score> getScore(int context, int difficulte) {
-		return getScore(context, difficulte, 6);
-	}
-
-	public List<Score> getScore(int context, int difficulte, int niveau) {
-		loadScores(context, difficulte, niveau);
-		return scores;
-	}
-
-	private void loadScores(int context, int difficulte, int niveau) {
-		scores.clear();
-		List<Element> scoreElementList = trouveNiveauElement(context, difficulte, niveau).getChildren("score");
-		for (Element scoreElement : scoreElementList) {
-			addScore(scoreElement);
-		}
-	}
-
-	/**
-	 * Sauvegarde un score pour un niveau
-	 *
-	 * @author Audrézet Rémi
-	 * @param mode      - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
-	 * @param difficlte - Difficulte du niveau [0-3]
-	 * @param niveau    - Numéro du niveau. [0-5]
-	 * @param score     - Le score à sauvegarder.
-	 * @param pseudo    - Le pseudo du joueur.
-	 * @throws IOException
-	 */
-	public void saveScore(int mode, int difficulte, int niveau, int score, String pseudo) throws IOException {
-		saveScore(mode, difficulte, niveau, new Score(pseudo, score));
-	}
-
-	public void saveScore(int mode, int difficulte, int niveau, Score score) throws IOException {
-		loadScores(mode, difficulte, niveau);
-		addScore(mode, difficulte, niveau, score);
-		XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
-		out.output(xmlScores, new FileWriter(getClass().getClassLoader().getResource("score.xml").getPath()));
-		// out.output(xmlScores, System.out);
-	}
-
-	public void saveScore(int mode, int difficulte, int score, String pseudo) throws IOException {
-		saveScore(mode, difficulte, 6, score, pseudo);
-	}
-
-	private Element trouveNiveauElement(int context, int difficulte, int niveau) {
-		List<Element> niveaux = xmlScores.getRootElement().getChildren("niveau");
-		for (Element element : niveaux) {
+	private Element getNiveauElement(List<Element> listNiveaux, int context, int difficulte, int niveau) {
+		for (Element element : listNiveaux) {
 			List<Attribute> attributes = element.getAttributes();
 			int nbNiveau = -1;
 			int nbContext = -1;
@@ -183,8 +154,155 @@ public class GestionDeDonnee {
 		nouvNiveauAttrs.add(new Attribute("nbContext", Integer.toString(context)));
 		nouvNiveauAttrs.add(new Attribute("nbDifficulte", Integer.toString(difficulte)));
 		nouvNiveau.setAttributes(nouvNiveauAttrs);
-		niveaux.add(nouvNiveau);
+		listNiveaux.add(nouvNiveau);
 		return nouvNiveau;
 	}
 
+	public Element getProfil(String profilName) throws NoProfileException {
+		List<Element> profilList = xmlProfiles.getRootElement().getChildren();
+		if (getProfileNameList().indexOf(profilName) == -1)
+			throw new NoProfileException("Le profil " + profilName + " n'existe pas.");
+		for (Element profil : profilList) {
+			if (profil.getAttributeValue("nom").equals(profilName))
+				return profil;
+		}
+		return null; // Ne devrais jamais être attein.
+	}
+
+	public List<String> getProfileNameList() {
+		List<Element> profilElements = xmlProfiles.getRootElement().getChildren();
+		List<String> result = new ArrayList<String>();
+		for (Element profil : profilElements) {
+			result.add(profil.getAttributeValue("nom"));
+		}
+		return result;
+	}
+
+	public Boolean[][][] getProgression(String profilName) throws NoProfileException {
+		Element profil = getProfil(profilName);
+		Boolean[][][] result = new Boolean[2][4][7];
+		for (int i = 0; i < result.length; i++) {
+			for (int j = 0; j < result[i].length; j++) {
+				for (int k = 0; k < result[i][j].length; k++) {
+					result[i][j][k] = false;
+				}
+			}
+		}
+		List<Element> niveaux = profil.getChildren("niveau");
+		for (Element niveau : niveaux) {
+			if (niveau.getChild("fini").getTextNormalize().equals("1")) {
+				int nbContext = Integer.parseInt(niveau.getAttributeValue("nbContext"));
+				int nbDifficulte = Integer.parseInt(niveau.getAttributeValue("nbDifficulte"));
+				int nbNiveau = Integer.parseInt(niveau.getAttributeValue("nbNiveau"));
+				result[nbContext][nbDifficulte][nbNiveau] = true;
+			}
+		}
+		return result;
+	}
+
+	public int getProgressionValue(String profilName) throws NoProfileException {
+		Boolean[][][] progTable = getProgression(profilName);
+		int prog = 0;
+		for (int i = 0; i < progTable.length; i++) {
+			for (int j = 0; j < progTable[i].length; j++) {
+				for (int k = 0; k < progTable[i][j].length; k++) {
+					if (progTable[i][j][k] == true) {
+						prog++;
+					}
+				}
+			}
+		}
+		return prog;
+	}
+
+	public List<Score> getScore(int context, int difficulte) {
+		return getScore(context, difficulte, 6);
+	}
+
+	public List<Score> getScore(int context, int difficulte, int niveau) {
+		loadScores(context, difficulte, niveau);
+		return scores;
+	}
+
+	private void loadScores(int context, int difficulte, int niveau) {
+		scores.clear();
+		List<Element> scoreElementList = getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context,
+				difficulte, niveau).getChildren("score");
+		for (Element scoreElement : scoreElementList) {
+			addScore(scoreElement);
+		}
+	}
+
+	public boolean newProfil(String nom) throws IOException {
+		List<String> nomsExistant = getProfileNameList();
+		if (nomsExistant.indexOf(nom) == -1) {
+			Element profilsElement = xmlProfiles.getRootElement();
+			Element newProfil = new Element("profil");
+			newProfil.setAttribute(new Attribute("nom", nom));
+			profilsElement.addContent(newProfil);
+			saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
+		}
+		return false;
+	}
+
+	/**
+	 * Sauvegarde un score pour un niveau
+	 *
+	 * @author Audrézet Rémi
+	 * @param mode      - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
+	 * @param difficlte - Difficulte du niveau [0-3]
+	 * @param niveau    - Numéro du niveau. [0-5]
+	 * @param score     - Le score à sauvegarder.
+	 * @param pseudo    - Le pseudo du joueur.
+	 * @throws IOException
+	 */
+	public void saveScore(int mode, int difficulte, int niveau, int score, String pseudo) throws IOException {
+		saveScore(mode, difficulte, niveau, new Score(pseudo, score));
+	}
+
+	public void saveScore(int mode, int difficulte, int niveau, Score score) throws IOException {
+		loadScores(mode, difficulte, niveau);
+		addScore(mode, difficulte, niveau, score);
+		saveXML(xmlScores, getFileWriterFromName("score.xml"));
+	}
+
+	public void saveScore(int mode, int difficulte, int score, String pseudo) throws IOException {
+		saveScore(mode, difficulte, 6, score, pseudo);
+	}
+
+	private void saveXML(org.jdom2.Document xmlDocument, FileWriter file) throws IOException {
+		XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
+		out.output(xmlDocument, file);
+		// out.output(xmlDocument, System.out);
+	}
+
+	public void setProgression(String nomProfil, boolean[][][] fini)
+			throws NoProfileException, IOException, TableauMalformeException {
+		if ((fini.length == 2) && (fini[0].length == 4) && ((fini[0][0].length == 5) || (fini[0][0].length == 6))) {
+			for (int i = 0; i < fini.length; i++) {
+				for (int j = 0; j < fini[i].length; j++) {
+					for (int k = 0; k < fini[i][j].length; k++) {
+						setProgression(nomProfil, i, j, k, fini[i][j][k]);
+					}
+				}
+			}
+		} else
+			throw new TableauMalformeException("le tableau à trois dimention n'a pas la bonne dimmention");
+	}
+
+	public void setProgression(String nomProfil, int context, int difficulte, int niveau, boolean fini)
+			throws NoProfileException, IOException {
+		Element profil = getProfil(nomProfil);
+		Element niveauElement = getNiveauElement(profil.getChildren(), context, difficulte, niveau);
+		Element finiElement = niveauElement.getChild("fini");
+		if (finiElement == null) {
+			finiElement = new Element("fini");
+		}
+		if (fini) {
+			finiElement.setText("1");
+		} else {
+			finiElement.setText("0");
+		}
+		saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
+	}
 }
