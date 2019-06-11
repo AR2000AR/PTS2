@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OptionsController">
+   <children>
+      <ImageView fitHeight="678.0" fitWidth="908.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fond.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-4.0" prefHeight="678.0" prefWidth="877.0">
+         <children>
+            <Label layoutX="108.0" layoutY="60.0" prefHeight="80.0" prefWidth="661.0" text="Les 3 Petits Cochons">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="60.0" />
+               </font>
+            </Label>
+            <Label layoutX="108.0" layoutY="293.0" prefHeight="40.0" prefWidth="209.0" text="Taille de la police :">
+               <font>
+                  <Font name="Elephant" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="574.0" layoutY="293.0" prefHeight="40.0" prefWidth="202.0" text="Taille de la fenêtre :">
+               <font>
+                  <Font name="Elephant" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="399.0" layoutY="208.0" prefHeight="33.0" prefWidth="81.0" text="Police :">
+               <font>
+                  <Font name="Elephant" size="20.0" />
+               </font>
+            </Label>
+            <ListView layoutX="108.0" layoutY="331.0" prefHeight="31.0" prefWidth="209.0" />
+            <ListView layoutX="574.0" layoutY="331.0" prefHeight="31.0" prefWidth="202.0" />
+            <ListView layoutX="378.0" layoutY="241.0" prefHeight="33.0" prefWidth="122.0" />
+            <Button fx:id="dalto" layoutX="364.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#clickOnDalto" prefHeight="61.0" prefWidth="152.0" text="Mode daltonien " />
+            <Button fx:id="delete" layoutX="357.0" layoutY="557.0" mnemonicParsing="false" onMouseClicked="#clickOnDelete" prefHeight="49.0" prefWidth="167.0" text="Effacer les données " />
+            <ImageView fx:id="home" fitHeight="61.0" fitWidth="65.0" layoutX="798.0" layoutY="14.0" onMouseClicked="#clickOnHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

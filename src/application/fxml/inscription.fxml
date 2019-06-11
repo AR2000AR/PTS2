@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InscriptionController">
+   <children>
+      <ImageView fitHeight="678.0" fitWidth="908.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fond.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-4.0" prefHeight="678.0" prefWidth="877.0">
+         <children>
+            <Label layoutX="245.0" layoutY="375.0" text="Pseudo :">
+               <font>
+                  <Font name="Forte" size="20.0" />
+               </font></Label>
+            <Label layoutX="189.0" layoutY="424.0" prefHeight="24.0" prefWidth="144.0" text="Mot de passe :">
+               <font>
+                  <Font name="Forte" size="20.0" />
+               </font></Label>
+            <TextField layoutX="367.0" layoutY="371.0" />
+            <TextField layoutX="367.0" layoutY="420.0" />
+            <Button fx:id="inscription2" layoutX="421.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#clickOnInscription2" text="S'inscrire" />
+            <Label layoutX="130.0" layoutY="110.0" prefHeight="148.0" prefWidth="661.0" text="Les 3 Petits Cochons">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="60.0" />
+               </font>
+            </Label>
+            <Label layoutX="189.0" layoutY="470.0" prefHeight="24.0" prefWidth="144.0" text="Mot de passe :">
+               <font>
+                  <Font name="Forte" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="367.0" layoutY="466.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
