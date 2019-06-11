@@ -18,11 +18,15 @@ import gestionDeDonnee.NiveauInvalide;
 import gestionDeDonnee.NiveauNonTrouve;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class PlateauController {
 	@FXML
@@ -81,6 +85,8 @@ public class PlateauController {
 	static double registreXtest[] = { 540, 640, 740, 840 };
 	static double registreYtest[] = { 260, 360, 460, 560 };
 
+	static int nbPPlace = 0;
+
 	public void initialize() {
 		try {
 
@@ -119,6 +125,12 @@ public class PlateauController {
 
 	}
 
+	public void retourOrigine() {
+		listeP.get(temoin - 1).setX(0);
+		listeP.get(temoin - 1).setY(0);
+
+	}
+
 	public static void switchHeightWidth(ImageView img) {
 		double w = img.getFitHeight();
 		double h = img.getFitWidth();
@@ -128,40 +140,40 @@ public class PlateauController {
 
 	@FXML
 	void prendrePiece1(MouseEvent event) {
-		Main.temoin = 1;
-		int y = Main.coorPestPlacer[0][0];
-		int x = Main.coorPestPlacer[0][1];
+		temoin = 1;
+		int y = coorPestPlacer[0][0];
+		int x = coorPestPlacer[0][1];
 
-		if (Main.estPlacerSurPlateau()) {
-			Main.estPlacer[0] = false;
+		if (estPlacerSurPlateau()) {
+			estPlacer[0] = false;
 
 			System.out.println("Entrer switch");
 			switch (etatP1) {
 			case 1:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				affPlateau();
 
 				break;
 			case 2:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 
 			case 3:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			case 4:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			default:
 				break;
@@ -173,26 +185,26 @@ public class PlateauController {
 
 	@FXML
 	void prendrePiece2(MouseEvent event) {
-		Main.temoin = 2;
+		temoin = 2;
 
-		int y = Main.coorPestPlacer[1][0];
-		int x = Main.coorPestPlacer[1][1];
+		int y = coorPestPlacer[1][0];
+		int x = coorPestPlacer[1][1];
 
-		if (Main.estPlacerSurPlateau()) {
-			Main.estPlacer[1] = false;
+		if (estPlacerSurPlateau()) {
+			estPlacer[1] = false;
 
 			switch (PlateauController.etatP2) {
 			case 1:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			case 2:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			default:
 				break;
@@ -203,56 +215,56 @@ public class PlateauController {
 
 	@FXML
 	void prendrePiece3(MouseEvent event) {
-		Main.temoin = 3;
-		
-		int y = Main.coorPestPlacer[2][0];
-		int x = Main.coorPestPlacer[2][1];
+		temoin = 3;
 
-		if (Main.estPlacerSurPlateau()) {
-			Main.estPlacer[2] = false;
+		int y = coorPestPlacer[2][0];
+		int x = coorPestPlacer[2][1];
+
+		if (estPlacerSurPlateau()) {
+			estPlacer[2] = false;
 
 			switch (PlateauController.etatP3) {
 			case 1:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 2] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 2] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			case 2:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x - 2][y] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x - 2][y] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 
 			case 3:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y + 2] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
+				plateau[x][y + 2] = new Case(EnumCase.LIBRE);
+				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			case 4:
-				Main.plateau[x][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				Main.plateau[x + 2][y] = new Case(EnumCase.LIBRE);
-				Main.affPlateau();
+				plateau[x][y] = new Case(EnumCase.LIBRE);
+				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
+				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
+				plateau[x + 2][y] = new Case(EnumCase.LIBRE);
+				affPlateau();
 				break;
 			default:
 				break;
 			}
 		}
-		
+
 	}
 
 	@FXML
 	void tournerP(MouseEvent event) {
 
 		if (event.getButton().toString() == ("SECONDARY")) {
-			switch (Main.temoin) {
+			switch (temoin) {
 			case 1:
 				switchHeightWidth(p1);
 				etatP1++;
@@ -287,7 +299,7 @@ public class PlateauController {
 				break;
 
 			}
-			centrerSurSouris(event, listeP.get(Main.temoin - 1));
+			centrerSurSouris(event, listeP.get(temoin - 1));
 		}
 
 	}
@@ -298,7 +310,7 @@ public class PlateauController {
 		double x;
 		double y;
 
-		switch (Main.temoin) {
+		switch (temoin) {
 
 		case 1:
 			x = (decalageXYP1[etatP1 - 1][0]);
@@ -329,37 +341,37 @@ public class PlateauController {
 
 	private void deplacerAvecSouris(MouseEvent event, ImageView p, int i) {
 		p.setOpacity(0.75);
-		Main.temoin = i;
+		temoin = i;
 		coordSouris(event);
-		listeP.get(Main.temoin - 1).toFront();
-		// System.out.println(Main.temoin);
+		listeP.get(temoin - 1).toFront();
+		// System.out.println(temoin);
 		centrerSurSouris(event, p);
 	}
 
 	@FXML
 	void dragOnP1(MouseEvent event) {
 		deplacerAvecSouris(event, p1, 1);
-		Main.temoin = 1;
+		temoin = 1;
 	}
 
 	@FXML
 	void dragOnP2(MouseEvent event) {
 		deplacerAvecSouris(event, p2, 2);
-		Main.temoin = 2;
+		temoin = 2;
 
 	}
 
 	@FXML
 	void dragOnP3(MouseEvent event) {
 		deplacerAvecSouris(event, p3, 3);
-		Main.temoin = 3;
+		temoin = 3;
 
 	}
 
 	public static double[] coordSouris(MouseEvent event) {
 
-		double x = event.getX() + coorOrig[Main.temoin - 1][0];
-		double y = event.getY() + coorOrig[Main.temoin - 1][1];
+		double x = event.getX() + coorOrig[temoin - 1][0];
+		double y = event.getY() + coorOrig[temoin - 1][1];
 		double valeurRetour[] = new double[2];
 		valeurRetour[0] = x;
 		valeurRetour[1] = y;
@@ -369,14 +381,13 @@ public class PlateauController {
 	@FXML
 	void relache(MouseEvent event) {
 		if (event.getButton().toString() == ("PRIMARY")) {
-			if (listeP.get(Main.temoin - 1) != null) {
-				listeP.get(Main.temoin - 1).setOpacity(1);
+			if (listeP.get(temoin - 1) != null) {
+				listeP.get(temoin - 1).setOpacity(1);
 				double empl[] = new double[2];
 				empl = emplacementPlateau(event);
 				testPoserPiece(empl);
 			}
-
-			Main.temoin = 0;
+			temoin = 0;
 		}
 	}
 
@@ -387,32 +398,35 @@ public class PlateauController {
 		 */
 		if (empl[0] != -1 && empl[1] != -1 && empl[0] < 5 && empl[1] < 5) {
 			// System.out.println(Arrays.toString(empl));
-			if (Main.testPlacer(empl)) {
+			if (testPlacer(empl)) {
 				placerPiece(empl);
-				Main.coorPestPlacer[Main.temoin - 1][0] = (int) empl[0];
-				Main.coorPestPlacer[Main.temoin - 1][1] = (int) empl[1];
-				Main.estPlacer[Main.temoin - 1] = true;
-				System.out.println("LA LISTE DE PLACER" + Arrays.toString(Main.coorPestPlacer[Main.temoin - 1]));
+				coorPestPlacer[temoin - 1][0] = (int) empl[0];
+				coorPestPlacer[temoin - 1][1] = (int) empl[1];
+				estPlacer[temoin - 1] = true;
+				nbPPlace++;
+				System.out.println(nbPPlace);
 
+			} else {
+				retourOrigine();
 			}
-
+			System.out.println("");
 		}
 
 	}
 
 	private void placerPiece(double[] empl) {
 
-		listeP.get(Main.temoin - 1).setX(registreX[(int) empl[0]] - coorOrig[Main.temoin - 1][0] - leDecalage()[0]);
-		listeP.get(Main.temoin - 1).setY(registreY[(int) empl[1]] - coorOrig[Main.temoin - 1][1] - leDecalage()[1]);
+		listeP.get(temoin - 1).setX(registreX[(int) empl[0]] - coorOrig[temoin - 1][0] - leDecalage()[0]);
+		listeP.get(temoin - 1).setY(registreY[(int) empl[1]] - coorOrig[temoin - 1][1] - leDecalage()[1]);
 
 	}
 
 	private double[] leDecalage() {
 		double retour[] = new double[2];
-		retour = decalageXY[Main.temoin - 1][tabEtat[Main.temoin - 1]];
+		retour = decalageXY[temoin - 1][tabEtat[temoin - 1]];
 		// System.out.println(Arrays.toString(retour));
 
-		switch (Main.temoin) {
+		switch (temoin) {
 
 		case 1:
 			retour[0] = 0;
@@ -505,9 +519,9 @@ public class PlateauController {
 	}
 
 	public static void placeOrigine() {
-		if (Main.temoin != 9) {
-			listeP.get(Main.temoin).setX(coorOrig[Main.temoin][0]);
-			listeP.get(Main.temoin).setY(coorOrig[Main.temoin][1]);
+		if (temoin != 9) {
+			listeP.get(temoin).setX(coorOrig[temoin][0]);
+			listeP.get(temoin).setY(coorOrig[temoin][1]);
 		} else {
 			System.out.println("Pas de piece prise");
 		}
@@ -564,11 +578,11 @@ public class PlateauController {
 
 		for (int k = 0; k < 4; k++) {
 			for (int j = 0; j < 4; j++) {
-				Main.plateau[k][j] = new Case(EnumCase.LIBRE);
+				plateau[k][j] = new Case(EnumCase.LIBRE);
 			}
-			Main.plateau[0][0] = new Case(EnumCase.INEXISTANT);
-			Main.plateau[3][0] = new Case(EnumCase.INEXISTANT);
-			Main.plateau[0][3] = new Case(EnumCase.INEXISTANT);
+			plateau[0][0] = new Case(EnumCase.INEXISTANT);
+			plateau[3][0] = new Case(EnumCase.INEXISTANT);
+			plateau[0][3] = new Case(EnumCase.INEXISTANT);
 
 		}
 
@@ -590,7 +604,7 @@ public class PlateauController {
 		}
 
 		for (int n = 0; n < 4; n++) {
-			System.out.println(Arrays.toString(Main.plateau[n]));
+			System.out.println(Arrays.toString(plateau[n]));
 		}
 
 	}
@@ -598,12 +612,227 @@ public class PlateauController {
 	public static void initierMatriceVirtuel(double x, double y, EnumCase e) {
 		x /= 100;
 		y /= 100;
-		Main.plateau[(int) y][(int) x] = new Case(e);
+		plateau[(int) y][(int) x] = new Case(e);
 
 		for (int i = 0; i < 4; i++) {
-			System.out.println(Arrays.toString(Main.plateau[i]));
+			System.out.println(Arrays.toString(plateau[i]));
 		}
 
+	}
+
+	static int temoin = 0;
+
+	static int autourP1[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
+
+	static int autourP3[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
+
+	static Case[][] plateau = new Case[4][4];
+
+	static boolean estPlacer[] = { false, false, false };
+	static int coorPestPlacer[][] = new int[3][2];
+
+	
+
+	public static void affPlateau() {
+		for (int i = 0; i < 4; i++) {
+			System.out.println(Arrays.toString(plateau[i]));
+		}
+	}
+
+	public static boolean testPlacer(double[] t) {
+		System.out.println(Arrays.toString(t));
+		int x = (int) t[1];
+		int y = (int) t[0];
+
+		boolean test = true;
+		test = testDessusDessousPiece((int) t[0], (int) t[1]);
+		if (test) {
+			switch (temoin) {
+			case 1:
+				switch (PlateauController.etatP1) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+
+				case 3:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 4:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+
+				}
+				break;
+			case 2:
+				switch (PlateauController.etatP2) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+				}
+
+				break;
+			case 3:
+				switch (PlateauController.etatP3) {
+				case 1:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 2] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 2:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x - 2][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+
+				case 3:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
+					plateau[x][y + 2] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				case 4:
+					plateau[x][y] = new Case(EnumCase.OCCUPER);
+					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
+					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
+					plateau[x + 2][y] = new Case(EnumCase.OCCUPER);
+					affPlateau();
+					break;
+				default:
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+		return test;
+	}
+
+	private static boolean testDessusDessousPiece(int x, int y) {
+		boolean testPiecePoser = false;
+		boolean t1 = false;
+		boolean t2 = false;
+		if (testDessusDessous(x, y)) {
+
+			switch (temoin) {
+			case 1:
+				System.out.println("YOLO");
+				if (PlateauController.etatP1 == 1) {
+					System.out.println("ICI");
+					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x, y - 1);
+				}
+				if (PlateauController.etatP1 == 2) {
+					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x, y + 1);
+				}
+				if (PlateauController.etatP1 == 3) {
+					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x, y + 1);
+				}
+				if (PlateauController.etatP1 == 4) {
+					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x, y - 1);
+				}
+				t2 = t1;
+				break;
+
+			case 2:
+				if (PlateauController.etatP2 == 1) {
+					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x - 1, y);
+				} else {
+					t1 = testDessusDessous(x, y + 1) && testDessusDessous(x, y - 1);
+				}
+				t2 = t1;
+				break;
+
+			case 3:
+				switch (PlateauController.etatP3) {
+
+				case 1:
+					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x - 2, y);
+					t2 = testDessusDessous(x, y - 1);
+					break;
+				case 2:
+					t1 = testDessusDessous(x, y - 1) && testDessusDessous(x, y - 2);
+					t2 = testDessusDessous(x + 1, y);
+					break;
+				case 3:
+					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x + 2, y);
+					t2 = testDessusDessous(x, y + 1);
+					break;
+				case 4:
+					t1 = testDessusDessous(x, y + 1) && testDessusDessous(x, y + 2);
+					t2 = testDessusDessous(x - 1, y);
+					break;
+
+				}
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
+		testPiecePoser = t1 && t2;
+		return testPiecePoser;
+	}
+
+	private static boolean testDessusDessous(double x, double y) {
+		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
+			Case c = plateau[(int) y][(int) x];
+			if (c.etatCase == EnumCase.LIBRE) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean estPlacerSurPlateau() {
+		boolean test = false;
+		test = estPlacer[temoin - 1];
+		return test;
+	}
+
+	public static int[] retourneCoord() {
+		int result[] = new int[2];
+		result = coorPestPlacer[temoin];
+		return result;
 	}
 
 }
