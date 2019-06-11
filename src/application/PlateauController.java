@@ -829,6 +829,7 @@ public class PlateauController {
 		return test;
 	}
 
+	
 	public static int[] retourneCoord() {
 		int result[] = new int[2];
 		result = coorPestPlacer[temoin];
