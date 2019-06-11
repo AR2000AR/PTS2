@@ -104,6 +104,12 @@ public class PlateauController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Timer monTimer = new Timer(this);
+		Thread t = new Thread(monTimer);
+		t.start();
+		
+		
 	}
 
 	public void initPiece() {
