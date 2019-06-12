@@ -427,7 +427,6 @@ public class PlateauController {
 			} else {
 				retourOrigine();
 			}
-			System.out.println("");
 		}
 
 	}
@@ -560,8 +559,8 @@ public class PlateauController {
 		try {
 			
 			int mode = 1;
-			int diff = 1;
-			int niveau = 1;
+			int diff = 2;
+			int niveau = 2;
 			
 			
 			if(mode == 0) {
