@@ -45,6 +45,9 @@ public class PlateauController {
 	protected Canvas canvas1;
 	protected GraphicsContext gc1;
 
+	@FXML
+	private ImageView imgBravo;
+
 	static Image imgPlateau = new Image("file:src/image/plateau.png");
 	static Image imgCochon = new Image("file:src/image/pig.png");
 	static Image imgLoup = new Image("file:src/image/wolf.png");
@@ -61,6 +64,8 @@ public class PlateauController {
 	static Image imgp32 = new Image("file:src/image/p32.png");
 	static Image imgp33 = new Image("file:src/image/p33.png");
 	static Image imgp34 = new Image("file:src/image/p34.png");
+
+	static Image bravoImg = new Image("file:src/image/Bravo.png");
 
 	static Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
 	static Image tabImageP2[] = { imgp21, imgp22 };
@@ -406,7 +411,11 @@ public class PlateauController {
 			}
 			if (k == 3) {
 				test = true;
+				System.out.println("cbreuoslchjbzo");
 				System.out.println("<#<|JEU FINI|>#>");
+				imgBravo.setVisible(true);
+				System.out.println("YOLO");
+				//imgBravo.toFront();
 			}
 		}
 	}
@@ -557,18 +566,17 @@ public class PlateauController {
 		GestionDeDonnee g = new GestionDeDonnee();
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
-			
+
 			int mode = 1;
 			int diff = 2;
 			int niveau = 2;
-			
-			
-			if(mode == 0) {
+
+			if (mode == 0) {
 				modeDiurne = true;
-			}else {
+			} else {
 				modeDiurne = false;
 			}
-			
+
 			s = g.getLevel(mode, diff, niveau);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
 			e.printStackTrace();
@@ -846,7 +854,7 @@ public class PlateauController {
 					return false;
 				}
 			} else {
-				if (c.etatCase == EnumCase.COCHON || c.etatCase == EnumCase.LIBRE ) {
+				if (c.etatCase == EnumCase.COCHON || c.etatCase == EnumCase.LIBRE) {
 					return true;
 				} else {
 					return false;
