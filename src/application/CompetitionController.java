@@ -62,6 +62,17 @@ public class CompetitionController extends PlateauController {
 					test = true;
 					monTimer.stop();
 					System.out.println("<#<|JEU FINI|>#>");
+					
+					
+					imgBravo.setImage(bravoImg);
+					imgBravo.setVisible(true);
+					imgBravo.setOpacity(0);
+					imgBravo.toFront();
+					double x=0;
+					while(imgBravo.getOpacity()<1) {
+						x+=0.005;
+						imgBravo.setOpacity(x);
+					}
 				}
 			}
 		}

@@ -46,7 +46,7 @@ public class PlateauController {
 	protected GraphicsContext gc1;
 
 	@FXML
-	private ImageView imgBravo;
+	protected ImageView imgBravo;
 
 	static Image imgPlateau = new Image("file:src/image/plateau.png");
 	static Image imgCochon = new Image("file:src/image/pig.png");
@@ -413,9 +413,10 @@ public class PlateauController {
 				test = true;
 				System.out.println("cbreuoslchjbzo");
 				System.out.println("<#<|JEU FINI|>#>");
+				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
 				System.out.println("YOLO");
-				//imgBravo.toFront();
+				imgBravo.toFront();
 			}
 		}
 	}
