@@ -86,6 +86,7 @@ public class PlateauController {
 	static double registreYtest[] = { 260, 360, 460, 560 };
 
 	static boolean niveauFini = false;
+	static boolean modeDiurne = true;
 
 	public void initialize() {
 		try {
@@ -105,11 +106,9 @@ public class PlateauController {
 			e.printStackTrace();
 		}
 		/*
-		Timer monTimer = new Timer(this);
-		Thread t = new Thread(monTimer);
-		t.start();
-		*/
-		
+		 * Timer monTimer = new Timer(this); Thread t = new Thread(monTimer); t.start();
+		 */
+
 	}
 
 	public void initPiece() {
@@ -401,17 +400,17 @@ public class PlateauController {
 	public void testJeuFini() {
 		boolean test = false;
 		int k = 0;
-		for(int i=0;i<3;i++) {
-			if(estPlacer[i]) {
+		for (int i = 0; i < 3; i++) {
+			if (estPlacer[i]) {
 				k++;
 			}
-			if(k==3){
+			if (k == 3) {
 				test = true;
 				System.out.println("<#<|JEU FINI|>#>");
 			}
 		}
 	}
-	
+
 	protected void testPoserPiece(double[] empl) {
 		/*
 		 * test si une piece peut être placer ou non et si oui la place
@@ -424,7 +423,6 @@ public class PlateauController {
 				coorPestPlacer[temoin - 1][0] = (int) empl[0];
 				coorPestPlacer[temoin - 1][1] = (int) empl[1];
 				estPlacer[temoin - 1] = true;
-
 
 			} else {
 				retourOrigine();
@@ -560,7 +558,19 @@ public class PlateauController {
 		GestionDeDonnee g = new GestionDeDonnee();
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
-			s = g.getLevel(0, 2, 5);
+			
+			int mode = 1;
+			int diff = 1;
+			int niveau = 1;
+			
+			
+			if(mode == 0) {
+				modeDiurne = true;
+			}else {
+				modeDiurne = false;
+			}
+			
+			s = g.getLevel(mode, diff, niveau);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
 			e.printStackTrace();
 			Platform.exit();
@@ -650,8 +660,6 @@ public class PlateauController {
 
 	static boolean estPlacer[] = { false, false, false };
 	static int coorPestPlacer[][] = new int[3][2];
-
-	
 
 	public static void affPlateau() {
 		for (int i = 0; i < 4; i++) {
@@ -767,13 +775,11 @@ public class PlateauController {
 		boolean testPiecePoser = false;
 		boolean t1 = false;
 		boolean t2 = false;
-		if (testDessusDessous(x, y)) {
+		if (testDessusDessous(x, y, modeDiurne)) {
 
 			switch (temoin) {
 			case 1:
-				System.out.println("YOLO");
 				if (PlateauController.etatP1 == 1) {
-					System.out.println("ICI");
 					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x, y - 1);
 				}
 				if (PlateauController.etatP1 == 2) {
@@ -830,6 +836,29 @@ public class PlateauController {
 		return testPiecePoser;
 	}
 
+	private static boolean testDessusDessous(int x, int y, boolean modeDiurne2) {
+		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
+			Case c = plateau[(int) y][(int) x];
+
+			if (modeDiurne2) {
+				if (c.etatCase == EnumCase.LIBRE) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				if (c.etatCase == EnumCase.COCHON || c.etatCase == EnumCase.LIBRE ) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+		} else {
+			return false;
+		}
+	}
+
 	protected static boolean testDessusDessous(double x, double y) {
 		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
 			Case c = plateau[(int) y][(int) x];
@@ -849,7 +878,6 @@ public class PlateauController {
 		return test;
 	}
 
-	
 	public static int[] retourneCoord() {
 		int result[] = new int[2];
 		result = coorPestPlacer[temoin];
