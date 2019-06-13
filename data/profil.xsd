@@ -49,7 +49,7 @@
     		<xsd:simpleType>
     			<xsd:restriction base="xsd:int">
     				<xsd:minInclusive value="0"></xsd:minInclusive>
-    				<xsd:maxInclusive value="6"></xsd:maxInclusive>
+    				<xsd:maxInclusive value="5"></xsd:maxInclusive>
     			</xsd:restriction>
     		</xsd:simpleType>
     	</xsd:attribute>
