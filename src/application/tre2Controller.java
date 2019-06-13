@@ -44,6 +44,8 @@ public class tre2Controller {
     static Image im6f = new Image("file:src/image/6enFait.png");
     
     static Image imCadena = new Image("file:src/image/cadena.png");
+    
+    
     public void initialize() {
     	
     	nv1img.setImage(im1f);
