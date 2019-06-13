@@ -12,7 +12,7 @@
     <xsd:element name="profil">
     	<xsd:complexType>
     		<xsd:sequence>
-    			<xsd:element name="niveau" type="niv_prog"></xsd:element>
+    			<xsd:element name="niveau" type="niv_prog" minOccurs="0" maxOccurs="unbounded"></xsd:element>
     		</xsd:sequence>
     		<xsd:attribute name="nom" type="xsd:string" use="required"></xsd:attribute>
     	</xsd:complexType>
