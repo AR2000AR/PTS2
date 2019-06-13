@@ -93,30 +93,21 @@ public class PlateauController {
 	boolean niveauFini = false;
 	int modeDiurne = 0;
 
-	private int mode = 0;
-	private int diff = 0;
-	private int niveau = 0;
+	private int mode;
+	private int diff;
+	private int niveau;
 
 	public void initialize() {
-		try {
-
-			gc1 = canvas1.getGraphicsContext2D();
-			Platform.runLater(() -> {
-				try {
-					initialiserPlateau(gc1, 2);
-				} catch (SAXException | IOException | ParserConfigurationException | JDOMException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				initPiece();
-			});
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		/*
-		 * Timer monTimer = new Timer(this); Thread t = new Thread(monTimer); t.start();
-		 */
+		gc1 = canvas1.getGraphicsContext2D();
+		Platform.runLater(() -> {
+			try {
+				initialiserPlateau(gc1, 2);
+			} catch (SAXException | IOException | ParserConfigurationException | JDOMException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			initPiece();
+		});
 
 	}
 
@@ -393,7 +384,7 @@ public class PlateauController {
 	}
 
 	@FXML
-	void relache(MouseEvent event) {
+	void relache(MouseEvent event) throws InterruptedException {
 		if (event.getButton().toString() == ("PRIMARY")) {
 			if (listeP.get(temoin - 1) != null) {
 				listeP.get(temoin - 1).setOpacity(1);
@@ -406,7 +397,7 @@ public class PlateauController {
 		}
 	}
 
-	public void testJeuFini() {
+	public void testJeuFini() throws InterruptedException {
 		boolean test = false;
 		int k = 0;
 		for (int i = 0; i < 3; i++) {
@@ -415,11 +406,10 @@ public class PlateauController {
 			}
 			if (k == 3) {
 				test = true;
-				System.out.println("cbreuoslchjbzo");
 				System.out.println("<#<|JEU FINI|>#>");
+				canvas1.setVisible(false);
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
-				System.out.println("YOLO");
 				imgBravo.toFront();
 			}
 		}
@@ -572,11 +562,6 @@ public class PlateauController {
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
 
-			mode = 1;
-			diff = 2;
-			niveau = 2;
-
-			
 
 			s = g.getLevel(mode, diff, niveau);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {

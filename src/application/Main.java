@@ -13,12 +13,17 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
+	private static Stage primaryStage;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
+		this.primaryStage=primaryStage;
+		Controller.setMainClass(this);
+		
 		try {
 
 			// AnchorPane root = (AnchorPane)
@@ -36,11 +41,16 @@ public class Main extends Application {
 		}
 	}
 
-	public void chargerPageEntrainement(int ctx, int nv, int diff) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		AnchorPane root = (AnchorPane) loader.load(getClass().getResource("fxml/Plateau.fxml"));
+	public void chargerPageEntrainement(int ctx, int diff, int nv) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
 		PlateauController pc = loader.getController();
-		pc.setParam(ctx,nv,diff);
+		primaryStage.hide();
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		pc.setParam(ctx,diff,nv);
 	}
 
 }
