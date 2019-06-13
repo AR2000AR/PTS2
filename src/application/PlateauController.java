@@ -31,15 +31,15 @@ import javafx.stage.Stage;
 public class PlateauController {
 	@FXML
 	protected ImageView p1;
-	static int etatP1 = 1;
+	int etatP1 = 1;
 
 	@FXML
 	protected ImageView p2;
-	static int etatP2 = 1;
+	int etatP2 = 1;
 
 	@FXML
 	protected ImageView p3;
-	static int etatP3 = 1;
+	int etatP3 = 1;
 
 	@FXML
 	protected Canvas canvas1;
@@ -48,50 +48,54 @@ public class PlateauController {
 	@FXML
 	protected ImageView imgBravo;
 
-	static Image imgPlateau = new Image("file:src/image/plateau.png");
-	static Image imgCochon = new Image("file:src/image/pig.png");
-	static Image imgLoup = new Image("file:src/image/wolf.png");
+	Image imgPlateau = new Image("file:src/image/plateau.png");
+	Image imgCochon = new Image("file:src/image/pig.png");
+	Image imgLoup = new Image("file:src/image/wolf.png");
 
-	static Image imgp11 = new Image("file:src/image/p11.png");
-	static Image imgp12 = new Image("file:src/image/p12.png");
-	static Image imgp13 = new Image("file:src/image/p13.png");
-	static Image imgp14 = new Image("file:src/image/p14.png");
+	Image imgp11 = new Image("file:src/image/p11.png");
+	Image imgp12 = new Image("file:src/image/p12.png");
+	Image imgp13 = new Image("file:src/image/p13.png");
+	Image imgp14 = new Image("file:src/image/p14.png");
 
-	static Image imgp21 = new Image("file:src/image/p21.png");
-	static Image imgp22 = new Image("file:src/image/p22.png");
+	Image imgp21 = new Image("file:src/image/p21.png");
+	Image imgp22 = new Image("file:src/image/p22.png");
 
-	static Image imgp31 = new Image("file:src/image/p31.png");
-	static Image imgp32 = new Image("file:src/image/p32.png");
-	static Image imgp33 = new Image("file:src/image/p33.png");
-	static Image imgp34 = new Image("file:src/image/p34.png");
+	Image imgp31 = new Image("file:src/image/p31.png");
+	Image imgp32 = new Image("file:src/image/p32.png");
+	Image imgp33 = new Image("file:src/image/p33.png");
+	Image imgp34 = new Image("file:src/image/p34.png");
 
-	static Image bravoImg = new Image("file:src/image/Bravo.png");
+	Image bravoImg = new Image("file:src/image/Bravo.png");
 
-	static Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
-	static Image tabImageP2[] = { imgp21, imgp22 };
-	static Image tabImageP3[] = { imgp31, imgp32, imgp33, imgp34 };
+	Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
+	Image tabImageP2[] = { imgp21, imgp22 };
+	Image tabImageP3[] = { imgp31, imgp32, imgp33, imgp34 };
 
-	static ArrayList<ImageView> listeP = new ArrayList<>();
-	static double[][] coorOrig = new double[3][2];
-	static protected String s;
+	ArrayList<ImageView> listeP = new ArrayList<>();
+	double[][] coorOrig = new double[3][2];
+	protected String s;
 
-	static int nCase = -1;
+	int nCase = -1;
 
-	static double decalageXYP1[][] = { { 50, 150 }, { 50, 50 }, { 150, 50 }, { 150, 150 } };
-	static double decalageXYP2[][] = { { 150, 50 }, { 50, 150 } };
-	static double decalageXYP3[][] = { { 250, 150 }, { 50, 250 }, { 50, 50 }, { 150, 50 } };
+	double decalageXYP1[][] = { { 50, 150 }, { 50, 50 }, { 150, 50 }, { 150, 150 } };
+	double decalageXYP2[][] = { { 150, 50 }, { 50, 150 } };
+	double decalageXYP3[][] = { { 250, 150 }, { 50, 250 }, { 50, 50 }, { 150, 50 } };
 
-	static double decalageXY[][][] = { decalageXYP1, decalageXYP1, decalageXYP1 };
-	static int tabEtat[] = { etatP1, etatP2, etatP3 };
+	double decalageXY[][][] = { decalageXYP1, decalageXYP1, decalageXYP1 };
+	int tabEtat[] = { etatP1, etatP2, etatP3 };
 
-	static double registreX[] = { 440, 540, 640, 740, 840 };
-	static double registreY[] = { 160, 260, 360, 460, 560 };
+	double registreX[] = { 440, 540, 640, 740, 840 };
+	double registreY[] = { 160, 260, 360, 460, 560 };
 
-	static double registreXtest[] = { 540, 640, 740, 840 };
-	static double registreYtest[] = { 260, 360, 460, 560 };
+	double registreXtest[] = { 540, 640, 740, 840 };
+	double registreYtest[] = { 260, 360, 460, 560 };
 
-	static boolean niveauFini = false;
-	static boolean modeDiurne = true;
+	boolean niveauFini = false;
+	int modeDiurne = 0;
+
+	private int mode = 0;
+	private int diff = 0;
+	private int niveau = 0;
 
 	public void initialize() {
 		try {
@@ -141,7 +145,7 @@ public class PlateauController {
 
 	}
 
-	public static void switchHeightWidth(ImageView img) {
+	public void switchHeightWidth(ImageView img) {
 		double w = img.getFitHeight();
 		double h = img.getFitWidth();
 		img.setFitWidth(w);
@@ -203,7 +207,7 @@ public class PlateauController {
 		if (estPlacerSurPlateau()) {
 			estPlacer[1] = false;
 
-			switch (PlateauController.etatP2) {
+			switch (etatP2) {
 			case 1:
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
@@ -233,7 +237,7 @@ public class PlateauController {
 		if (estPlacerSurPlateau()) {
 			estPlacer[2] = false;
 
-			switch (PlateauController.etatP3) {
+			switch (etatP3) {
 			case 1:
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
@@ -378,7 +382,7 @@ public class PlateauController {
 
 	}
 
-	public static double[] coordSouris(MouseEvent event) {
+	public double[] coordSouris(MouseEvent event) {
 
 		double x = event.getX() + coorOrig[temoin - 1][0];
 		double y = event.getY() + coorOrig[temoin - 1][1];
@@ -545,7 +549,7 @@ public class PlateauController {
 		// System.out.println(event.getX() + " " + event.getY());
 	}
 
-	public static void placeOrigine() {
+	public void placeOrigine() {
 		if (temoin != 9) {
 			listeP.get(temoin).setX(coorOrig[temoin][0]);
 			listeP.get(temoin).setY(coorOrig[temoin][1]);
@@ -554,7 +558,7 @@ public class PlateauController {
 		}
 	}
 
-	public static void initialiserPlateau(GraphicsContext gc, int i)
+	public void initialiserPlateau(GraphicsContext gc, int i)
 			throws SAXException, IOException, ParserConfigurationException, JDOMException {
 		gc.drawImage(imgPlateau, 0, 0, 400, 400);
 //		File donne = new File("src/application/data.txt");
@@ -568,15 +572,11 @@ public class PlateauController {
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		try {
 
-			int mode = 1;
-			int diff = 2;
-			int niveau = 2;
+			mode = 1;
+			diff = 2;
+			niveau = 2;
 
-			if (mode == 0) {
-				modeDiurne = true;
-			} else {
-				modeDiurne = false;
-			}
+			
 
 			s = g.getLevel(mode, diff, niveau);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
@@ -647,7 +647,7 @@ public class PlateauController {
 
 	}
 
-	public static void initierMatriceVirtuel(double x, double y, EnumCase e) {
+	public void initierMatriceVirtuel(double x, double y, EnumCase e) {
 		x /= 100;
 		y /= 100;
 		plateau[(int) y][(int) x] = new Case(e);
@@ -658,24 +658,24 @@ public class PlateauController {
 
 	}
 
-	static int temoin = 0;
+	int temoin = 0;
 
-	static int autourP1[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
+	int autourP1[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
 
-	static int autourP3[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
+	int autourP3[][] = { { 1, -1 }, { 1, 1 }, { -1, 1 }, { -1, 1 } };
 
-	static Case[][] plateau = new Case[4][4];
+	Case[][] plateau = new Case[4][4];
 
-	static boolean estPlacer[] = { false, false, false };
-	static int coorPestPlacer[][] = new int[3][2];
+	boolean estPlacer[] = { false, false, false };
+	int coorPestPlacer[][] = new int[3][2];
 
-	public static void affPlateau() {
+	public void affPlateau() {
 		for (int i = 0; i < 4; i++) {
 			System.out.println(Arrays.toString(plateau[i]));
 		}
 	}
 
-	public static boolean testPlacer(double[] t) {
+	public boolean testPlacer(double[] t) {
 		System.out.println(Arrays.toString(t));
 		int x = (int) t[1];
 		int y = (int) t[0];
@@ -685,7 +685,7 @@ public class PlateauController {
 		if (test) {
 			switch (temoin) {
 			case 1:
-				switch (PlateauController.etatP1) {
+				switch (etatP1) {
 				case 1:
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
@@ -718,7 +718,7 @@ public class PlateauController {
 				}
 				break;
 			case 2:
-				switch (PlateauController.etatP2) {
+				switch (etatP2) {
 				case 1:
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
@@ -737,7 +737,7 @@ public class PlateauController {
 
 				break;
 			case 3:
-				switch (PlateauController.etatP3) {
+				switch (etatP3) {
 				case 1:
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
@@ -779,7 +779,7 @@ public class PlateauController {
 		return test;
 	}
 
-	protected static boolean testDessusDessousPiece(int x, int y) {
+	protected boolean testDessusDessousPiece(int x, int y) {
 		boolean testPiecePoser = false;
 		boolean t1 = false;
 		boolean t2 = false;
@@ -787,23 +787,23 @@ public class PlateauController {
 
 			switch (temoin) {
 			case 1:
-				if (PlateauController.etatP1 == 1) {
+				if (etatP1 == 1) {
 					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x, y - 1);
 				}
-				if (PlateauController.etatP1 == 2) {
+				if (etatP1 == 2) {
 					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x, y + 1);
 				}
-				if (PlateauController.etatP1 == 3) {
+				if (etatP1 == 3) {
 					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x, y + 1);
 				}
-				if (PlateauController.etatP1 == 4) {
+				if (etatP1 == 4) {
 					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x, y - 1);
 				}
 				t2 = t1;
 				break;
 
 			case 2:
-				if (PlateauController.etatP2 == 1) {
+				if (etatP2 == 1) {
 					t1 = testDessusDessous(x + 1, y) && testDessusDessous(x - 1, y);
 				} else {
 					t1 = testDessusDessous(x, y + 1) && testDessusDessous(x, y - 1);
@@ -812,7 +812,7 @@ public class PlateauController {
 				break;
 
 			case 3:
-				switch (PlateauController.etatP3) {
+				switch (etatP3) {
 
 				case 1:
 					t1 = testDessusDessous(x - 1, y) && testDessusDessous(x - 2, y);
@@ -844,11 +844,11 @@ public class PlateauController {
 		return testPiecePoser;
 	}
 
-	private static boolean testDessusDessous(int x, int y, boolean modeDiurne2) {
+	private boolean testDessusDessous(int x, int y, int modeDiurne2) {
 		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
 			Case c = plateau[(int) y][(int) x];
 
-			if (modeDiurne2) {
+			if (modeDiurne2 == 0) {
 				if (c.etatCase == EnumCase.LIBRE) {
 					return true;
 				} else {
@@ -867,7 +867,7 @@ public class PlateauController {
 		}
 	}
 
-	protected static boolean testDessusDessous(double x, double y) {
+	protected boolean testDessusDessous(double x, double y) {
 		if (x >= 0 && x <= 3 && y >= 0 && y <= 3) {
 			Case c = plateau[(int) y][(int) x];
 			if (c.etatCase == EnumCase.LIBRE) {
@@ -880,16 +880,23 @@ public class PlateauController {
 		}
 	}
 
-	public static boolean estPlacerSurPlateau() {
+	public boolean estPlacerSurPlateau() {
 		boolean test = false;
 		test = estPlacer[temoin - 1];
 		return test;
 	}
 
-	public static int[] retourneCoord() {
+	public int[] retourneCoord() {
 		int result[] = new int[2];
 		result = coorPestPlacer[temoin];
 		return result;
+	}
+
+	public void setParam(int ctx, int df, int nv) {
+		this.niveau = nv;
+		this.diff = df;
+		this.modeDiurne = ctx;
+
 	}
 
 }
