@@ -37,6 +37,7 @@ public class CompetitionController extends PlateauController {
 		}
 
 		monTimer = new Timer(this);
+		
 		Thread t = new Thread(monTimer);
 		t.start();
 
@@ -69,10 +70,11 @@ public class CompetitionController extends PlateauController {
 					imgBravo.setOpacity(0);
 					imgBravo.toFront();
 					double x=0;
-					while(imgBravo.getOpacity()<1) {
-						x+=0.005;
-						imgBravo.setOpacity(x);
-					}
+//					while(imgBravo.getOpacity()<1) {
+//						x+=0.005;
+//						
+//						imgBravo.setOpacity(x);
+//					}
 				}
 			}
 		}
