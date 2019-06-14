@@ -26,6 +26,11 @@ public class Main extends Application {
 		
 		try {
 
+			/*
+			 *A NE PAS EFFACER LES COMMENTAIRES 
+			 */
+			
+			
 			// AnchorPane root = (AnchorPane)
 			// FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
 			// AnchorPane root = (AnchorPane)
