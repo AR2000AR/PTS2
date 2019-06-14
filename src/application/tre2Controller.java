@@ -37,6 +37,18 @@ public class tre2Controller extends Controller {
 	@FXML
 	private ImageView nv6img;
 
+	@FXML
+	private ImageView sectionJunior;
+
+	@FXML
+	private ImageView sectionMaster;
+
+	@FXML
+    private ImageView sectionExpert;
+
+	@FXML
+	private ImageView sectionStarter;
+
 	static Image im1ec = new Image("file:src/image/1enCours.png");
 	static Image im2ec = new Image("file:src/image/2enCours.png");
 	static Image im3ec = new Image("file:src/image/3enCours.png");
@@ -53,6 +65,13 @@ public class tre2Controller extends Controller {
 
 	static Image imBtnDiurne = new Image("file:src/image/imageBoutonDiurne.png");
 	static Image imBtnNocturne = new Image("file:src/image/imageBoutonNocturne.png");
+	
+	static Image imBtnStarter = new Image("file:src/image/imageBoutonStarter.png");
+	static Image imBtnJunior = new Image("file:src/image/imageBoutonJunior.png");
+	static Image imBtnExpert = new Image("file:src/image/imageBoutonExpert.png");
+	static Image imBtnMaster = new Image("file:src/image/imageBoutonMaster.png");
+	
+	
 
 	private int contexteSelect = 0;
 
@@ -68,7 +87,17 @@ public class tre2Controller extends Controller {
 		sectionDiurne.setImage(imBtnDiurne);
 		sectionNocturne.setImage(imBtnNocturne);
 		sectionNocturne.setOpacity(0.5);
+		
+		sectionStarter.setImage(imBtnStarter);
+		sectionJunior.setImage(imBtnJunior);
+		sectionExpert.setImage(imBtnExpert);
+		sectionMaster.setImage(imBtnMaster);
 
+		sectionStarter.setOpacity(1);
+		sectionJunior.setOpacity(0.5);
+		sectionExpert.setOpacity(0.5);
+		sectionMaster.setOpacity(0.5);
+		
 	}
 
 	@FXML

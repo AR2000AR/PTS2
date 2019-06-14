@@ -80,16 +80,28 @@
             </ImageView>
           </children>
         </HBox>
-        <ImageView fx:id="sectionDiurne" fitHeight="100.0" fitWidth="200.0" layoutX="310.0" layoutY="96.0" onMouseClicked="#switchContexteBtn01" opacity="1.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../../image/imageBoutonDiurne.png" />
-          </image>
-        </ImageView>
-        <ImageView fx:id="sectionNocturne" fitHeight="100.0" fitWidth="200.0" layoutX="620.0" layoutY="96.0" onMouseClicked="#switchContexteBtn02" opacity="1.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../../image/imageBoutonNocturne.png" />
-          </image>
-        </ImageView>
+        <TilePane hgap="50.0" layoutX="65.0" layoutY="275.0" minHeight="100.0" prefHeight="100.0" prefWidth="950.0">
+          <children>
+            <ImageView fx:id="sectionStarter" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionJunior" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionExpert" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionMaster" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+          </children>
+        </TilePane>
+        <TilePane hgap="200.0" layoutX="240.0" layoutY="82.0" prefColumns="3" prefHeight="100.0" prefRows="1" prefWidth="600.0">
+          <children>
+            <ImageView fx:id="sectionDiurne" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#switchContexteBtn01" opacity="1.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../../image/imageBoutonDiurne.png" />
+              </image>
+            </ImageView>
+            <ImageView fx:id="sectionNocturne" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#switchContexteBtn02" opacity="1.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../../image/imageBoutonNocturne.png" />
+              </image>
+            </ImageView>
+          </children>
+        </TilePane>
       </children>
     </Pane>
   </center>
