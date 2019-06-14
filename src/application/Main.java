@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private static Stage primaryStage;
+	private static String profilName;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -28,6 +29,10 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		pc.setParam(ctx, diff, nv);
+	}
+
+	public void profileSelected(String name) {
+		Main.profilName = name;
 	}
 
 	public void showNewProfil() {
@@ -58,7 +63,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
+		Main.primaryStage = primaryStage;
 		Controller.setMainClass(this);
 		showProfilSelection();
 	}
