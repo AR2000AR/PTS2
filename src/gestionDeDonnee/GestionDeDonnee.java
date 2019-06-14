@@ -133,7 +133,7 @@ public class GestionDeDonnee {
 	 * @throws NiveauNonTrouve
 	 */
 	public String getLevel(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
-		if ((difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
+		if (((context != 0) && (context != 1)) || (difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
 			throw new NiveauInvalide("Le niveau " + niveau + " n'est pas un niveau valide");
 		NodeList domNiveaux = xmlNiveaux.getElementsByTagName("niveau");
 		for (int i = 0; i < domNiveaux.getLength(); i++) {
