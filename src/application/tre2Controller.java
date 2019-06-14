@@ -51,12 +51,12 @@ public class tre2Controller extends Controller {
 
 	public void initialize() {
 
-		nv1img.setImage(im1f);
-		nv2img.setImage(imCadena);
-		nv3img.setImage(imCadena);
-		nv4img.setImage(imCadena);
-		nv5img.setImage(imCadena);
-		nv6img.setImage(imCadena);
+		nv1img.setImage(im1ec);
+		nv2img.setImage(im2ec);
+		nv3img.setImage(im3ec);
+		nv4img.setImage(im4ec);
+		nv5img.setImage(im5ec);
+		nv6img.setImage(im6ec);
 
 	}
 
