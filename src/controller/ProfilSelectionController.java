@@ -2,7 +2,7 @@
  * Sample Skeleton for 'inscription.fxml' Controller Class
  */
 
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +18,8 @@ import gestionDeDonnee.GestionDeDonnee;
 import gestionDeDonnee.NoProfileException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import profilPane.NewProfilPane;
+import profilPane.ProfilPane;
 
 public class ProfilSelectionController extends Controller {
 
@@ -35,22 +37,31 @@ public class ProfilSelectionController extends Controller {
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() throws SAXException, IOException, ParserConfigurationException, JDOMException {
 		assert vBox != null : "fx:id=\"vBox\" was not injected: check your FXML file 'inscription.fxml'.";
+
 		if (g == null) {
 			g = new GestionDeDonnee();
 		}
 		List<String> profils = g.getProfileNameList();
 		for (String nom : profils) {
 			try {
-				ProfilPane pPane = new ProfilPane(nom, (g.getProgressionValue(nom) / 48) * 100);
+				ProfilPane pPane = new ProfilPane(nom, g.getProgressionValue(nom));
+				pPane.setOnMouseClicked((e) -> {
+					getMainClass().profileSelected(pPane.getName());
+				});
 				vBox.getChildren().add(pPane);
 			} catch (NoProfileException e) {
 				// new Profil
 				e.printStackTrace();
 			}
 		}
-		for (int i = 0; i < (3 - profils.size()); i++) {
+		for (
+
+				int i = 0; i < (3 - profils.size()); i++) {
 			try {
-				ProfilPane pPane = new ProfilPane("bob", 0);
+				NewProfilPane pPane = new NewProfilPane();
+				pPane.setOnMouseClicked((e) -> {
+					getMainClass().showNewProfil();
+				});
 				vBox.getChildren().add(pPane);
 			} catch (NoProfileException e) {
 				e.printStackTrace();

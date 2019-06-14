@@ -1,4 +1,4 @@
-package application;
+package profilPane;
 
 import java.io.IOException;
 
@@ -13,7 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class ProfilPane extends AnchorPane {
 
@@ -23,6 +26,8 @@ public class ProfilPane extends AnchorPane {
 	private Label nameLabel;
 	private Label progLabel;
 	private Image img = null;
+	private AnchorPane spacer = null;
+	private HBox rootPane = null;
 
 	private ImageView bk = null;
 
@@ -36,15 +41,31 @@ public class ProfilPane extends AnchorPane {
 		this.name = name;
 		this.prog = prog;
 		infoBox = new VBox();
+		rootPane = new HBox();
+
 		nameLabel = new Label(this.name);
-		progLabel = new Label(Integer.toString(this.prog));
+		progLabel = new Label(Integer.toString((this.prog * 100) / 48) + "%");
+		nameLabel.setFont(new Font("Segoe Script", 26));
+		progLabel.setFont(nameLabel.getFont());
+		nameLabel.setTextFill(Color.gray(0.9));
+		progLabel.setTextFill(nameLabel.getTextFill());
+		nameLabel.setPadding(new Insets(0, 0, 0, 10));
+		progLabel.setPadding(nameLabel.getInsets());
+
+		spacer = new AnchorPane();
+		spacer.setPrefSize(110, 150);
+		spacer.setMinSize(spacer.getPrefWidth(), spacer.getPrefHeight());
+
 		infoBox.getChildren().addAll(nameLabel, progLabel);
+		rootPane.getChildren().addAll(spacer, infoBox);
 		bk = new ImageView(img);
 		super.getChildren().add(bk);
-		super.getChildren().add(infoBox);
+		super.getChildren().add(rootPane);
 		super.setMaxWidth(img.getWidth());
-		// super.setStyle("-fx-border-color: black");
-		// super.setStyle("-fx-border-width:5");
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
