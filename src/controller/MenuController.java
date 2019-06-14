@@ -1,109 +1,71 @@
+/**
+ * Sample Skeleton for 'menu.fxml' Controller Class
+ */
+
 package controller;
 
-import java.io.IOException;
-
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
-public class MenuController {
+public class MenuController extends Controller {
 
-	@FXML
-	private Button comp;
+	@FXML // ResourceBundle that was given to the FXMLLoader
+	private ResourceBundle resources;
 
-	@FXML
-	private Button scor;
+	@FXML // URL location of the FXML file that was given to the FXMLLoader
+	private URL location;
 
-	@FXML
-	private Button entr;
+	@FXML // fx:id="comp"
+	private Button comp; // Value injected by FXMLLoader
 
-	@FXML
-	private Button prog;
+	@FXML // fx:id="scor"
+	private Button scor; // Value injected by FXMLLoader
 
-	@FXML
-	private ImageView option;
-	
+	@FXML // fx:id="entr"
+	private Button entr; // Value injected by FXMLLoader
 
-	
+	@FXML // fx:id="prog"
+	private Button prog; // Value injected by FXMLLoader
 
 	@FXML
-	void clickOnScor() {
-		try {
-			Stage primaryStage = (Stage) scor.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("scores.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+	void back() {
+		getMainClass().showProfilSelection();
 	}
 
 	@FXML
-	void clickOnComp() {
-		try {
-			Stage primaryStage = (Stage) comp.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("competitionSelect.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
+	void comp() {
 
-			e.printStackTrace();
-		}
 	}
 
 	@FXML
-	void clickOnProg() {
-		try {
-			Stage primaryStage = (Stage) prog.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("progressionSelect.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
+	void entr() {
+		getMainClass().choixNvEntrProg(false);
+	}
 
-			e.printStackTrace();
-		}
+	@FXML // This method is called by the FXMLLoader when initialization is complete
+	void initialize() {
+		assert comp != null : "fx:id=\"comp\" was not injected: check your FXML file 'menu.fxml'.";
+		assert scor != null : "fx:id=\"scor\" was not injected: check your FXML file 'menu.fxml'.";
+		assert entr != null : "fx:id=\"entr\" was not injected: check your FXML file 'menu.fxml'.";
+		assert prog != null : "fx:id=\"prog\" was not injected: check your FXML file 'menu.fxml'.";
+
 	}
 
 	@FXML
-	void clickOnEntr() {
-		try {
-			Stage primaryStage = (Stage) entr.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("entrainementSelect.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
+	void option() {
 
-			e.printStackTrace();
-		}
 	}
-	
+
 	@FXML
-	void clickOnOption() {
-		try {
-			Stage primaryStage = (Stage) option.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("options.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+	void prog() {
+		getMainClass().choixNvEntrProg(true);
 	}
 
+	@FXML
+	void scores() {
+
+	}
 }
