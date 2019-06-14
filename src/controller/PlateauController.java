@@ -93,9 +93,9 @@ public class PlateauController {
 	double registreYtest[] = { 260, 360, 460, 560 };
 
 	boolean niveauFini = false;
-	int modeDiurne = 0;
+	int modeDiurne;
 
-	private int mode;
+	//private int mode;
 	private int diff;
 	private int niveau;
 
@@ -565,7 +565,7 @@ public class PlateauController {
 		try {
 
 
-			s = g.getLevel(mode, diff, niveau);
+			s = g.getLevel(modeDiurne, diff, niveau);
 		} catch (NiveauInvalide | NiveauNonTrouve e) {
 			e.printStackTrace();
 			Platform.exit();
@@ -883,7 +883,7 @@ public class PlateauController {
 		this.niveau = nv;
 		this.diff = df;
 		this.modeDiurne = ctx;
-
+		System.out.println(ctx+" "+df+" "+nv);
 	}
 
 }

@@ -50,17 +50,28 @@ public class Main extends Application {
 	}
 
 
-	public void chargerPageEntrainement(int ctx, int diff, int nv) throws IOException {
+	public void chargerNivEntrProg(int ctx, int diff, int nv) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
 		PlateauController pc = loader.getController();
 		Scene scene = new Scene(root, 1080, 720);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		pc.setParam(ctx, diff, nv);
 	}
 
+	
+	public void chargerNivComp(int ctx, int diff, int nv) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/competition.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		PlateauController pc = loader.getController();
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		pc.setParam(ctx, diff, nv);
+	}
 	
 	public void profileSelected(String name) {
 		Main.profilName = name;

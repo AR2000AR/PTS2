@@ -54,7 +54,7 @@
                 <Insets left="10.0" right="10.0" />
               </HBox.margin>
             </ImageView>
-            <ImageView fx:id="nv4img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="nv4img" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#clic04" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../../image/4enCours.png" />
               </image>
@@ -62,7 +62,7 @@
                 <Insets left="10.0" right="10.0" />
               </HBox.margin>
             </ImageView>
-            <ImageView fx:id="nv5img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="nv5img" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#clic05" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../../image/5enCours.png" />
               </image>
@@ -70,7 +70,7 @@
                 <Insets left="10.0" right="10.0" />
               </HBox.margin>
             </ImageView>
-            <ImageView fx:id="nv6img" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="nv6img" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#clic06" pickOnBounds="true" preserveRatio="true">
               <image>
                 <Image url="@../../image/6enCours.png" />
               </image>
@@ -82,10 +82,10 @@
         </HBox>
         <TilePane hgap="50.0" layoutX="65.0" layoutY="275.0" minHeight="100.0" prefHeight="100.0" prefWidth="950.0">
           <children>
-            <ImageView fx:id="sectionStarter" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="sectionStarter" fx:id="sectionJunior" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="sectionStarter" fx:id="sectionExpert" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView id="sectionStarter" fx:id="sectionMaster" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="sectionStarter" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#starterClic" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionJunior" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#juniorClic" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionExpert" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#expertClic" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="sectionStarter" fx:id="sectionMaster" fitHeight="100.0" fitWidth="200.0" onMouseClicked="#masterClic" pickOnBounds="true" preserveRatio="true" />
           </children>
         </TilePane>
         <TilePane hgap="200.0" layoutX="240.0" layoutY="82.0" prefColumns="3" prefHeight="100.0" prefRows="1" prefWidth="600.0">
@@ -102,6 +102,16 @@
             </ImageView>
           </children>
         </TilePane>
+        <ImageView fx:id="btnJouer" fitHeight="100.0" fitWidth="200.0" layoutX="713.0" layoutY="538.0" onMouseClicked="#clicSurJouer" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../../image/imageBoutonJouer.png" />
+          </image>
+        </ImageView>
+        <ImageView fx:id="btnRetour" fitHeight="100.0" fitWidth="200.0" layoutX="240.0" layoutY="538.0" onMouseClicked="#clicSurRetour" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../../image/imageBoutonRetour.png" />
+          </image>
+        </ImageView>
       </children>
     </Pane>
   </center>
