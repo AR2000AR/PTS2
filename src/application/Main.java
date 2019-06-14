@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import controller.Controller;
+import controller.PlateauController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

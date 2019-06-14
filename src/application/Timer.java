@@ -1,5 +1,7 @@
 package application;
 
+import controller.competitionController;
+
 public class Timer implements Runnable {
 
 	double time = 0;

@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.awt.MouseInfo;
 import java.io.File;
@@ -13,6 +13,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.jdom2.JDOMException;
 import org.xml.sax.SAXException;
 
+import application.Case;
+import application.EnumCase;
 import gestionDeDonnee.GestionDeDonnee;
 import gestionDeDonnee.NiveauInvalide;
 import gestionDeDonnee.NiveauNonTrouve;

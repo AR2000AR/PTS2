@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 
@@ -37,11 +37,11 @@ public class OptionsController {
 
 	@FXML
 	void clickOnDalto() {
-		// activer mode daltonien ou désactiver
+		// activer mode daltonien ou dï¿½sactiver
 	}
 
 	@FXML
 	void clickOnDelete() {
-		// supprimer les données liées au compte
+		// supprimer les donnï¿½es liï¿½es au compte
 	}
 }
