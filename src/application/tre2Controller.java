@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class tre2Controller extends Controller {
 
@@ -25,7 +26,10 @@ public class tre2Controller extends Controller {
 	private ImageView nv4img;
 
 	@FXML
-	private Label lblSection;
+	private ImageView sectionDiurne;
+
+	@FXML
+	private ImageView sectionNocturne;
 
 	@FXML
 	private ImageView nv5img;
@@ -47,7 +51,10 @@ public class tre2Controller extends Controller {
 	static Image im5f = new Image("file:src/image/5enFait.png");
 	static Image im6f = new Image("file:src/image/6enFait.png");
 
-	static Image imCadena = new Image("file:src/image/cadena.png");
+	static Image imBtnDiurne = new Image("file:src/image/imageBoutonDiurne.png");
+	static Image imBtnNocturne = new Image("file:src/image/imageBoutonNocturne.png");
+
+	private int contexteSelect = 0;
 
 	public void initialize() {
 
@@ -58,22 +65,50 @@ public class tre2Controller extends Controller {
 		nv5img.setImage(im5ec);
 		nv6img.setImage(im6ec);
 
+		sectionDiurne.setImage(imBtnDiurne);
+		sectionNocturne.setImage(imBtnNocturne);
+		sectionNocturne.setOpacity(0.5);
+
+	}
+
+	@FXML
+	void switchContexteBtn01() {
+		this.contexteSelect = 0;
+		switchContexte(this.contexteSelect);
+	}
+
+	@FXML
+	void switchContexteBtn02() {
+		System.out.println("COUCOU");
+		this.contexteSelect = 1;
+		switchContexte(this.contexteSelect);
+	}
+
+	void switchContexte(int i) {
+
+		if (i == 0) {
+			sectionDiurne.setOpacity(1);
+			sectionNocturne.setOpacity(0.5);
+		} else {
+			sectionDiurne.setOpacity(0.5);
+			sectionNocturne.setOpacity(1);
+		}
+
 	}
 
 	@FXML
 	void clic01() throws IOException {
 		getMainClass().chargerPageEntrainement(0, 1, 1);
 	}
+
 	@FXML
 	void clic02() throws IOException {
 		getMainClass().chargerPageEntrainement(0, 1, 2);
 	}
+
 	@FXML
 	void clic03() throws IOException {
 		getMainClass().chargerPageEntrainement(0, 1, 3);
 	}
-	
-	
-	
-	
+
 }
