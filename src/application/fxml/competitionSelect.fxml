@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CompetitionSelectController">
+   <children>
+      <ImageView fitHeight="678.0" fitWidth="908.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fond.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="-4.0" prefHeight="678.0" prefWidth="877.0">
+         <children>
+            <Label layoutX="108.0" layoutY="60.0" prefHeight="80.0" prefWidth="661.0" text="Les 3 Petits Cochons">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="60.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="option" fitHeight="40.0" fitWidth="48.0" layoutX="815.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cog.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="diurne" layoutX="165.0" layoutY="219.0" mnemonicParsing="false" onMouseClicked="#clickOnDiurne" prefHeight="62.0" prefWidth="109.0" text="Diurne " />
+            <Button fx:id="nocturne" layoutX="651.0" layoutY="219.0" mnemonicParsing="false" onMouseClicked="#clickOnNocturne" prefHeight="62.0" prefWidth="109.0" text="Nocturne" />
+            <VBox fx:id="diffDiurne" layoutX="220.0" layoutY="352.0" opacity="0.24" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Starter">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="ToggleGroupDiurne" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Junior" toggleGroup="$ToggleGroupDiurne">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Expert" toggleGroup="$ToggleGroupDiurne">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Master" toggleGroup="$ToggleGroupDiurne">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox fx:id="diffNocturne" layoutX="585.0" layoutY="339.0" opacity="0.24" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Starter">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="ToggleGroupNocturne" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Junior" toggleGroup="$ToggleGroupNocturne">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Expert" toggleGroup="$ToggleGroupNocturne">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Master" toggleGroup="$ToggleGroupNocturne">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <Button fx:id="goCompet" layoutX="324.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#clickOnGoCompet" prefHeight="62.0" prefWidth="229.0" text="Commencer la série de défis  !" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

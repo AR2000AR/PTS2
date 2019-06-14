@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="698.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewProfilController">
+   <children>
+      <ImageView fitHeight="701.0" fitWidth="903.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/fond.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </ImageView>
+      <BorderPane prefHeight="695.0" prefWidth="900.0">
+         <top>
+            <Label prefHeight="148.0" prefWidth="548.0" text="Les 3 Petits Cochons" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="60.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="textField" alignment="BOTTOM_LEFT" maxWidth="-Infinity" onKeyTyped="#textChange" prefWidth="200.0" promptText="Nom" scaleX="2.0" scaleY="2.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <ImageView onMouseClicked="#back" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                           <image>
+                              <Image url="@../../../image/imageBoutonRetour.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="okButton" disable="true" onMouseClicked="#newProfil" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                           <image>
+                              <Image url="@../../../image/imageBoutonCreer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
+</AnchorPane>

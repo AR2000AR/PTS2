@@ -1,44 +1,22 @@
 package application;
 
 import java.io.IOException;
-import java.util.Arrays;
 
+import controller.Controller;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
 	private static Stage primaryStage;
-	
+
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage=primaryStage;
-		Controller.setMainClass(this);
-		
-		try {
-
-			// AnchorPane root = (AnchorPane)
-			// FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
-			// AnchorPane root = (AnchorPane)
-			// FXMLLoader.load(getClass().getResource("fxml/Competition.fxml"));
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("fxml/tre2.fxml"));
-
-			Scene scene = new Scene(root, 1080, 720);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void chargerPageEntrainement(int ctx, int diff, int nv) throws IOException {
@@ -50,7 +28,40 @@ public class Main extends Application {
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		pc.setParam(ctx,diff,nv);
+		pc.setParam(ctx, diff, nv);
+	}
+
+	public void showNewProfil() {
+		try {
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/profil/NewProfil.fxml"));
+			Scene scene = new Scene(root, 899, 698);
+			scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Platform.exit();
+		}
+	}
+
+	public void showProfilSelection() {
+		try {
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/profil/ProfilSelection.fxml"));
+			Scene scene = new Scene(root, 899, 698);
+			scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Platform.exit();
+		}
+	}
+
+	@Override
+	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		Controller.setMainClass(this);
+		showProfilSelection();
 	}
 
 }
