@@ -26,13 +26,21 @@
             </Label>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="textField" alignment="BOTTOM_LEFT" maxWidth="-Infinity" onKeyTyped="#textChange" prefWidth="200.0" promptText="Nom" />
+                  <TextField fx:id="textField" alignment="BOTTOM_LEFT" maxWidth="-Infinity" onKeyTyped="#textChange" prefWidth="200.0" promptText="Nom" scaleX="2.0" scaleY="2.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#back" prefWidth="75.0" text="Retour" />
-                        <Button fx:id="okButton" disable="true" mnemonicParsing="false" onMouseClicked="#newProfil" opacity="0.5" prefWidth="75.0" text="Créer" />
+                        <ImageView onMouseClicked="#back" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                           <image>
+                              <Image url="@../../../image/imageBoutonRetour.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="okButton" disable="true" onMouseClicked="#newProfil" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                           <image>
+                              <Image url="@../../../image/imageBoutonCreer.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                </children>

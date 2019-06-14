@@ -18,6 +18,7 @@ public class Main extends Application {
 
 	public void profileSelected(String name) {
 		Controller.setProfilName(name);
+		System.out.println(name);
 	}
 
 	public void showNewProfil() {
