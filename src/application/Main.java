@@ -35,7 +35,7 @@ public class Main extends Application {
 			// FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
 			// AnchorPane root = (AnchorPane)
 			// FXMLLoader.load(getClass().getResource("fxml/Competition.fxml"));
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("fxml/tre2.fxml"));
+			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
 
 			Scene scene = new Scene(root, 1080, 720);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
