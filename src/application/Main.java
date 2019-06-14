@@ -23,7 +23,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
 		PlateauController pc = loader.getController();
-		primaryStage.hide();
 		Scene scene = new Scene(root, 1080, 720);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
