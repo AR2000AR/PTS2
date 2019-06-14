@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class tre2Controller extends Controller {
+public class ChoixNiveauEntrainementProgressionController extends Controller {
 
 	@FXML
 	private ImageView nv1img;
