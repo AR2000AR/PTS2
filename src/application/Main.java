@@ -73,6 +73,15 @@ public class Main extends Application {
 		pc.setParam(ctx, diff, nv);
 	}
 	
+	public void chargerMenuSelectionEntrProg() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
+		BorderPane root = (BorderPane) loader.load();
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
 	public void profileSelected(String name) {
 		Main.profilName = name;
 		choixNvEntrProg();

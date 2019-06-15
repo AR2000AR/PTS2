@@ -30,7 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PlateauController {
+public class PlateauController extends Controller{
 	@FXML
 	protected ImageView p1;
 	int etatP1 = 1;
@@ -48,8 +48,23 @@ public class PlateauController {
 	protected GraphicsContext gc1;
 
 	@FXML
+	private Canvas canvas2;
+	protected GraphicsContext gc2;
+
+	@FXML
+	private ImageView btnSolution;
+
+	@FXML
 	protected ImageView imgBravo;
 
+    @FXML
+    private ImageView btnRetourMenuSelection;
+
+    
+    @FXML
+    private ImageView imFond;
+
+	
 	Image imgPlateau = new Image("file:src/image/plateau.png");
 	Image imgCochon = new Image("file:src/image/pig.png");
 	Image imgLoup = new Image("file:src/image/wolf.png");
@@ -66,6 +81,10 @@ public class PlateauController {
 	Image imgp32 = new Image("file:src/image/p32.png");
 	Image imgp33 = new Image("file:src/image/p33.png");
 	Image imgp34 = new Image("file:src/image/p34.png");
+
+	Image imBtnSolution = new Image("file:src/image/imageBoutonSolution.png");
+	Image imBtnRetour = new Image("file:src/image/imageBoutonRetour.png");
+	Image imgFond = new Image("file:src/image/fond.png");
 
 	Image bravoImg = new Image("file:src/image/Bravo.png");
 
@@ -104,6 +123,11 @@ public class PlateauController {
 
 	public void initialize() {
 		gc1 = canvas1.getGraphicsContext2D();
+		gc2 = canvas2.getGraphicsContext2D();
+
+		btnSolution.setImage(imBtnSolution);
+		btnRetourMenuSelection.setImage(imBtnRetour);
+		imFond.setImage(imgFond);
 		Platform.runLater(() -> {
 			try {
 				initialiserPlateau(gc1, 2);
@@ -269,7 +293,6 @@ public class PlateauController {
 			remettreCochon(x, y);
 		}
 
-		
 	}
 
 	@FXML
@@ -587,14 +610,14 @@ public class PlateauController {
 		x4 = 0;
 		y4 = 0;
 
-		y1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(1))));
-		x1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(2))));
-		y2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(4))));
-		x2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(5))));
-		y3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(7))));
-		x3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(8))));
-		y4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(10))));
-		x4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(11))));
+		x1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(1))));
+		y1 = 100 * (Integer.parseInt(String.valueOf(s.charAt(2))));
+		x2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(4))));
+		y2 = 100 * (Integer.parseInt(String.valueOf(s.charAt(5))));
+		x3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(7))));
+		y3 = 100 * (Integer.parseInt(String.valueOf(s.charAt(8))));
+		x4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(10))));
+		y4 = 100 * (Integer.parseInt(String.valueOf(s.charAt(11))));
 
 		/*
 		 * System.out.println(x1); System.out.println(y1); System.out.println(x2);
@@ -680,7 +703,6 @@ public class PlateauController {
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 
 					break;
@@ -688,7 +710,6 @@ public class PlateauController {
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 
@@ -696,14 +717,12 @@ public class PlateauController {
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				case 4:
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				default:
@@ -717,14 +736,12 @@ public class PlateauController {
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
 					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				case 2:
 					plateau[x][y] = new Case(EnumCase.OCCUPER);
 					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				default:
@@ -739,7 +756,6 @@ public class PlateauController {
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x][y - 2] = new Case(EnumCase.OCCUPER);
 					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				case 2:
@@ -747,7 +763,6 @@ public class PlateauController {
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
 					plateau[x - 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x - 2][y] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 
@@ -756,7 +771,6 @@ public class PlateauController {
 					plateau[x][y + 1] = new Case(EnumCase.OCCUPER);
 					plateau[x][y + 2] = new Case(EnumCase.OCCUPER);
 					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				case 4:
@@ -764,7 +778,6 @@ public class PlateauController {
 					plateau[x][y - 1] = new Case(EnumCase.OCCUPER);
 					plateau[x + 1][y] = new Case(EnumCase.OCCUPER);
 					plateau[x + 2][y] = new Case(EnumCase.OCCUPER);
-					surCochon(x, y);
 					affPlateau();
 					break;
 				default:
@@ -802,25 +815,11 @@ public class PlateauController {
 		}
 	}
 
-	public void surCochon(int x, int y) {
-		if (modeDiurne == 1) {
-			coordSurCochon[temoin - 1][0] = y;
-			coordSurCochon[temoin - 1][1] = x;
-			
-			estSurCochon[temoin - 1] = true;
-			System.out.println(Arrays.toString(estSurCochon));
-			// System.out.println(Arrays.toString(coordSurCochon[temoin - 1]));
-			// System.out.println("YOLO");
-			// System.out.println(Arrays.toString(estSurCochon));
-
-		}
-	}
-
 	public void remettreCochon(int x, int y) {
 		// System.out.println("COCHON REMIS");
-		if(estSurCochon[temoin -1]) {
-		plateau[x][y] = new Case(EnumCase.COCHON);
-		estSurCochon[temoin -1] = false;
+		if (estSurCochon[temoin - 1]) {
+			plateau[x][y] = new Case(EnumCase.COCHON);
+			estSurCochon[temoin - 1] = false;
 		}
 	}
 
@@ -914,6 +913,162 @@ public class PlateauController {
 		return result;
 	}
 
+	@FXML
+	void clicSolution(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException {
+		for(int i=0;i<3;i++) {
+			listeP.get(i).setX(0);
+			listeP.get(i).setY(0);		
+		}
+		
+		
+		
+		canvas2.setOpacity(0.7);
+
+
+		String code = "";
+		s = "ERREUR CHARGEMENT COORDONNEE";
+		File ds = new File("src/controller/diurnePTS2solutions.txt");
+		File ns = new File("src/controller/NocturnesPTS2solutions.txt");
+
+		
+		int r=0;
+		
+		switch(diff) {
+		case 1:
+			r+=6;
+			break;
+		case 2:
+			r+=12;
+			break;
+		case 3:
+			r+=18;
+			break;
+			
+			
+		
+		}
+		r+= niveau;
+		if (modeDiurne == 0) {
+
+			Scanner sc1 = new Scanner(ds);
+			code = sc1.nextLine();
+			for (int j = 0; j < r; j++) {
+				code = sc1.nextLine();
+			}
+		} else {
+
+			Scanner sc2 = new Scanner(ns);
+			code = sc2.nextLine();
+			for (int j = 0; j < r; j++) {
+				code = sc2.nextLine();
+			}
+
+		}
+
+		// System.out.println(s);
+		double x1, y1, x2, y2, x3, y3;
+		int o1, o2, o3;
+		x1 = 0;
+		y1 = 0;
+		x2 = 0;
+		y2 = 0;
+		x3 = 0;
+		y3 = 0;
+		o1 = 0;
+		o2 = 0;
+		o3 = 0;
+
+		System.out.println(code);
+
+		x1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(0))));
+		y1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(1))));
+		o1 = (Integer.parseInt(String.valueOf(code.charAt(2))));
+
+		x2 = 100 * (Integer.parseInt(String.valueOf(code.charAt(4))));
+		y2 = 100 * (Integer.parseInt(String.valueOf(code.charAt(5))));
+		o2 = (Integer.parseInt(String.valueOf(code.charAt(6))));
+
+		x3 = 100 * (Integer.parseInt(String.valueOf(code.charAt(8))));
+		y3 = 100 * (Integer.parseInt(String.valueOf(code.charAt(9))));
+		o3 = (Integer.parseInt(String.valueOf(code.charAt(10))));
+
+		// Placement de la piece 01
+
+		Image p1Solu = tabImageP1[o1 - 1];
+
+		switch (o1) {
+
+		case 1:
+			y1-=100;
+			break;
+
+		case 2:
+			//Pas besoin
+			break;
+
+		case 3:
+			x1 -=100;
+			break;
+
+		case 4:
+			x1 -= 100;
+			y1 -= 100;
+			break;
+
+		}
+
+		gc2.drawImage(p1Solu, x1, y1);
+
+		switch (o2) {
+
+		case 1:
+			x2 -=100;
+			break;
+
+		case 2:
+			y2-=100;
+			break;
+
+
+		}
+		
+		switch (o3) {
+
+		case 1:
+			x3 -= 200;
+			y3-=100;
+			break;
+
+		case 2:
+			y3 -= 200;
+			break;
+
+		case 3:
+			//Pas besoin
+			break;
+
+		case 4:
+			x3-=100;
+			break;
+
+		}
+
+
+		// Placement de la piece 02
+
+		Image p2Solu = tabImageP2[o2 - 1];
+		gc2.drawImage(p2Solu, x2, y2);
+
+		// Placement de la piece 03
+		Image p3Solu = tabImageP3[o3 - 1];
+		gc2.drawImage(p3Solu, x3, y3);
+
+	}
+	
+	 @FXML
+	    void clicRetourMenu() throws IOException {
+		 getMainClass().chargerMenuSelectionEntrProg();
+	    }
 	public void setParam(int ctx, int df, int nv) {
 		this.niveau = nv;
 		this.diff = df;
