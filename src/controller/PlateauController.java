@@ -156,14 +156,12 @@ public class PlateauController {
 
 		if (estPlacerSurPlateau()) {
 			estPlacer[0] = false;
-			remettreCochon(x, y);
-			//System.out.println("Entrer switch");
+			// System.out.println("Entrer switch");
 			switch (etatP1) {
 			case 1:
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 
 				break;
@@ -171,7 +169,6 @@ public class PlateauController {
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 
@@ -179,20 +176,19 @@ public class PlateauController {
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			case 4:
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			default:
 				break;
 
 			}
+			remettreCochon(x, y);
 		}
 
 	}
@@ -203,7 +199,6 @@ public class PlateauController {
 
 		int y = coorPestPlacer[1][0];
 		int x = coorPestPlacer[1][1];
-		remettreCochon(x, y);
 		if (estPlacerSurPlateau()) {
 			estPlacer[1] = false;
 
@@ -212,19 +207,18 @@ public class PlateauController {
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
 				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			case 2:
 				plateau[x][y] = new Case(EnumCase.LIBRE);
 				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			default:
 				break;
 			}
+			remettreCochon(x, y);
 		}
 
 	}
@@ -245,7 +239,6 @@ public class PlateauController {
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x][y - 2] = new Case(EnumCase.LIBRE);
 				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			case 2:
@@ -253,7 +246,6 @@ public class PlateauController {
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
 				plateau[x - 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x - 2][y] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 
@@ -262,7 +254,6 @@ public class PlateauController {
 				plateau[x][y + 1] = new Case(EnumCase.LIBRE);
 				plateau[x][y + 2] = new Case(EnumCase.LIBRE);
 				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			case 4:
@@ -270,12 +261,12 @@ public class PlateauController {
 				plateau[x][y - 1] = new Case(EnumCase.LIBRE);
 				plateau[x + 1][y] = new Case(EnumCase.LIBRE);
 				plateau[x + 2][y] = new Case(EnumCase.LIBRE);
-				remettreCochon(x, y);
 				affPlateau();
 				break;
 			default:
 				break;
 			}
+			remettreCochon(x, y);
 		}
 
 	}
@@ -609,8 +600,7 @@ public class PlateauController {
 		 * System.out.println(y2); System.out.println(x3); System.out.println(y3);
 		 * System.out.println(x4); System.out.println(y4);
 		 */
-		
-		
+
 		for (int k = 0; k < 4; k++) {
 			for (int j = 0; j < 4; j++) {
 				plateau[k][j] = new Case(EnumCase.LIBRE);
@@ -639,7 +629,7 @@ public class PlateauController {
 		}
 
 		for (int n = 0; n < 4; n++) {
-			//System.out.println(Arrays.toString(plateau[n]));
+			// System.out.println(Arrays.toString(plateau[n]));
 		}
 
 	}
@@ -650,7 +640,7 @@ public class PlateauController {
 		plateau[(int) y][(int) x] = new Case(e);
 
 		for (int i = 0; i < 4; i++) {
-			//System.out.println(Arrays.toString(plateau[i]));
+			// System.out.println(Arrays.toString(plateau[i]));
 		}
 
 	}
@@ -667,13 +657,15 @@ public class PlateauController {
 	int coorPestPlacer[][] = new int[3][2];
 
 	public void affPlateau() {
+		System.out.println("");
 		for (int i = 0; i < 4; i++) {
-			//System.out.println(Arrays.toString(plateau[i]));
+			System.out.println(Arrays.toString(plateau[i]));
 		}
+		System.out.println("");
 	}
 
 	public boolean testPlacer(double[] t) {
-		//System.out.println(Arrays.toString(t));
+		// System.out.println(Arrays.toString(t));
 		int x = (int) t[1];
 		int y = (int) t[0];
 
@@ -813,22 +805,24 @@ public class PlateauController {
 		if (modeDiurne == 1) {
 			coordSurCochon[temoin - 1][0] = y;
 			coordSurCochon[temoin - 1][1] = x;
-
+			
 			estSurCochon[temoin - 1] = true;
-
-			//System.out.println(Arrays.toString(coordSurCochon[temoin - 1]));
-			//System.out.println("YOLO");
-			//System.out.println(Arrays.toString(estSurCochon));
+			System.out.println(Arrays.toString(estSurCochon));
+			// System.out.println(Arrays.toString(coordSurCochon[temoin - 1]));
+			// System.out.println("YOLO");
+			// System.out.println(Arrays.toString(estSurCochon));
 
 		}
 	}
 
 	public void remettreCochon(int x, int y) {
-		//System.out.println("COCHON REMIS");
+		// System.out.println("COCHON REMIS");
+		if(estSurCochon[temoin -1]) {
 		plateau[x][y] = new Case(EnumCase.COCHON);
+		estSurCochon[temoin -1] = false;
+		}
 	}
 
-	
 	protected boolean testDessusDessousPiece(int x, int y) {
 		boolean testPiecePoser = false;
 		boolean t1 = false;
@@ -923,7 +917,7 @@ public class PlateauController {
 		this.niveau = nv;
 		this.diff = df;
 		this.modeDiurne = ctx;
-		//System.out.println(ctx + " " + df + " " + nv);
+		// System.out.println(ctx + " " + df + " " + nv);
 	}
 
 }
