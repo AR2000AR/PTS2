@@ -828,6 +828,7 @@ public class PlateauController {
 		plateau[x][y] = new Case(EnumCase.COCHON);
 	}
 
+	
 	protected boolean testDessusDessousPiece(int x, int y) {
 		boolean testPiecePoser = false;
 		boolean t1 = false;
