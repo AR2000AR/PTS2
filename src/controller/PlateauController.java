@@ -269,6 +269,7 @@ public class PlateauController {
 			remettreCochon(x, y);
 		}
 
+		
 	}
 
 	@FXML
