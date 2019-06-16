@@ -21,10 +21,6 @@
                   <Font name="Lucida Calligraphy Italic" size="60.0" />
                </font>
             </Label>
-            <Button fx:id="scor" layoutX="603.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#scores" prefHeight="99.0" prefWidth="192.0" text="Meilleurs Scores" />
-            <Button fx:id="comp" layoutX="286.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#comp" prefHeight="99.0" prefWidth="192.0" text="Mode Compétition" />
-            <Button fx:id="prog" layoutX="286.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#prog" prefHeight="99.0" prefWidth="192.0" text="Mode Progression" />
-            <Button fx:id="entr" layoutX="603.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#entr" prefHeight="99.0" prefWidth="192.0" text="Mode Entrainement" />
             <ImageView fitHeight="40.0" fitWidth="48.0" layoutX="1026.0" layoutY="14.0" onMouseClicked="#option" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/cog.png" />
@@ -33,6 +29,26 @@
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="15.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/imageBoutonRetour.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="175.0" onMouseClicked="#comp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/imageBoutonCompetition.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="175.0" onMouseClicked="#entr" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/imageBoutonEntrainement.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="395.0" onMouseClicked="#prog" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/imageBoutonProgression.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="395.0" onMouseClicked="#scores" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/imageBoutonScore.png" />
                </image>
             </ImageView>
          </children>
