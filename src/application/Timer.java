@@ -1,14 +1,14 @@
 package application;
 
-import controller.competitionController;
+import controller.CompetitionController;
 
 public class Timer implements Runnable {
 
 	double time = 0;
 	boolean enCours = false;
-	competitionController leController;
+	CompetitionController leController;
 
-	public Timer(competitionController c) {
+	public Timer(CompetitionController c) {
 		leController = c;
 	}
 
@@ -27,7 +27,6 @@ public class Timer implements Runnable {
 				System.out.println((double) Math.round(time * 10) / 10);
 				// leController.ecrireTemps((double) Math.round(time * 10) / 10);
 			}
-
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

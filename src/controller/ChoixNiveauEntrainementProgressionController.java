@@ -326,7 +326,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		
 		if(contexteSelect != -1 && nv != -1 && diff != -1) {
 			System.out.println(contexteSelect + "  "+ "  "+diff+"  "+nv);
-			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv,enProgression);
+			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv);
 		}
 		
 	}

@@ -128,7 +128,6 @@ public class PlateauController extends Controller {
 	double registreYtest[] = { 260, 360, 460, 560 };
 
 	boolean niveauFini = false;
-	boolean enModeProgression = false;
 	boolean solutionDevoile = false;
 	int modeDiurne;
 
@@ -559,11 +558,6 @@ public class PlateauController extends Controller {
 				imgBravo.setVisible(true);
 				imgBravo.toFront();
 				btnRetourMenuSelection.toFront();
-				
-				if(enModeProgression && !solutionDevoile) {
-					GestionDeDonnee g = new GestionDeDonnee();
-					g.setProgression(this.getProfilName(), modeDiurne, diff, niveau, true);
-				}
 			}
 		}
 	}
@@ -1224,11 +1218,10 @@ public class PlateauController extends Controller {
 		getMainClass().chargerMenuSelectionEntrProg();
 	}
 
-	public void setParam(int ctx, int df, int nv,boolean progON) {
+	public void setParam(int ctx, int df, int nv) {
 		this.niveau = nv;
 		this.diff = df;
 		this.modeDiurne = ctx;
-		this.enModeProgression = progON;
 		// System.out.println(ctx + " " + df + " " + nv);
 	}
 
