@@ -30,7 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PlateauController extends Controller{
+public class PlateauController extends Controller {
 	@FXML
 	protected ImageView p1;
 	int etatP1 = 1;
@@ -57,14 +57,12 @@ public class PlateauController extends Controller{
 	@FXML
 	protected ImageView imgBravo;
 
-    @FXML
-    private ImageView btnRetourMenuSelection;
+	@FXML
+	private ImageView btnRetourMenuSelection;
 
-    
-    @FXML
-    private ImageView imFond;
+	@FXML
+	private ImageView imFond;
 
-	
 	Image imgPlateau = new Image("file:src/image/plateau.png");
 	Image imgCochon = new Image("file:src/image/pig.png");
 	Image imgLoup = new Image("file:src/image/wolf.png");
@@ -74,13 +72,26 @@ public class PlateauController extends Controller{
 	Image imgp13 = new Image("file:src/image/p13.png");
 	Image imgp14 = new Image("file:src/image/p14.png");
 
+	Image imgp11err = new Image("file:src/image/p11err.png");
+	Image imgp12err = new Image("file:src/image/p12err.png");
+	Image imgp13err = new Image("file:src/image/p13err.png");
+	Image imgp14err = new Image("file:src/image/p14err.png");
+
 	Image imgp21 = new Image("file:src/image/p21.png");
 	Image imgp22 = new Image("file:src/image/p22.png");
+
+	Image imgp21err = new Image("file:src/image/p21err.png");
+	Image imgp22err = new Image("file:src/image/p22err.png");
 
 	Image imgp31 = new Image("file:src/image/p31.png");
 	Image imgp32 = new Image("file:src/image/p32.png");
 	Image imgp33 = new Image("file:src/image/p33.png");
 	Image imgp34 = new Image("file:src/image/p34.png");
+
+	Image imgp31err = new Image("file:src/image/p31err.png");
+	Image imgp32err = new Image("file:src/image/p32err.png");
+	Image imgp33err = new Image("file:src/image/p33err.png");
+	Image imgp34err = new Image("file:src/image/p34err.png");
 
 	Image imBtnSolution = new Image("file:src/image/imageBoutonSolution.png");
 	Image imBtnRetour = new Image("file:src/image/imageBoutonRetour.png");
@@ -89,8 +100,11 @@ public class PlateauController extends Controller{
 	Image bravoImg = new Image("file:src/image/Bravo.png");
 
 	Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
+	Image tabImageP1err[] = { imgp11err, imgp12err, imgp13err, imgp14err };
 	Image tabImageP2[] = { imgp21, imgp22 };
+	Image tabImageP2err[] = { imgp21err, imgp22err };
 	Image tabImageP3[] = { imgp31, imgp32, imgp33, imgp34 };
+	Image tabImageP3err[] = { imgp31err, imgp32err, imgp33err, imgp34err };
 
 	ArrayList<ImageView> listeP = new ArrayList<>();
 	double[][] coorOrig = new double[3][2];
@@ -160,6 +174,17 @@ public class PlateauController extends Controller{
 	}
 
 	public void retourOrigine() {
+		switch (temoin) {
+		case 1:
+			p1.setImage(tabImageP1[etatP1-1]);
+			break;
+		case 2:
+			p2.setImage(tabImageP2[etatP2-1]);
+			break;
+		case 3:
+			p3.setImage(tabImageP3[etatP3-1]);
+			break;
+		}
 		listeP.get(temoin - 1).setX(0);
 		listeP.get(temoin - 1).setY(0);
 
@@ -387,19 +412,55 @@ public class PlateauController extends Controller{
 	void dragOnP1(MouseEvent event) {
 		deplacerAvecSouris(event, p1, 1);
 		temoin = 1;
+		peutEtrePoser(event);
 	}
 
 	@FXML
 	void dragOnP2(MouseEvent event) {
 		deplacerAvecSouris(event, p2, 2);
 		temoin = 2;
-
+		peutEtrePoser(event);
 	}
 
 	@FXML
 	void dragOnP3(MouseEvent event) {
 		deplacerAvecSouris(event, p3, 3);
 		temoin = 3;
+		peutEtrePoser(event);
+	}
+
+	private void peutEtrePoser(MouseEvent event) {
+		double[] emp = emplacementPlateau(event);
+		System.out.println(Arrays.toString(emp));
+		double x = emp[1];
+		double y = emp[0];
+		boolean t = (testDessusDessousPiece((int)y, (int)x));
+		System.out.println(t);
+		if(t) {
+			switch (temoin) {
+			case 1:
+				p1.setImage(tabImageP1[etatP1-1]);
+				break;
+			case 2:
+				p2.setImage(tabImageP2[etatP2-1]);
+				break;
+			case 3:
+				p3.setImage(tabImageP3[etatP3-1]);
+				break;
+			}
+		}else {
+			switch (temoin) {
+			case 1:
+				p1.setImage(tabImageP1err[etatP1-1]);
+				break;
+			case 2:
+				p2.setImage(tabImageP2err[etatP2-1]);
+				break;
+			case 3:
+				p3.setImage(tabImageP3err[etatP3-1]);
+				break;
+			}
+		}
 
 	}
 
@@ -915,39 +976,33 @@ public class PlateauController extends Controller{
 
 	@FXML
 	void clicSolution(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException {
-		for(int i=0;i<3;i++) {
+		for (int i = 0; i < 3; i++) {
 			listeP.get(i).setX(0);
-			listeP.get(i).setY(0);		
+			listeP.get(i).setY(0);
 		}
-		
-		
-		
-		canvas2.setOpacity(0.7);
 
+		canvas2.setOpacity(0.7);
 
 		String code = "";
 		s = "ERREUR CHARGEMENT COORDONNEE";
 		File ds = new File("src/controller/diurnePTS2solutions.txt");
 		File ns = new File("src/controller/NocturnesPTS2solutions.txt");
 
-		
-		int r=0;
-		
-		switch(diff) {
+		int r = 0;
+
+		switch (diff) {
 		case 1:
-			r+=6;
+			r += 6;
 			break;
 		case 2:
-			r+=12;
+			r += 12;
 			break;
 		case 3:
-			r+=18;
+			r += 18;
 			break;
-			
-			
-		
+
 		}
-		r+= niveau;
+		r += niveau;
 		if (modeDiurne == 0) {
 
 			Scanner sc1 = new Scanner(ds);
@@ -999,15 +1054,15 @@ public class PlateauController extends Controller{
 		switch (o1) {
 
 		case 1:
-			y1-=100;
+			y1 -= 100;
 			break;
 
 		case 2:
-			//Pas besoin
+			// Pas besoin
 			break;
 
 		case 3:
-			x1 -=100;
+			x1 -= 100;
 			break;
 
 		case 4:
@@ -1022,21 +1077,20 @@ public class PlateauController extends Controller{
 		switch (o2) {
 
 		case 1:
-			x2 -=100;
+			x2 -= 100;
 			break;
 
 		case 2:
-			y2-=100;
+			y2 -= 100;
 			break;
 
-
 		}
-		
+
 		switch (o3) {
 
 		case 1:
 			x3 -= 200;
-			y3-=100;
+			y3 -= 100;
 			break;
 
 		case 2:
@@ -1044,15 +1098,14 @@ public class PlateauController extends Controller{
 			break;
 
 		case 3:
-			//Pas besoin
+			// Pas besoin
 			break;
 
 		case 4:
-			x3-=100;
+			x3 -= 100;
 			break;
 
 		}
-
 
 		// Placement de la piece 02
 
@@ -1064,11 +1117,12 @@ public class PlateauController extends Controller{
 		gc2.drawImage(p3Solu, x3, y3);
 
 	}
-	
-	 @FXML
-	    void clicRetourMenu() throws IOException {
-		 getMainClass().chargerMenuSelectionEntrProg();
-	    }
+
+	@FXML
+	void clicRetourMenu() throws IOException {
+		getMainClass().chargerMenuSelectionEntrProg();
+	}
+
 	public void setParam(int ctx, int df, int nv) {
 		this.niveau = nv;
 		this.diff = df;
