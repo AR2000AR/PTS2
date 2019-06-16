@@ -257,6 +257,8 @@ public class GestionDeDonnee {
 			}
 		}
 		List<Element> niveaux = profil.getChildren("niveau");
+		if (niveaux == null)
+			return result;
 		for (Element niveau : niveaux) {
 			if (niveau.getChild("fini").getTextNormalize().equals("1")) {
 				int nbContext = Integer.parseInt(niveau.getAttributeValue("nbContext"));
