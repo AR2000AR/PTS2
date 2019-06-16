@@ -2,8 +2,15 @@ package controller;
 
 import java.io.IOException;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.jdom2.JDOMException;
+import org.xml.sax.SAXException;
+
 import com.sun.javafx.geom.transform.GeneralTransform3D;
 
+import gestionDeDonnee.GestionDeDonnee;
+import gestionDeDonnee.NoProfileException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,10 +22,10 @@ import javafx.scene.input.MouseEvent;
 public class ChoixNiveauEntrainementProgressionController extends Controller {
 
 	@FXML
-	private ImageView btnJouer;
+	protected ImageView btnJouer;
 
 	@FXML
-	private ImageView btnRetour;
+	protected ImageView btnRetour;
 
 	@FXML
 	private ImageView nv1img;
@@ -33,16 +40,18 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	private ImageView nv4img;
 
 	@FXML
+	private ImageView nv5img;
+
+	@FXML
+	private ImageView nv6img;
+	
+	@FXML
 	private ImageView sectionDiurne;
 
 	@FXML
 	private ImageView sectionNocturne;
 
-	@FXML
-	private ImageView nv5img;
-
-	@FXML
-	private ImageView nv6img;
+	
 
 	@FXML
 	private ImageView sectionJunior;
@@ -70,6 +79,12 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	static Image im5f = new Image("file:src/image/5enFait.png");
 	static Image im6f = new Image("file:src/image/6enFait.png");
 
+	
+	static Image tabImec[] = {im1ec,im2ec,im3ec,im4ec,im5ec,im6ec};
+	static Image tabIf[] = {im1f,im2f,im3f,im4f,im5f,im6f};
+	
+	protected ImageView tabImV[] = {nv1img,nv2img,nv3img,nv4img,nv5img,nv6img};
+	
 	static Image imBtnDiurne = new Image("file:src/image/imageBoutonDiurne.png");
 	static Image imBtnNocturne = new Image("file:src/image/imageBoutonNocturne.png");
 
@@ -81,6 +96,8 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	static Image imJouer = new Image("file:src/image/imageBoutonJouer.png");
 	static Image imRetour = new Image("file:src/image/imageBoutonRetour.png");
 
+	
+	
 	private int contexteSelect = -1; // 0->1
 	private int nv = -1; // 0 -> 5
 	private int diff = -1; // 0 ->3
@@ -92,7 +109,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	private boolean tabNvim[] = new boolean[6];
 	private ImageView tabObj2[] = new ImageView[6];
 
-	public void initialize() {
+	public void initialize() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		nv1img.setImage(im1ec);
 		nv2img.setImage(im2ec);
@@ -101,6 +118,8 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		nv5img.setImage(im5ec);
 		nv6img.setImage(im6ec);
 
+		
+		
 		sectionDiurne.setImage(imBtnDiurne);
 		sectionNocturne.setImage(imBtnNocturne);
 
@@ -128,22 +147,36 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 
 		btnJouer.setImage(imJouer);
 		btnRetour.setImage(imRetour);
-
+		
 	}
 
+	
+	public void testRealiser() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
+		if(contexteSelect != -1 && diff != -1) {
+		GestionDeDonnee g = new GestionDeDonnee();
+		Boolean[][][] t = g.getProgression(getProfilName());
+		for(int i=0;i<6;i++) {
+			if(t[contexteSelect][diff][i]) {
+				tabImV[i].setImage(tabIf[i]);
+			}
+		}
+		}
+	}
+	
 	@FXML
-	void switchContexteBtn01() {
+	void switchContexteBtn01() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		this.contexteSelect = 0;
 		switchContexte(this.contexteSelect);
+		
 	}
 
 	@FXML
-	void switchContexteBtn02() {
+	void switchContexteBtn02() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		this.contexteSelect = 1;
 		switchContexte(this.contexteSelect);
 	}
 
-	void switchContexte(int i) {
+	void switchContexte(int i) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		Bloom bloom = new Bloom();
 		Bloom debloom = new Bloom();
@@ -158,9 +191,14 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			sectionDiurne.setEffect(debloom);
 			sectionNocturne.setEffect(bloom);
 		}
+		if(enProgression) {
+			testRealiser();
+			
+		}
+		
 	}
 
-	void switchDiff() {
+	void switchDiff() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		Bloom bloom = new Bloom();
 		Bloom debloom = new Bloom();
@@ -177,11 +215,13 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		for (int i = 0; i < 4; i++) {
 			if (i != r) {
 				tabObj[i].setEffect(debloom);
-				;
 			}
 		}
 		tabObj[r].setEffect(bloom);
-		;
+		if(enProgression) {
+			testRealiser();
+			
+		}
 
 	}
 
@@ -210,7 +250,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	}
 
 	@FXML
-	void starterClic(MouseEvent event) {
+	void starterClic(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		selectDiff[0] = true;
 		selectDiff[1] = false;
 		selectDiff[2] = false;
@@ -220,7 +260,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	}
 
 	@FXML
-	void juniorClic(MouseEvent event) {
+	void juniorClic(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		selectDiff[0] = false;
 		selectDiff[1] = true;
 		selectDiff[2] = false;
@@ -230,7 +270,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	}
 
 	@FXML
-	void expertClic(MouseEvent event) {
+	void expertClic(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		selectDiff[0] = false;
 		selectDiff[1] = false;
 		selectDiff[2] = true;
@@ -240,7 +280,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	}
 
 	@FXML
-	void masterClic(MouseEvent event) {
+	void masterClic(MouseEvent event) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		selectDiff[0] = false;
 		selectDiff[1] = false;
 		selectDiff[2] = false;
@@ -326,7 +366,13 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		
 		if(contexteSelect != -1 && nv != -1 && diff != -1) {
 			System.out.println(contexteSelect + "  "+ "  "+diff+"  "+nv);
-			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv);
+			System.out.println(enProgression);
+			if(enProgression) {
+				getMainClass().chargerProgression(contexteSelect, diff, nv);
+			}else {
+				getMainClass().chargerNivEntrProg(contexteSelect, diff, nv);	
+			}
+			
 		}
 		
 	}
@@ -335,4 +381,10 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	void clicSurRetour() {
 		getMainClass().showMenu();
 	}
+	
+	
+	public void setParam(boolean mode) {
+		this.enProgression = mode;
+	}
+
 }

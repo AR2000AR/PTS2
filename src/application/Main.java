@@ -5,6 +5,7 @@ import java.io.IOException;
 import controller.ChoixNiveauEntrainementProgressionController;
 import controller.Controller;
 import controller.PlateauController;
+import controller.PlateauProgressionController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,32 +33,62 @@ public class Main extends Application {
 		pc.setParam(ctx, diff, nv);
 	}
 
+	
+	/*
+	 * A NE PAS EFFACER LES COMMENTAIRES
+	 */
+
+	// AnchorPane root = (AnchorPane)
+	// FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
+	// AnchorPane root = (AnchorPane)
+	// FXMLLoader.load(getClass().getResource("fxml/Competition.fxml"));
+	
 	public void choixNvEntrProg(boolean mode) {
 
 		try {
+		
 
-			/*
-			 * A NE PAS EFFACER LES COMMENTAIRES
-			 */
-
-			// AnchorPane root = (AnchorPane)
-			// FXMLLoader.load(getClass().getResource("fxml/Plateau.fxml"));
-			// AnchorPane root = (AnchorPane)
-			// FXMLLoader.load(getClass().getResource("fxml/Competition.fxml"));
-
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
-			Pane root = (Pane) loader.load();
-			ChoixNiveauEntrainementProgressionController cnep = loader.getController();
-			// cnep.setParam(?);
-			Scene scene = new Scene(root, 1080, 720);
-			scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			if(mode) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
+				Pane root = (Pane) loader.load();
+				ChoixNiveauEntrainementProgressionController cnep = loader.getController();
+				// cnep.setParam(?);
+				ChoixNiveauEntrainementProgressionController pc = loader.getController();
+				Scene scene = new Scene(root, 1080, 720);
+				scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+				primaryStage.setScene(scene);
+				primaryStage.show();
+				pc.setParam(mode);
+				
+			}
+			else {
+				System.out.println("Mode entrainement");
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	
+	public void chargerProgression(int ctx, int diff, int nv) throws IOException {
+		System.out.println("YOLOOOOOOO");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/PlateauProgression.fxml"));
+		Pane root = (Pane) loader.load();
+		
+		
+		PlateauProgressionController pc = loader.getController();
+		//ChoixNiveauEntrainementProgressionController cnep = loader.getController();
+
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		pc.setParam(ctx, diff, nv);
+	}
+	
+	
 	public void profileSelected(String name) {
 		Controller.setProfilName(name);
 		showMenu();
@@ -120,6 +151,9 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        System.out.println("PAR ICI");
+        
         pc.setParam(ctx, diff, nv);
     }
 

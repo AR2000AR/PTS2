@@ -60,7 +60,7 @@ public class PlateauController extends Controller {
 	protected ImageView imgBravo;
 
 	@FXML
-	private ImageView btnRetourMenuSelection;
+	protected ImageView btnRetourMenuSelection;
 
 	@FXML
 	private ImageView imFond;
@@ -131,9 +131,10 @@ public class PlateauController extends Controller {
 	boolean solutionDevoile = false;
 	int modeDiurne;
 
+	
 	// private int mode;
-	private int diff;
-	private int niveau;
+	protected int diff;
+	protected int niveau;
 
 	public void initialize() {
 		gc1 = canvas1.getGraphicsContext2D();
@@ -552,7 +553,7 @@ public class PlateauController extends Controller {
 			}
 			if (k == 3) {
 				test = true;
-				// System.out.println("<#<|JEU FINI|>#>");
+				System.out.println("<#<|JEU FINI|>#>");
 				canvas1.setVisible(false);
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
@@ -800,7 +801,7 @@ public class PlateauController extends Controller {
 	public void affPlateau() {
 		System.out.println("");
 		for (int i = 0; i < 4; i++) {
-			System.out.println(Arrays.toString(plateau[i]));
+			//System.out.println(Arrays.toString(plateau[i]));
 		}
 		System.out.println("");
 	}
