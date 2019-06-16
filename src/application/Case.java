@@ -33,6 +33,11 @@ public class Case {
 			break;
 		}
 
+		case SURCOCHON: {
+			this.nom = "S";
+			break;
+		}
+		
 		}
 	}
 
@@ -47,5 +52,8 @@ public class Case {
 	public void setEtatCase(EnumCase etatCase) {
 		this.etatCase = etatCase;
 	}
-
+	public EnumCase getEtatCase() {
+		return this.etatCase;
+	}
+	
 }
