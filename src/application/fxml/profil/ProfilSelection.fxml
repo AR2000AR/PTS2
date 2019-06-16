@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="698.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfilSelectionController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfilSelectionController">
    <children>
-      <ImageView fitHeight="701.0" fitWidth="903.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true">
          <image>
             <Image url="@../../../image/fond.png" />
          </image>
@@ -17,9 +17,9 @@
             <Point3D />
          </rotationAxis>
       </ImageView>
-      <BorderPane prefHeight="695.0" prefWidth="900.0">
+      <BorderPane prefHeight="720.0" prefWidth="1080.0">
          <top>
-            <Label prefHeight="148.0" prefWidth="548.0" text="Les 3 Petits Cochons" BorderPane.alignment="CENTER">
+            <Label text="Les 3 Petits Cochons" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Lucida Calligraphy Italic" size="60.0" />
                </font>

@@ -121,6 +121,10 @@ public class GestionDeDonnee {
 		return new FileWriter(getClass().getClassLoader().getResource(fileName).getPath());
 	}
 
+	public String getLevel(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
+		return getLevelDescriptor(context, difficulte, niveau)[0];
+	}
+
 	/**
 	 * Renvoie une chaine de caractère décrivant un niveau
 	 *
@@ -132,8 +136,9 @@ public class GestionDeDonnee {
 	 * @throws NiveauInvalide
 	 * @throws NiveauNonTrouve
 	 */
-	public String getLevel(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
-		if ((difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
+	private String[] getLevelDescriptor(int context, int difficulte, int niveau)
+			throws NiveauInvalide, NiveauNonTrouve {
+		if (((context != 0) && (context != 1)) || (difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
 			throw new NiveauInvalide("Le niveau " + niveau + " n'est pas un niveau valide");
 		NodeList domNiveaux = xmlNiveaux.getElementsByTagName("niveau");
 		for (int i = 0; i < domNiveaux.getLength(); i++) {
@@ -146,12 +151,16 @@ public class GestionDeDonnee {
 					NodeList niveauChildNode = niveauI.getChildNodes();
 					for (int j = 0; j < niveauChildNode.getLength(); j++) {
 						if (niveauChildNode.item(j).getNodeName().equals("description"))
-							return niveauChildNode.item(j).getTextContent();
+							return niveauChildNode.item(j).getTextContent().split("#");
 					}
 				}
 			}
 		}
 		throw new NiveauNonTrouve("Le niveau indiqué n'a pas été trouvé. Le fichier peut être endomagé");
+	}
+
+	public String getLevelSoluce(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
+		return getLevelDescriptor(context, difficulte, niveau)[1];
 	}
 
 	/**

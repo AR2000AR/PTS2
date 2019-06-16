@@ -31,6 +31,7 @@ public class TestGestionDeDonnee {
 	public void testGetNiveau() throws SAXException, IOException, ParserConfigurationException, NiveauInvalide,
 			NiveauNonTrouve, JDOMException {
 		assertEquals("110112113000", g.getLevel(0, 0, 1));
+		assertEquals("101000000121", g.getLevel(1, 0, 0));
 	}
 
 	@Test
