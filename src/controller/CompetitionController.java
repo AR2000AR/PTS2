@@ -17,12 +17,16 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class CompetitionController extends PlateauController {
 
 	
-	
+
+    @FXML
+    private ImageView btnPasseNv;
+    
 	@FXML
 	private Label lblTime;
 	static Timer monTimer;
@@ -124,6 +128,16 @@ public class CompetitionController extends PlateauController {
 			return test;
 		}
 
+	    @FXML
+	    void passerNiveau() {
+	    	try {
+				passerNvSuivant();
+			} catch (SAXException | IOException | ParserConfigurationException | JDOMException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
+		
 		private void passerNvSuivant() throws SAXException, IOException, ParserConfigurationException, JDOMException {
 			if(!toutLesNvFait()) {
 			n++;
