@@ -29,7 +29,7 @@ public class Main extends Application {
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		pc.setParam(ctx, diff, nv);
+		pc.setParam(ctx, diff, nv,false);
 	}
 
 	public void choixNvEntrProg(boolean mode) {
@@ -112,7 +112,7 @@ public class Main extends Application {
 		showProfilSelection();
 	}
 
-	public void chargerNivEntrProg(int ctx, int diff, int nv) throws IOException {
+	public void chargerNivEntrProg(int ctx, int diff, int nv,boolean progON) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
         PlateauController pc = loader.getController();
@@ -120,7 +120,7 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-        pc.setParam(ctx, diff, nv);
+        pc.setParam(ctx, diff, nv,progON);
     }
 
 	public void chargerMenuSelectionEntrProg() throws IOException {

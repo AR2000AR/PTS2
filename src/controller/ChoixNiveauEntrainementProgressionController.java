@@ -85,6 +85,8 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	private int nv = -1; // 0 -> 5
 	private int diff = -1; // 0 ->3
 
+	protected boolean enProgression = false;
+	
 	private boolean selectDiff[] = new boolean[4];
 	private ImageView tabObj[] = new ImageView[4];
 	private boolean tabNvim[] = new boolean[6];
@@ -324,7 +326,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		
 		if(contexteSelect != -1 && nv != -1 && diff != -1) {
 			System.out.println(contexteSelect + "  "+ "  "+diff+"  "+nv);
-			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv);
+			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv,enProgression);
 		}
 		
 	}

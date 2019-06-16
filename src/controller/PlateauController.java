@@ -18,6 +18,7 @@ import application.EnumCase;
 import gestionDeDonnee.GestionDeDonnee;
 import gestionDeDonnee.NiveauInvalide;
 import gestionDeDonnee.NiveauNonTrouve;
+import gestionDeDonnee.NoProfileException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -127,6 +128,8 @@ public class PlateauController extends Controller {
 	double registreYtest[] = { 260, 360, 460, 560 };
 
 	boolean niveauFini = false;
+	boolean enModeProgression = false;
+	boolean solutionDevoile = false;
 	int modeDiurne;
 
 	// private int mode;
@@ -511,7 +514,7 @@ public class PlateauController extends Controller {
 	}
 
 	@FXML
-	void relache(MouseEvent event) throws InterruptedException {
+	void relache(MouseEvent event) throws InterruptedException, SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		;
 
@@ -541,7 +544,7 @@ public class PlateauController extends Controller {
 
 	}
 
-	public void testJeuFini() throws InterruptedException {
+	public void testJeuFini() throws InterruptedException, SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		boolean test = false;
 		int k = 0;
 		for (int i = 0; i < 3; i++) {
@@ -555,6 +558,12 @@ public class PlateauController extends Controller {
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
 				imgBravo.toFront();
+				btnRetourMenuSelection.toFront();
+				
+				if(enModeProgression && !solutionDevoile) {
+					GestionDeDonnee g = new GestionDeDonnee();
+					g.setProgression(this.getProfilName(), modeDiurne, diff, niveau, true);
+				}
 			}
 		}
 	}
@@ -1066,6 +1075,8 @@ public class PlateauController extends Controller {
 			listeP.get(i).setY(0);
 		}
 
+		solutionDevoile = true;
+		
 		Bloom bloom = new Bloom();
 		bloom.setThreshold(0.6);
 
@@ -1213,10 +1224,11 @@ public class PlateauController extends Controller {
 		getMainClass().chargerMenuSelectionEntrProg();
 	}
 
-	public void setParam(int ctx, int df, int nv) {
+	public void setParam(int ctx, int df, int nv,boolean progON) {
 		this.niveau = nv;
 		this.diff = df;
 		this.modeDiurne = ctx;
+		this.enModeProgression = progON;
 		// System.out.println(ctx + " " + df + " " + nv);
 	}
 
