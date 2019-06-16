@@ -102,11 +102,37 @@ public class Main extends Application {
 		}
 	}
 
+	
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		Main.primaryStage = primaryStage;
 		Controller.setMainClass(this);
 		showProfilSelection();
+	}
+
+	public void chargerNivEntrProg(int ctx, int diff, int nv) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+        PlateauController pc = loader.getController();
+        Scene scene = new Scene(root, 1080, 720);
+        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        pc.setParam(ctx, diff, nv);
+    }
+
+	public void chargerMenuSelectionEntrProg() throws IOException {
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
+		Pane root = (Pane) loader.load();
+		ChoixNiveauEntrainementProgressionController cnep = loader.getController();
+		// cnep.setParam(?);
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 }

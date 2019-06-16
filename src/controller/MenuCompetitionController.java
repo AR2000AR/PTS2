@@ -12,37 +12,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ChoixNiveauEntrainementProgressionController extends Controller {
+public class MenuCompetitionController extends Controller {
 
 	@FXML
-	private ImageView btnJouer;
+	private ImageView btnValider;
 
 	@FXML
 	private ImageView btnRetour;
-
-	@FXML
-	private ImageView nv1img;
-
-	@FXML
-	private ImageView nv3img;
-
-	@FXML
-	private ImageView nv2img;
-
-	@FXML
-	private ImageView nv4img;
 
 	@FXML
 	private ImageView sectionDiurne;
 
 	@FXML
 	private ImageView sectionNocturne;
-
-	@FXML
-	private ImageView nv5img;
-
-	@FXML
-	private ImageView nv6img;
 
 	@FXML
 	private ImageView sectionJunior;
@@ -79,6 +61,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	static Image imBtnMaster = new Image("file:src/image/imageBoutonMaster.png");
 
 	static Image imJouer = new Image("file:src/image/imageBoutonJouer.png");
+	static Image imVoirScore = new Image("file:src/image/imageBoutonVoirScore.png");
 	static Image imRetour = new Image("file:src/image/imageBoutonRetour.png");
 
 	private int contexteSelect = -1; // 0->1
@@ -90,14 +73,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	private boolean tabNvim[] = new boolean[6];
 	private ImageView tabObj2[] = new ImageView[6];
 
+	
+	protected int valeurTemoin=0;  // 0 => lance competition , 1 => lance score
+	
 	public void initialize() {
 
-		nv1img.setImage(im1ec);
-		nv2img.setImage(im2ec);
-		nv3img.setImage(im3ec);
-		nv4img.setImage(im4ec);
-		nv5img.setImage(im5ec);
-		nv6img.setImage(im6ec);
 
 		sectionDiurne.setImage(imBtnDiurne);
 		sectionNocturne.setImage(imBtnNocturne);
@@ -117,14 +97,13 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabObj[2] = sectionExpert;
 		tabObj[3] = sectionMaster;
 
-		tabObj2[0] = nv1img;
-		tabObj2[1] = nv2img;
-		tabObj2[2] = nv3img;
-		tabObj2[3] = nv4img;
-		tabObj2[4] = nv5img;
-		tabObj2[5] = nv6img;
-
-		btnJouer.setImage(imJouer);
+		if(valeurTemoin == 0) {
+			btnValider.setImage(imJouer);
+		}else {
+			btnValider.setImage(imVoirScore);
+		}
+		
+		
 		btnRetour.setImage(imRetour);
 
 	}
@@ -248,87 +227,29 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	}
 
 	@FXML
-	void clic01() throws IOException {
-		tabNvim[0] = true;
-		tabNvim[1] = false;
-		tabNvim[2] = false;
-		tabNvim[3] = false;
-		tabNvim[4] = false;
-		tabNvim[5] = false;
-		nv = 0;
-		switchNv();
-	}
-
-	@FXML
-	void clic02() throws IOException {
-		tabNvim[0] = false;
-		tabNvim[1] = true;
-		tabNvim[2] = false;
-		tabNvim[3] = false;
-		tabNvim[4] = false;
-		tabNvim[5] = false;
-		nv = 1;
-		switchNv();
-	}
-
-	@FXML
-	void clic03() throws IOException {
-		tabNvim[0] = false;
-		tabNvim[1] = false;
-		tabNvim[2] = true;
-		tabNvim[3] = false;
-		tabNvim[4] = false;
-		tabNvim[5] = false;
-		nv = 2;
-		switchNv();
-	}
-
-	@FXML
-	void clic04() throws IOException {
-		tabNvim[0] = false;
-		tabNvim[1] = false;
-		tabNvim[2] = false;
-		tabNvim[3] = true;
-		tabNvim[4] = false;
-		tabNvim[5] = false;
-		nv = 3;
-		switchNv();
-	}
-
-	@FXML
-	void clic05() throws IOException {
-		tabNvim[0] = false;
-		tabNvim[1] = false;
-		tabNvim[2] = false;
-		tabNvim[3] = false;
-		tabNvim[4] = true;
-		tabNvim[5] = false;
-		nv = 4;
-		switchNv();
-	}
-
-	@FXML
-	void clic06() throws IOException {
-		tabNvim[0] = false;
-		tabNvim[1] = false;
-		tabNvim[2] = false;
-		tabNvim[3] = false;
-		tabNvim[4] = false;
-		tabNvim[5] = true;
-		nv = 5;
-		switchNv();
-	}
-
-	@FXML
-	void clicSurJouer() throws IOException {
+	void clicValider() throws IOException {
 		
-		if(contexteSelect != -1 && nv != -1 && diff != -1) {
-			System.out.println(contexteSelect + "  "+ "  "+diff+"  "+nv);
-			getMainClass().chargerNivEntrProg(contexteSelect, diff, nv);
+		if(contexteSelect != -1 && diff != -1) {
+			
+			if(valeurTemoin ==0) {
+				/*
+				 * On lance la competition 
+				 */
+			}
+			else {
+				/*
+				 * On lance la page des scores
+				 */
+			}
 		}
 		
 	}
 
+	public void setParam(int vt) {
+		this.valeurTemoin = vt;
+	}
+	
+	
 	@FXML
 	void clicSurRetour() {
 		getMainClass().showMenu();
