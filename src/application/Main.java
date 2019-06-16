@@ -5,6 +5,7 @@ import java.io.IOException;
 import controller.ChoixNiveauEntrainementProgressionController;
 import controller.Controller;
 import controller.PlateauController;
+import controller.ScoresController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class Main extends Application {
 		AnchorPane root = (AnchorPane) loader.load();
 		PlateauController pc = loader.getController();
 		Scene scene = new Scene(root, 1080, 720);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		pc.setParam(ctx, diff, nv);
@@ -100,6 +101,18 @@ public class Main extends Application {
 			e.printStackTrace();
 			Platform.exit();
 		}
+	}
+
+	public void showScores(int context, int difficulte) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Scores.fxml"));
+		Pane root = (Pane) loader.load();
+		ScoresController sc = loader.getController();
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		sc.setParam(context, difficulte);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
 	}
 
 	@Override

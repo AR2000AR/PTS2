@@ -4,6 +4,7 @@
 
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,7 +66,7 @@ public class MenuController extends Controller {
 	}
 
 	@FXML
-	void scores() {
-
+	void scores() throws IOException {
+		getMainClass().showScores(0, 1);
 	}
 }
