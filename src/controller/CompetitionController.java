@@ -8,6 +8,7 @@ import org.jdom2.JDOMException;
 import org.xml.sax.SAXException;
 
 import application.Timer;
+import gestionDeDonnee.GestionDeDonnee;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,14 +16,27 @@ import javafx.scene.input.MouseEvent;
 
 public class CompetitionController extends PlateauController {
 
+	
+	
 	@FXML
 	private Label lblTime;
 	static Timer monTimer;
+	
+	protected String[] codeGeneration = new String[6];
+	protected String[] codeSolution = new String[6];
+	
+	
 	@Override
 	public void initialize() {
 		try {
 
 			gc1 = canvas1.getGraphicsContext2D();
+			
+			GestionDeDonnee g = new GestionDeDonnee();
+			for(int i=0;i<6;i++) {
+			codeGeneration[i] = g.getLevel(modeDiurne, diff, i);
+			codeSolution[i] = g.getLevelSoluce(modeDiurne, diff, i);
+			}
 			Platform.runLater(() -> {
 				try {
 					initialiserPlateau(gc1, 2);
@@ -51,6 +65,12 @@ public class CompetitionController extends PlateauController {
 
 
 
+	
+	
+	
+	
+	
+	
 		@Override
 		public void testJeuFini() {
 			boolean test = false;

@@ -52,7 +52,7 @@ public class Main extends Application {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
 				Pane root = (Pane) loader.load();
 				ChoixNiveauEntrainementProgressionController cnep = loader.getController();
-				// cnep.setParam(?);
+				
 				ChoixNiveauEntrainementProgressionController pc = loader.getController();
 				Scene scene = new Scene(root, 1080, 720);
 				scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());

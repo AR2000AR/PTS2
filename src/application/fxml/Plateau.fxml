@@ -19,6 +19,7 @@
         <ImageView fx:id="btnSolution" fitHeight="100.0" fitWidth="200.0" layoutX="866.0" layoutY="10.0" onMousePressed="#clicSolution" pickOnBounds="true" preserveRatio="true" />
         <Canvas id="canvas1" fx:id="canvas2" height="400.0" layoutX="440.0" layoutY="160.0" onMouseEntered="#sourisEntrer" width="400.0" />
         <ImageView id="btnSolution" fx:id="btnRetourMenuSelection" fitHeight="100.0" fitWidth="200.0" layoutX="866.0" layoutY="606.0" onMousePressed="#clicRetourMenu" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="btnRenitialiser" fitHeight="100.0" fitWidth="200.0" layoutX="866.0" layoutY="491.0" onMouseClicked="#renitialiserP" pickOnBounds="true" preserveRatio="true" />
       </children>
     </AnchorPane>
   </children>

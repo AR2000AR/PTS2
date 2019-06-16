@@ -33,6 +33,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class PlateauController extends Controller {
+	
+    @FXML
+    protected ImageView btnRenitialiser;
+	
 	@FXML
 	protected ImageView p1;
 	int etatP1 = 1;
@@ -100,7 +104,9 @@ public class PlateauController extends Controller {
 	Image imgFond = new Image("file:src/image/fond.png");
 
 	Image bravoImg = new Image("file:src/image/Bravo.png");
-
+	Image ReniImg = new Image("file:src/image/imageBoutonRenitialiser.png");
+	
+	
 	Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
 	Image tabImageP1err[] = { imgp11err, imgp12err, imgp13err, imgp14err };
 	Image tabImageP2[] = { imgp21, imgp22 };
@@ -131,7 +137,6 @@ public class PlateauController extends Controller {
 	boolean solutionDevoile = false;
 	int modeDiurne;
 
-	
 	// private int mode;
 	protected int diff;
 	protected int niveau;
@@ -142,7 +147,8 @@ public class PlateauController extends Controller {
 
 		btnSolution.setImage(imBtnSolution);
 		btnRetourMenuSelection.setImage(imBtnRetour);
-		//imFond.setImage(imgFond);
+		btnRenitialiser.setImage(ReniImg);;
+		// imFond.setImage(imgFond);
 		Platform.runLater(() -> {
 			try {
 				initialiserPlateau(gc1, 2);
@@ -514,7 +520,8 @@ public class PlateauController extends Controller {
 	}
 
 	@FXML
-	void relache(MouseEvent event) throws InterruptedException, SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
+	void relache(MouseEvent event) throws InterruptedException, SAXException, IOException, ParserConfigurationException,
+			JDOMException, NoProfileException {
 
 		;
 
@@ -528,14 +535,14 @@ public class PlateauController extends Controller {
 			}
 			switch (temoin) {
 			case 1:
-				p1.setImage(tabImageP1[etatP1-1]);
+				p1.setImage(tabImageP1[etatP1 - 1]);
 				break;
 
 			case 2:
-				p2.setImage(tabImageP2[etatP2-1]);
+				p2.setImage(tabImageP2[etatP2 - 1]);
 				break;
 			case 3:
-				p3.setImage(tabImageP3[etatP3-1]);
+				p3.setImage(tabImageP3[etatP3 - 1]);
 				break;
 			}
 
@@ -544,7 +551,8 @@ public class PlateauController extends Controller {
 
 	}
 
-	public void testJeuFini() throws InterruptedException, SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
+	public void testJeuFini() throws InterruptedException, SAXException, IOException, ParserConfigurationException,
+			JDOMException, NoProfileException {
 		boolean test = false;
 		int k = 0;
 		for (int i = 0; i < 3; i++) {
@@ -801,7 +809,7 @@ public class PlateauController extends Controller {
 	public void affPlateau() {
 		System.out.println("");
 		for (int i = 0; i < 4; i++) {
-			//System.out.println(Arrays.toString(plateau[i]));
+			// System.out.println(Arrays.toString(plateau[i]));
 		}
 		System.out.println("");
 	}
@@ -1071,11 +1079,10 @@ public class PlateauController extends Controller {
 		}
 
 		solutionDevoile = true;
-		
+
 		Bloom bloom = new Bloom();
 		bloom.setThreshold(0.6);
 
-		
 		canvas2.setOpacity(0.6);
 		canvas2.setEffect(bloom);
 
@@ -1146,7 +1153,7 @@ public class PlateauController extends Controller {
 		// Placement de la piece 01
 
 		Image p1Solu = tabImageP1[o1 - 1];
-		
+
 		switch (o1) {
 
 		case 1:
@@ -1212,6 +1219,14 @@ public class PlateauController extends Controller {
 		Image p3Solu = tabImageP3[o3 - 1];
 		gc2.drawImage(p3Solu, x3, y3);
 
+	}
+
+	@FXML
+	void renitialiserP() {
+		for (int i = 0; i < 3; i++) {
+			listeP.get(i).setX(0);
+			listeP.get(i).setY(0);
+		}
 	}
 
 	@FXML

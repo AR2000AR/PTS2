@@ -31,8 +31,8 @@ public class PlateauProgressionController extends PlateauController{
 				imgBravo.toFront();
 				btnRetourMenuSelection.toFront();
 				
-				btnRetourMenuSelection.setX(400);
-				btnRetourMenuSelection.setY(400);
+				btnRetourMenuSelection.setX(-400);
+				btnRetourMenuSelection.setY(-100);
 				
 				if(!solutionDevoile) {
 					GestionDeDonnee g = new GestionDeDonnee();

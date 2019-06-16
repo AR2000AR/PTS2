@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -152,11 +153,15 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 
 	
 	public void testRealiser() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
-		if(contexteSelect != -1 && diff != -1) {
+		if(contexteSelect != -1 && diff != -1 && enProgression) {
 		GestionDeDonnee g = new GestionDeDonnee();
 		Boolean[][][] t = g.getProgression(getProfilName());
+		
+		System.out.println(Arrays.toString(t[contexteSelect][diff]));
+		
 		for(int i=0;i<6;i++) {
 			if(t[contexteSelect][diff][i]) {
+				System.out.println(t[contexteSelect][diff][i]);
 				tabImV[i].setImage(tabIf[i]);
 			}
 		}
@@ -167,6 +172,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	void switchContexteBtn01() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		this.contexteSelect = 0;
 		switchContexte(this.contexteSelect);
+		testRealiser();
 		
 	}
 
@@ -174,6 +180,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	void switchContexteBtn02() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 		this.contexteSelect = 1;
 		switchContexte(this.contexteSelect);
+		testRealiser();
 	}
 
 	void switchContexte(int i) throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
@@ -191,10 +198,9 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			sectionDiurne.setEffect(debloom);
 			sectionNocturne.setEffect(bloom);
 		}
-		if(enProgression) {
+	
 			testRealiser();
 			
-		}
 		
 	}
 
@@ -218,14 +224,12 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			}
 		}
 		tabObj[r].setEffect(bloom);
-		if(enProgression) {
 			testRealiser();
-			
-		}
+
 
 	}
 
-	void switchNv() {
+	void switchNv() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		Bloom bloom = new Bloom();
 		Bloom debloom = new Bloom();
@@ -246,7 +250,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			}
 		}
 		tabObj2[r].setEffect(bloom);
-
+		testRealiser();
 	}
 
 	@FXML
@@ -257,6 +261,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		selectDiff[3] = false;
 		switchDiff();
 		diff = 0;
+		testRealiser();
 	}
 
 	@FXML
@@ -267,6 +272,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		selectDiff[3] = false;
 		switchDiff();
 		diff = 1;
+		testRealiser();
 	}
 
 	@FXML
@@ -277,6 +283,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		selectDiff[3] = false;
 		switchDiff();
 		diff = 2;
+		testRealiser();
 	}
 
 	@FXML
@@ -287,10 +294,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		selectDiff[3] = true;
 		switchDiff();
 		diff = 3;
+		testRealiser();
 	}
 
 	@FXML
-	void clic01() throws IOException {
+	void clic01() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = true;
 		tabNvim[1] = false;
 		tabNvim[2] = false;
@@ -299,10 +307,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = false;
 		nv = 0;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
-	void clic02() throws IOException {
+	void clic02() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = false;
 		tabNvim[1] = true;
 		tabNvim[2] = false;
@@ -311,10 +320,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = false;
 		nv = 1;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
-	void clic03() throws IOException {
+	void clic03() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = false;
 		tabNvim[1] = false;
 		tabNvim[2] = true;
@@ -323,10 +333,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = false;
 		nv = 2;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
-	void clic04() throws IOException {
+	void clic04() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = false;
 		tabNvim[1] = false;
 		tabNvim[2] = false;
@@ -335,10 +346,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = false;
 		nv = 3;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
-	void clic05() throws IOException {
+	void clic05() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = false;
 		tabNvim[1] = false;
 		tabNvim[2] = false;
@@ -347,10 +359,11 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = false;
 		nv = 4;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
-	void clic06() throws IOException {
+	void clic06() throws IOException, SAXException, ParserConfigurationException, JDOMException, NoProfileException {
 		tabNvim[0] = false;
 		tabNvim[1] = false;
 		tabNvim[2] = false;
@@ -359,6 +372,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		tabNvim[5] = true;
 		nv = 5;
 		switchNv();
+		testRealiser();
 	}
 
 	@FXML
