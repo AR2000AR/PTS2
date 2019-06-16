@@ -1229,6 +1229,7 @@ public class PlateauController extends Controller {
 		}
 	}
 
+	
 	@FXML
 	void clicRetourMenu() throws IOException {
 		getMainClass().chargerMenuSelectionEntrProg();
