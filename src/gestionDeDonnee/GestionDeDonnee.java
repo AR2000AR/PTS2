@@ -449,6 +449,7 @@ public class GestionDeDonnee {
 		Element finiElement = niveauElement.getChild("fini");
 		if (finiElement == null) {
 			finiElement = new Element("fini");
+			niveauElement.addContent(finiElement);
 		}
 		if (fini) {
 			finiElement.setText("1");
