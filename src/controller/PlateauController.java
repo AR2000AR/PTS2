@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -138,7 +139,7 @@ public class PlateauController extends Controller {
 
 		btnSolution.setImage(imBtnSolution);
 		btnRetourMenuSelection.setImage(imBtnRetour);
-		imFond.setImage(imgFond);
+		//imFond.setImage(imgFond);
 		Platform.runLater(() -> {
 			try {
 				initialiserPlateau(gc1, 2);
@@ -1065,7 +1066,12 @@ public class PlateauController extends Controller {
 			listeP.get(i).setY(0);
 		}
 
-		canvas2.setOpacity(0.7);
+		Bloom bloom = new Bloom();
+		bloom.setThreshold(0.6);
+
+		
+		canvas2.setOpacity(0.6);
+		canvas2.setEffect(bloom);
 
 		String code = "";
 		s = "ERREUR CHARGEMENT COORDONNEE";
@@ -1134,7 +1140,7 @@ public class PlateauController extends Controller {
 		// Placement de la piece 01
 
 		Image p1Solu = tabImageP1[o1 - 1];
-
+		
 		switch (o1) {
 
 		case 1:

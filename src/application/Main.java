@@ -114,7 +114,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		Main.primaryStage = primaryStage;
 		Controller.setMainClass(this);
 		showProfilSelection();
