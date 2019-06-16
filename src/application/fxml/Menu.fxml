@@ -9,9 +9,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true">
+      <ImageView fx:id="bk" fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true">
          <image>
-            <Image url="@../../image/fond.png" />
+            <Image url="@/image/fond.png" />
          </image>
       </ImageView>
       <AnchorPane prefHeight="720.0" prefWidth="1080.0">
@@ -21,34 +21,34 @@
                   <Font name="Lucida Calligraphy Italic" size="60.0" />
                </font>
             </Label>
-            <ImageView fitHeight="40.0" fitWidth="48.0" layoutX="1026.0" layoutY="14.0" onMouseClicked="#option" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="optionImg" fitHeight="40.0" fitWidth="48.0" layoutX="1026.0" layoutY="14.0" onMouseClicked="#option" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/cog.png" />
+                  <Image url="@/image/cog.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="15.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="retourImg" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="15.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/imageBoutonRetour.png" />
+                  <Image url="@/image/imageBoutonRetour.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="175.0" onMouseClicked="#comp" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="comImg" fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="175.0" onMouseClicked="#comp" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/imageBoutonCompetition.png" />
+                  <Image url="@/image/imageBoutonCompetition.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="175.0" onMouseClicked="#entr" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="entrImg" fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="175.0" onMouseClicked="#entr" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/imageBoutonEntrainement.png" />
+                  <Image url="@/image/imageBoutonEntrainement.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="395.0" onMouseClicked="#prog" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="progImg" fitHeight="150.0" fitWidth="200.0" layoutX="265.0" layoutY="395.0" onMouseClicked="#prog" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/imageBoutonProgression.png" />
+                  <Image url="@/image/imageBoutonProgression.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="395.0" onMouseClicked="#scores" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Scores" fitHeight="150.0" fitWidth="200.0" layoutX="616.0" layoutY="395.0" onMouseClicked="#scores" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../image/imageBoutonScore.png" />
+                  <Image url="@/image/imageBoutonScore.png" />
                </image>
             </ImageView>
          </children>
