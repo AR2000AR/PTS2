@@ -126,8 +126,8 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			im6f = new Image(getClass().getClassLoader().getResourceAsStream("image/6enFait.png"));
 			
 			
-			imBtnDiurne = new Image(getClass().getClassLoader().getResourceAsStream("imageBoutonDiurne.png"));
-			 imBtnNocturne = new Image(getClass().getClassLoader().getResourceAsStream("imageBoutonNocturne.png"));
+			imBtnDiurne = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonDiurne.png"));
+			 imBtnNocturne = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonNocturne.png"));
 
 			 imBtnStarter = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonStarter.png"));
 			 imBtnJunior = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonJunior.png"));
