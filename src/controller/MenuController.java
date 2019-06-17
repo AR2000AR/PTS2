@@ -38,7 +38,7 @@ public class MenuController extends Controller {
 
 	@FXML
 	void comp() throws IOException {
-		getMainClass().choixComp();
+		getMainClass().choixComp(true);
 	}
 
 	@FXML
@@ -67,6 +67,6 @@ public class MenuController extends Controller {
 
 	@FXML
 	void scores() throws IOException {
-		getMainClass().showScores(0, 1);
+		getMainClass().choixComp(false);
 	}
 }

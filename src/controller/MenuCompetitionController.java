@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.sun.javafx.geom.transform.GeneralTransform3D;
 
 import application.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -74,11 +75,9 @@ public class MenuCompetitionController extends Controller {
 	private boolean tabNvim[] = new boolean[6];
 	private ImageView tabObj2[] = new ImageView[6];
 
-	
-	protected int valeurTemoin=0;  // 0 => lance competition , 1 => lance score
-	
-	public void initialize() {
+	protected boolean valeurTemoin; // 0 => lance competition , 1 => lance score
 
+	public void initialize() {
 
 		sectionDiurne.setImage(imBtnDiurne);
 		sectionNocturne.setImage(imBtnNocturne);
@@ -98,13 +97,14 @@ public class MenuCompetitionController extends Controller {
 		tabObj[2] = sectionExpert;
 		tabObj[3] = sectionMaster;
 
-		if(valeurTemoin == 0) {
-			btnValider.setImage(imJouer);
-		}else {
-			btnValider.setImage(imVoirScore);
-		}
-		
-		
+		Platform.runLater(() -> {
+			if (valeurTemoin) {
+				btnValider.setImage(imJouer);
+			} else {
+				btnValider.setImage(imVoirScore);
+			}
+		});
+
 		btnRetour.setImage(imRetour);
 
 	}
@@ -229,27 +229,23 @@ public class MenuCompetitionController extends Controller {
 
 	@FXML
 	void clicValider() throws IOException {
-		
-		if(contexteSelect != -1 && diff != -1) {
-			
-			if(valeurTemoin ==0) {
-				System.out.println("Mode Diurne : "+contexteSelect + "\n Difficulte = "+diff);
-				getMainClass().chargerComp(contexteSelect,diff);
-			}
-			else {
-				/*
-				 * On lance la page des scores
-				 */
+
+		if (contexteSelect != -1 && diff != -1) {
+
+			if (valeurTemoin) {
+				System.out.println("Mode Diurne : " + contexteSelect + "\n Difficulte = " + diff);
+				getMainClass().chargerComp(contexteSelect, diff);
+			} else {
+				getMainClass().showScores(contexteSelect, diff);
 			}
 		}
-		
+
 	}
 
-	public void setParam(int vt) {
-		this.valeurTemoin = vt;
+	public void setParam(boolean b) {
+		this.valeurTemoin = b;
 	}
-	
-	
+
 	@FXML
 	void clicSurRetour() {
 		getMainClass().showMenu();

@@ -16,6 +16,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.jdom2.JDOMException;
 import org.xml.sax.SAXException;
 
+import com.sun.javafx.geom.transform.GeneralTransform3D;
+
 import gestionDeDonnee.GestionDeDonnee;
 import gestionDeDonnee.Score;
 import javafx.application.Platform;
@@ -25,7 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ScoresController {
+public class ScoresController extends Controller {
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -46,13 +48,14 @@ public class ScoresController {
 	private int difficulte;
 
 	@FXML
-	void back() {
+	void back() throws IOException {
+		getMainClass().choixComp(false);
 
 	}
 
 	@FXML
 	void home() {
-
+		getMainClass().showMenu();
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

@@ -109,11 +109,15 @@ public class CompetitionController extends PlateauController {
 			if (toutLesNvFait() && !solutionDevoile) {
 				try {
 					GestionDeDonnee g = new GestionDeDonnee();
+					g.saveScore(modeDiurne, diff, (int)Math.round(monTimer.getTime()),getProfilName());
 				} catch (SAXException | IOException | ParserConfigurationException | JDOMException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				getMainClass().choixComp();
+				
+				
+				
+				getMainClass().showScores(modeDiurne, diff);;
 				System.out.println("#JEU FINI#");
 				monTimer.stop();
 			}
@@ -229,7 +233,7 @@ public class CompetitionController extends PlateauController {
 
 	@Override
 	void clicRetourMenu() throws IOException {
-		getMainClass().choixComp();
+		getMainClass().choixComp(true);
 		monTimer.stop();
 	}
 

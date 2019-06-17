@@ -20,7 +20,7 @@ public class Timer implements Runnable {
 	public void run() {
 		try {
 			enCours = true;
-			Thread.sleep(500);
+			Thread.sleep(100);
 			while (enCours) {
 				Thread.sleep(100);
 				time += 0.1;

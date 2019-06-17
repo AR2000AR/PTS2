@@ -8,6 +8,7 @@ import controller.Controller;
 import controller.MenuCompetitionController;
 import controller.PlateauController;
 import controller.PlateauProgressionController;
+import controller.ScoresController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -161,9 +162,12 @@ public class Main extends Application {
 	        pc.setParam(contexteSelect, diff, nv);
 	    }
 
-	public void choixComp() throws IOException {
+	public void choixComp(boolean b) throws IOException {
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/MenuCompetition.fxml"));
 		Pane root = (Pane) loader.load();
+		MenuCompetitionController pc = loader.getController();
+        pc.setParam(b);
 		Scene scene = new Scene(root, 1080, 720);
 		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
 		primaryStage.setScene(scene);
@@ -182,6 +186,26 @@ public class Main extends Application {
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
+	}
+
+	public void showScores(int i, int j) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Scores.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+        ScoresController pc = loader.getController();
+        pc.setParam(i, j);
+        Scene scene = new Scene(root, 1080, 720);
+        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+	}
+
+	public void showOption() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Options.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+        Scene scene = new Scene(root, 1080, 720);
+        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
 	}
 		
 	
