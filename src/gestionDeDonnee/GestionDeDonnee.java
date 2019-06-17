@@ -110,6 +110,18 @@ public class GestionDeDonnee {
 	}
 
 	/**
+	 * @throws NoProfileException
+	 * @throws IOException
+	 *
+	 */
+	public void delProfil(String profilName) throws NoProfileException, IOException {
+		Element profil = getProfil(profilName);
+		List<Element> profilList = xmlProfiles.getRootElement().getChildren();
+		profilList.remove(profil);
+		saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
+	}
+
+	/**
 	 * Revoie un <b>FileWriter</b> pour le fichier dont le nom est passé en
 	 * paramètre
 	 *
@@ -119,6 +131,10 @@ public class GestionDeDonnee {
 	 */
 	private FileWriter getFileWriterFromName(String fileName) throws IOException {
 		return new FileWriter(getClass().getClassLoader().getResource(fileName).getPath());
+	}
+
+	public String getLevel(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
+		return getLevelDescriptor(context, difficulte, niveau)[0];
 	}
 
 	/**
@@ -132,7 +148,8 @@ public class GestionDeDonnee {
 	 * @throws NiveauInvalide
 	 * @throws NiveauNonTrouve
 	 */
-	public String getLevel(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
+	private String[] getLevelDescriptor(int context, int difficulte, int niveau)
+			throws NiveauInvalide, NiveauNonTrouve {
 		if (((context != 0) && (context != 1)) || (difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
 			throw new NiveauInvalide("Le niveau " + niveau + " n'est pas un niveau valide");
 		NodeList domNiveaux = xmlNiveaux.getElementsByTagName("niveau");
@@ -146,12 +163,16 @@ public class GestionDeDonnee {
 					NodeList niveauChildNode = niveauI.getChildNodes();
 					for (int j = 0; j < niveauChildNode.getLength(); j++) {
 						if (niveauChildNode.item(j).getNodeName().equals("description"))
-							return niveauChildNode.item(j).getTextContent();
+							return niveauChildNode.item(j).getTextContent().split("#");
 					}
 				}
 			}
 		}
 		throw new NiveauNonTrouve("Le niveau indiqué n'a pas été trouvé. Le fichier peut être endomagé");
+	}
+
+	public String getLevelSoluce(int context, int difficulte, int niveau) throws NiveauInvalide, NiveauNonTrouve {
+		return getLevelDescriptor(context, difficulte, niveau)[1];
 	}
 
 	/**
@@ -248,6 +269,8 @@ public class GestionDeDonnee {
 			}
 		}
 		List<Element> niveaux = profil.getChildren("niveau");
+		if (niveaux == null)
+			return result;
 		for (Element niveau : niveaux) {
 			if (niveau.getChild("fini").getTextNormalize().equals("1")) {
 				int nbContext = Integer.parseInt(niveau.getAttributeValue("nbContext"));
@@ -372,16 +395,29 @@ public class GestionDeDonnee {
 	}
 
 	/**
-	 * Ajoute un score et pour la difficulté indiqué en paramètre et sauvegarde dans
-	 * le fichier.
+	 * Ajoute un score pour la difficulté indiqué en paramètre et sauvegarde dans le
+	 * fichier.
+	 *
+	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
+	 * @param difficulte - difficulte du niveau [0-3]
+	 * @param score      - score à ajouter
+	 * @param pseudo     - Nom du profil
+	 * @throws IOException
+	 */
+	public void saveScore(int context, int difficulte, int score, String pseudo) throws IOException {
+		saveScore(context, difficulte, 6, score, pseudo);
+	}
+
+	/**
+	 * Ajoute un score pour la difficulté induiqué en oaramètre et le sauvegarde
 	 *
 	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
 	 * @param difficulte - difficulte du niveau [0-3]
 	 * @param score      - <b>Score</b> à ajouter
 	 * @throws IOException
 	 */
-	public void saveScore(int context, int difficulte, int score, String pseudo) throws IOException {
-		saveScore(context, difficulte, 6, score, pseudo);
+	public void saveScore(int context, int difficulte, Score score) throws IOException {
+		saveScore(context, difficulte, 6, score);
 	}
 
 	/**
@@ -438,6 +474,7 @@ public class GestionDeDonnee {
 		Element finiElement = niveauElement.getChild("fini");
 		if (finiElement == null) {
 			finiElement = new Element("fini");
+			niveauElement.addContent(finiElement);
 		}
 		if (fini) {
 			finiElement.setText("1");

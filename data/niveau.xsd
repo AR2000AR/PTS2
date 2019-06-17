@@ -6,7 +6,7 @@
     			<xs:element name="description">
     				<xs:simpleType>
     					<xs:restriction base="xs:string">
-    						<xs:pattern value="((0|1)(0|1|2|3){2}){4}"></xs:pattern>
+    						<xs:pattern value="((0|1)(0|1|2|3){2}){4}#(((0|1|2|3){2}(1|2|3|4))\s){2}((0|1|2|3){2}(1|2|3|4))"></xs:pattern>
     					</xs:restriction>
     				</xs:simpleType>
     			</xs:element>

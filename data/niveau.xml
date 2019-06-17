@@ -1,147 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="niveau.xsd">
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="0">
-    <description>120122132000</description>
+    <description>120122132000#203 322 114</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="1">
-    <description>110112113000</description>
+    <description>110112113000#102 121 331</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="2">
-    <description>111131000000</description>
+    <description>111131000000#021 322 204</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="3">
-    <description>121131000000</description>
+    <description>121131000000#012 322 204</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="4">
-    <description>111123000000</description>
+    <description>111123000000#021 231 204</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="0" nbNiveau="5">
-    <description>101102132000</description>
+    <description>101102132000#122 322 013</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="0">
-    <description>102110113000</description>
+    <description>102110113000#111 121 331</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="1">
-    <description>101120122000</description>
+    <description>101120122000#131 322 211</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="2">
-    <description>101102112000</description>
+    <description>101102112000#012 231 321</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="3">
-    <description>101120132000</description>
+    <description>101120132000#122 322 211</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="4">
-    <description>110111113000</description>
+    <description>110111113000#203 121 331</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="1" nbNiveau="5">
-    <description>101122132000</description>
+    <description>101122132000#123 322 211</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="0">
-    <description>110120123000</description>
+    <description>110120123000#211 231 122</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="1">
-    <description>102112113000</description>
+    <description>102112113000#114 121 331</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="2">
-    <description>102112120000</description>
+    <description>102112120000#114 231 321</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="3">
-    <description>110112120000</description>
+    <description>110112120000#102 231 321</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="4">
-    <description>121123000000</description>
+    <description>121123000000#012 231 204</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="2" nbNiveau="5">
-    <description>113131000000</description>
+    <description>113131000000#334 121 211</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="0">
-    <description>101110120000</description>
+    <description>101110120000#214 231 321</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="1">
-    <description>101120131000</description>
+    <description>101120131000#223 322 211</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="2">
-    <description>101110111000</description>
+    <description>101110111000#211 121 331</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="3">
-    <description>120131132000</description>
+    <description>120131132000#113 322 204</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="4">
-    <description>102123000000</description>
+    <description>102123000000#114 231 221</description>
   </niveau>
   <niveau nbContext="0" nbDifficulte="3" nbNiveau="5">
-    <description>110113120000</description>
+    <description>110113120000#334 122 204</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="0">
-    <description>101000000121</description>
+    <description>101000000121#012 231 321</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="1">
-    <description>102000000123</description>
+    <description>102000000123#021 322 204</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="2">
-    <description>123000000120</description>
+    <description>123000000120#131 322 013</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="3">
-    <description>102000000122</description>
+    <description>102000000122#021 211 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="4">
-    <description>101000000132</description>
+    <description>101000000132#012 231 204</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="0" nbNiveau="5">
-    <description>112000000122</description>
+    <description>112000000122#123 322 211</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="0">
-    <description>111112000113</description>
+    <description>111112000113#114 121 314</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="1">
-    <description>102133000111</description>
+    <description>102133000111#021 212 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="2">
-    <description>120113132122</description>
+    <description>120113132122#203 322 132</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="3">
-    <description>101121000131</description>
+    <description>101121000131#012 212 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="4">
-    <description>112122123101</description>
+    <description>112122123101#124 231 222</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="1" nbNiveau="5">
-    <description>133000000113</description>
+    <description>133000000113#334 121 211</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="0">
-    <description>112133000102</description>
+    <description>112133000102#334 122 204</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="1">
-    <description>110112000131</description>
+    <description>110112000131#102 121 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="2">
-    <description>123132000111</description>
+    <description>123132000111#203 231 321</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="3">
-    <description>121112000111</description>
+    <description>121112000111#211 121 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="4">
-    <description>112131000102</description>
+    <description>112131000102#313 231 122</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="2" nbNiveau="5">
-    <description>111133000112</description>
+    <description>111133000112#114 212 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="0">
-    <description>111131123102</description>
+    <description>111131123102#234 112 314</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="1">
-    <description>121122000113</description>
+    <description>121122000113#223 322 211</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="2">
-    <description>111123000121</description>
+    <description>111123000121#114 231 321</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="3">
-    <description>112121132101</description>
+    <description>112121132101#123 322 214</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="4">
-    <description>111133000122</description>
+    <description>111133000122#211 112 331</description>
   </niveau>
   <niveau nbContext="1" nbDifficulte="3" nbNiveau="5">
-    <description>121112132102</description>
+    <description>121112132102#122 322 211</description>
   </niveau>
 </root>
