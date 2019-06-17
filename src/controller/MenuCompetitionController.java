@@ -40,31 +40,31 @@ public class MenuCompetitionController extends Controller {
 	@FXML
 	private ImageView sectionStarter;
 
-	static Image im1ec = new Image("file:src/image/1enCours.png");
-	static Image im2ec = new Image("file:src/image/2enCours.png");
-	static Image im3ec = new Image("file:src/image/3enCours.png");
-	static Image im4ec = new Image("file:src/image/4enCours.png");
-	static Image im5ec = new Image("file:src/image/5enCours.png");
-	static Image im6ec = new Image("file:src/image/6enCours.png");
+	static Image im1ec = new Image("image/1enCours.png");
+	static Image im2ec = new Image("image/2enCours.png");
+	static Image im3ec = new Image("image/3enCours.png");
+	static Image im4ec = new Image("image/4enCours.png");
+	static Image im5ec = new Image("image/5enCours.png");
+	static Image im6ec = new Image("image/6enCours.png");
 
-	static Image im1f = new Image("file:src/image/1enFait.png");
-	static Image im2f = new Image("file:src/image/2enFait.png");
-	static Image im3f = new Image("file:src/image/3enFait.png");
-	static Image im4f = new Image("file:src/image/4enFait.png");
-	static Image im5f = new Image("file:src/image/5enFait.png");
-	static Image im6f = new Image("file:src/image/6enFait.png");
+	static Image im1f = new Image("image/1enFait.png");
+	static Image im2f = new Image("image/2enFait.png");
+	static Image im3f = new Image("image/3enFait.png");
+	static Image im4f = new Image("image/4enFait.png");
+	static Image im5f = new Image("image/5enFait.png");
+	static Image im6f = new Image("image/6enFait.png");
 
-	static Image imBtnDiurne = new Image("file:src/image/imageBoutonDiurne.png");
-	static Image imBtnNocturne = new Image("file:src/image/imageBoutonNocturne.png");
+	static Image imBtnDiurne = new Image("image/imageBoutonDiurne.png");
+	static Image imBtnNocturne = new Image("image/imageBoutonNocturne.png");
 
-	static Image imBtnStarter = new Image("file:src/image/imageBoutonStarter.png");
-	static Image imBtnJunior = new Image("file:src/image/imageBoutonJunior.png");
-	static Image imBtnExpert = new Image("file:src/image/imageBoutonExpert.png");
-	static Image imBtnMaster = new Image("file:src/image/imageBoutonMaster.png");
+	static Image imBtnStarter = new Image("image/imageBoutonStarter.png");
+	static Image imBtnJunior = new Image("image/imageBoutonJunior.png");
+	static Image imBtnExpert = new Image("image/imageBoutonExpert.png");
+	static Image imBtnMaster = new Image("image/imageBoutonMaster.png");
 
-	static Image imJouer = new Image("file:src/image/imageBoutonJouer.png");
-	static Image imVoirScore = new Image("file:src/image/imageBoutonVoirScore.png");
-	static Image imRetour = new Image("file:src/image/imageBoutonRetour.png");
+	static Image imJouer = new Image("image/imageBoutonJouer.png");
+	static Image imVoirScore = new Image("image/imageBoutonVoirScore.png");
+	static Image imRetour = new Image("image/imageBoutonRetour.png");
 
 	private int contexteSelect = -1; // 0->1
 	private int nv = -1; // 0 -> 5
@@ -76,9 +76,43 @@ public class MenuCompetitionController extends Controller {
 	private ImageView tabObj2[] = new ImageView[6];
 
 	protected boolean valeurTemoin; // 0 => lance competition , 1 => lance score
-
+	static boolean imported = false;
 	public void initialize() {
 
+		if(!imported) {
+			
+			  im1ec = new Image(getClass().getClassLoader().getResourceAsStream("image/1enCours.png"));
+			  im2ec = new Image(getClass().getClassLoader().getResourceAsStream("image/2enCours.png"));
+			  im3ec = new Image(getClass().getClassLoader().getResourceAsStream("image/3enCours.png"));
+			  im4ec = new Image(getClass().getClassLoader().getResourceAsStream("image/4enCours.png"));
+			  im5ec = new Image(getClass().getClassLoader().getResourceAsStream("image/5enCours.png"));
+			  im6ec = new Image(getClass().getClassLoader().getResourceAsStream("image/6enCours.png"));
+
+			  im1f = new Image(getClass().getClassLoader().getResourceAsStream("image/1enFait.png"));
+			  im2f = new Image(getClass().getClassLoader().getResourceAsStream("image/2enFait.png"));
+			  im3f = new Image(getClass().getClassLoader().getResourceAsStream("image/3enFait.png"));
+			  im4f = new Image(getClass().getClassLoader().getResourceAsStream("image/4enFait.png"));
+			  im5f = new Image(getClass().getClassLoader().getResourceAsStream("image/5enFait.png"));
+			  im6f = new Image(getClass().getClassLoader().getResourceAsStream("image/6enFait.png"));
+
+			  imBtnDiurne = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonDiurne.png"));
+			  imBtnNocturne = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonNocturne.png"));
+
+			  imBtnStarter = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonStarter.png"));
+			  imBtnJunior = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonJunior.png"));
+			  imBtnExpert = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonExpert.png"));
+			  imBtnMaster = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonMaster.png"));
+
+			  imJouer = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonJouer.png"));
+			  imVoirScore = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonVoirScore.png"));
+			  imRetour = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonRetour.png"));
+			
+			
+		}
+		
+		
+		
+		
 		sectionDiurne.setImage(imBtnDiurne);
 		sectionNocturne.setImage(imBtnNocturne);
 

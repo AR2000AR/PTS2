@@ -111,31 +111,31 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
 		if (!imported) {
-			im1ec = new Image(getClass().getResourceAsStream("image/1enCours.png"));
-			im2ec = new Image(getClass().getResourceAsStream("image/2enCours.png"));
-			im3ec = new Image(getClass().getResourceAsStream("image/3enCours.png"));
-			im4ec = new Image(getClass().getResourceAsStream("image/4enCours.png"));
-			im5ec = new Image(getClass().getResourceAsStream("image/5enCours.png"));
-			im6ec = new Image(getClass().getResourceAsStream("image/6enCours.png"));
+			im1ec = new Image(getClass().getClassLoader().getResourceAsStream("image/1enCours.png"));
+			im2ec = new Image(getClass().getClassLoader().getResourceAsStream("image/2enCours.png"));
+			im3ec = new Image(getClass().getClassLoader().getResourceAsStream("image/3enCours.png"));
+			im4ec = new Image(getClass().getClassLoader().getResourceAsStream("image/4enCours.png"));
+			im5ec = new Image(getClass().getClassLoader().getResourceAsStream("image/5enCours.png"));
+			im6ec = new Image(getClass().getClassLoader().getResourceAsStream("image/6enCours.png"));
 
-			im1f = new Image(getClass().getResourceAsStream("image/1enFait.png"));
-			im2f = new Image(getClass().getResourceAsStream("image/2enFait.png"));
-			im3f = new Image(getClass().getResourceAsStream("image/3enFait.png"));
-			im4f = new Image(getClass().getResourceAsStream("image/4enFait.png"));
-			im5f = new Image(getClass().getResourceAsStream("image/5enFait.png"));
-			im6f = new Image(getClass().getResourceAsStream("image/6enFait.png"));
+			im1f = new Image(getClass().getClassLoader().getResourceAsStream("image/1enFait.png"));
+			im2f = new Image(getClass().getClassLoader().getResourceAsStream("image/2enFait.png"));
+			im3f = new Image(getClass().getClassLoader().getResourceAsStream("image/3enFait.png"));
+			im4f = new Image(getClass().getClassLoader().getResourceAsStream("image/4enFait.png"));
+			im5f = new Image(getClass().getClassLoader().getResourceAsStream("image/5enFait.png"));
+			im6f = new Image(getClass().getClassLoader().getResourceAsStream("image/6enFait.png"));
 			
 			
-			imBtnDiurne = new Image(getClass().getResourceAsStream("imageBoutonDiurne.png"));
-			 imBtnNocturne = new Image(getClass().getResourceAsStream("imageBoutonNocturne.png"));
+			imBtnDiurne = new Image(getClass().getClassLoader().getResourceAsStream("imageBoutonDiurne.png"));
+			 imBtnNocturne = new Image(getClass().getClassLoader().getResourceAsStream("imageBoutonNocturne.png"));
 
-			 imBtnStarter = new Image(getClass().getResourceAsStream("image/imageBoutonStarter.png"));
-			 imBtnJunior = new Image(getClass().getResourceAsStream("image/imageBoutonJunior.png"));
-			 imBtnExpert = new Image(getClass().getResourceAsStream("image/imageBoutonExpert.png"));
-			 imBtnMaster = new Image(getClass().getResourceAsStream("image/imageBoutonMaster.png"));
+			 imBtnStarter = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonStarter.png"));
+			 imBtnJunior = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonJunior.png"));
+			 imBtnExpert = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonExpert.png"));
+			 imBtnMaster = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonMaster.png"));
 
-			 imJouer = new Image(getClass().getResourceAsStream("image/imageBoutonJouer.png"));
-			 imRetour = new Image(getClass().getResourceAsStream("image/imageBoutonRetour.png"));
+			 imJouer = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonJouer.png"));
+			 imRetour = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonRetour.png"));
 			 imported = true;
 
 		}

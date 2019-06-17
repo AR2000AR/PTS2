@@ -29,9 +29,9 @@ public class CompetitionController extends PlateauController {
 	@FXML
 	private Label lblTime;
 	static Timer monTimer;
-	Image imBtnPass = new Image("file:src/image/imageBoutonPasserNiveau.png");
 	protected String[] codeGeneration = new String[6];
 	protected String[] codeSolution = new String[6];
+	static Image imBtnPass = null;
 
 	protected boolean[] nvFait = { false, false, false, false, false, false };
 	private int n = 0;
@@ -39,6 +39,12 @@ public class CompetitionController extends PlateauController {
 	@Override
 	public void initialize() {
 		try {
+			
+			if(imBtnPass == null) {
+				 imBtnPass = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/imageBoutonPasserNiveau.png"));
+
+			}
+			
 			Platform.runLater(() -> {
 				gc1 = canvas1.getGraphicsContext2D();
 
