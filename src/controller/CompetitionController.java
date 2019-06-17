@@ -74,13 +74,6 @@ public class CompetitionController extends PlateauController {
 			});
 	}
 
-
-
-	
-	
-	
-	
-	
 	
 		@Override
 		public void testJeuFini() {
@@ -110,7 +103,6 @@ public class CompetitionController extends PlateauController {
 					}
 					
 					monTimer.stop();
-					System.out.println("<#<|JEU FINI|>#>");
 				}
 			}
 		}

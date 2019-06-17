@@ -30,6 +30,8 @@ public class PlateauProgressionController extends PlateauController{
 				imgBravo.setVisible(true);
 				imgBravo.toFront();
 				btnRetourMenuSelection.toFront();
+				btnRenitialiser.setOpacity(0);
+				btnSolution.setOpacity(0);
 				
 				btnRetourMenuSelection.setX(-400);
 				btnRetourMenuSelection.setY(-100);

@@ -58,7 +58,7 @@ public class PlateauController extends Controller {
 	protected GraphicsContext gc2;
 
 	@FXML
-	private ImageView btnSolution;
+	protected ImageView btnSolution;
 
 	@FXML
 	protected ImageView imgBravo;
@@ -567,6 +567,9 @@ public class PlateauController extends Controller {
 				imgBravo.setVisible(true);
 				imgBravo.toFront();
 				btnRetourMenuSelection.toFront();
+				btnRenitialiser.setOpacity(0);
+				btnSolution.setOpacity(0);
+				
 			}
 		}
 	}
@@ -1222,10 +1225,12 @@ public class PlateauController extends Controller {
 	}
 
 	@FXML
-	void renitialiserP() {
+	void renitialiserP() throws SAXException, IOException, ParserConfigurationException, JDOMException {
 		for (int i = 0; i < 3; i++) {
+			initialiserPlateau(gc1,0);
 			listeP.get(i).setX(0);
 			listeP.get(i).setY(0);
+			
 		}
 	}
 

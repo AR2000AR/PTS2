@@ -61,7 +61,6 @@ public class MenuController extends Controller {
 
 	@FXML
 	void prog() {
-		System.out.println("CLIC PROGRESSION");
 		getMainClass().choixNvEntrProg(true);
 	}
 
