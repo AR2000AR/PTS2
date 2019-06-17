@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OptionsController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true">
+         <image>
+            <Image url="@/image/fond.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="435.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="954.0" layoutY="-23.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+         <image>
+            <Image url="@/image/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="440.0" layoutY="285.0" onMouseClicked="#delProfil" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/image/imageBoutonSuppressionCompte.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

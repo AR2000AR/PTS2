@@ -24,7 +24,7 @@ public class Timer implements Runnable {
 			while (enCours) {
 				Thread.sleep(100);
 				time += 0.1;
-				System.out.println((double) Math.round(time * 10) / 10);
+				//System.out.println((double) Math.round(time * 10) / 10);
 				leController.ecrireTemps((double) Math.round(time * 10) / 10);
 				// leController.ecrireTemps((double) Math.round(time * 10) / 10);
 			}

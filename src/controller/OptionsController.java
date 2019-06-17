@@ -2,46 +2,44 @@ package controller;
 
 import java.io.IOException;
 
+/**
+ * Sample Skeleton for 'Options.fxml' Controller Class
+ */
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.jdom2.JDOMException;
+import org.xml.sax.SAXException;
+
+import gestionDeDonnee.GestionDeDonnee;
+import gestionDeDonnee.NoProfileException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
-public class OptionsController {
+public class OptionsController extends Controller {
 
-	@FXML
-	private ImageView home;
-	@FXML
-	private Button dalto;
+	@FXML // ResourceBundle that was given to the FXMLLoader
+	private ResourceBundle resources;
+
+	@FXML // URL location of the FXML file that was given to the FXMLLoader
+	private URL location;
 
 	@FXML
-	private Button delete;
-
-	@FXML
-	void clickOnHome() {
-		try {
-			Stage primaryStage = (Stage) home.getScene().getWindow();
-			Parent root = (Parent) FXMLLoader.load(getClass().getResource("menu.fxml"));
-			Scene scene = new Scene(root, 874, 678);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+	void delProfil() throws NoProfileException, IOException, SAXException, ParserConfigurationException, JDOMException {
+		GestionDeDonnee g = new GestionDeDonnee();
+		g.delProfil(getProfilName());
+		getMainClass().showProfilSelection();
 	}
 
 	@FXML
-	void clickOnDalto() {
-		// activer mode daltonien ou d�sactiver
+	void home() {
+		getMainClass().showMenu();
 	}
 
-	@FXML
-	void clickOnDelete() {
-		// supprimer les donn�es li�es au compte
+	@FXML // This method is called by the FXMLLoader when initialization is complete
+	void initialize() {
+
 	}
 }
