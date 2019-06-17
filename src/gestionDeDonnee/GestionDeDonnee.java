@@ -7,20 +7,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.jdom2.Attribute;
+import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class GestionDeDonnee {
@@ -31,11 +26,11 @@ public class GestionDeDonnee {
 	private static InputStream level_file = null;
 	private static Document xmlNiveaux = null;
 	// ------------------------------------------
-	private static org.jdom2.Document xmlScores;
+	private static Document xmlScores;
 	private static InputStream scores_file = null;
 	private static List<Score> scores = null;
 	// ------------------------------------------
-	private static org.jdom2.Document xmlProfiles;
+	private static Document xmlProfiles;
 	private static InputStream profils_file = null;
 
 	// -------------------------------------------
@@ -64,9 +59,8 @@ public class GestionDeDonnee {
 			xmlScores = scoreBuilder.build(scores_file);
 		}
 		if (xmlNiveaux == null) {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder levelBuilder = factory.newDocumentBuilder();
-			xmlNiveaux = levelBuilder.parse(level_file);
+			SAXBuilder levelBuilder = new SAXBuilder();
+			xmlNiveaux = levelBuilder.build(level_file);
 		}
 		if (scores == null) {
 			scores = new ArrayList<Score>();
@@ -160,20 +154,13 @@ public class GestionDeDonnee {
 			throws NiveauInvalide, NiveauNonTrouve {
 		if (((context != 0) && (context != 1)) || (difficulte < 0) || (difficulte > 3) || (niveau < 0) || (niveau > 5))
 			throw new NiveauInvalide("Le niveau " + niveau + " n'est pas un niveau valide");
-		NodeList domNiveaux = xmlNiveaux.getElementsByTagName("niveau");
-		for (int i = 0; i < domNiveaux.getLength(); i++) {
-			Node niveauI = domNiveaux.item(i);
-			if (niveauI.getNodeType() == Node.ELEMENT_NODE) {
-				NamedNodeMap attrs = niveauI.getAttributes();
-				if ((attrs.getNamedItem("nbContext").getNodeValue().equals(Integer.toString(context)))
-						&& (attrs.getNamedItem("nbDifficulte").getNodeValue().equals(Integer.toString(difficulte)))
-						&& (attrs.getNamedItem("nbNiveau").getNodeValue().equals(Integer.toString(niveau)))) {
-					NodeList niveauChildNode = niveauI.getChildNodes();
-					for (int j = 0; j < niveauChildNode.getLength(); j++) {
-						if (niveauChildNode.item(j).getNodeName().equals("description"))
-							return niveauChildNode.item(j).getTextContent().split("#");
-					}
-				}
+		List<Element> niveauxElements = xmlNiveaux.getRootElement().getChildren("niveau");
+		for (Element niveauElement : niveauxElements) {
+			if ((niveauElement.getAttribute("nbContext").getValue().equals(Integer.toString(context)))
+					&& (niveauElement.getAttribute("nbDifficulte").getValue().equals(Integer.toString(difficulte)))
+					&& (niveauElement.getAttribute("nbNiveau").getValue().equals(Integer.toString(niveau)))) {
+				List<Element> niveauChildElement = niveauElement.getChildren("description");
+				return niveauChildElement.get(0).getText().split("#");
 			}
 		}
 		throw new NiveauNonTrouve("Le niveau indiqué n'a pas été trouvé. Le fichier peut être endomagé");
@@ -195,35 +182,20 @@ public class GestionDeDonnee {
 	 */
 	private Element getNiveauElement(List<Element> listNiveaux, int context, int difficulte, int niveau) {
 		for (Element element : listNiveaux) {
-			List<Attribute> attributes = element.getAttributes();
 			int nbNiveau = -1;
 			int nbContext = -1;
 			int nbDifficulte = -1;
-			for (Attribute attribute : attributes) {
-				switch (attribute.getName()) {
-				case "nbNiveau":
-					nbNiveau = Integer.parseInt(attribute.getValue());
-					break;
-				case "nbContext":
-					nbContext = Integer.parseInt(attribute.getValue());
-					break;
-				case "nbDifficulte":
-					nbDifficulte = Integer.parseInt(attribute.getValue());
-					break;
-				default:
-					break;
-				}
-			}
+			nbNiveau = Integer.parseInt(element.getAttributeValue("nbNiveau"));
+			nbContext = Integer.parseInt(element.getAttributeValue("nbContext"));
+			nbDifficulte = Integer.parseInt(element.getAttributeValue("nbDifficulte"));
 			if ((nbNiveau == niveau) && (nbDifficulte == difficulte) && (nbContext == context))
 				return element;
 		}
+
 		Element nouvNiveau = new Element("niveau");
-		List<Attribute> nouvNiveauAttrs = new ArrayList<Attribute>();
-		nouvNiveauAttrs.add(new Attribute("nbNiveau", Integer.toString(niveau)));
-		nouvNiveauAttrs.add(new Attribute("nbContext", Integer.toString(context)));
-		nouvNiveauAttrs.add(new Attribute("nbDifficulte", Integer.toString(difficulte)));
-		nouvNiveau.setAttributes(nouvNiveauAttrs);
-		listNiveaux.add(nouvNiveau);
+		nouvNiveau.setAttribute("nbNiveau", Integer.toString(niveau));
+		nouvNiveau.setAttribute("nbContext", Integer.toString(context));
+		nouvNiveau.setAttribute("nbDifficulte", Integer.toString(difficulte));
 		return nouvNiveau;
 	}
 
