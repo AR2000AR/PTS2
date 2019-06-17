@@ -90,7 +90,8 @@ public class GestionDeDonnee {
 	}
 
 	/**
-	 * Ajoute un score à la liste de score pour le niveau indiqué en paramètre.
+	 * Ajoute un score à la liste de score pour le niveau indiqué en paramètre. Ne
+	 * garde que 20 scores
 	 *
 	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
 	 * @param difficulte - difficulte du niveau [0-3]
@@ -98,15 +99,22 @@ public class GestionDeDonnee {
 	 * @param score
 	 */
 	private void addScore(int context, int difficulte, int niveau, Score score) {
-		Element newScore = new Element("score");
-		Element name = new Element("name");
-		Element time = new Element("time");
-		time.setText(Integer.toString(score.getTime()));
-		name.setText(score.getName());
-		newScore.addContent(time);
-		newScore.addContent(name);
-		getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context, difficulte, niveau)
-				.addContent(newScore);
+		List<Score> scores = getScore(context, difficulte, niveau);
+		Element niveauElement = getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context, difficulte,
+				niveau);
+		List<Element> scoreElements = niveauElement.getChildren();
+		scoreElements.clear();
+		scores.add(score);
+		Collections.sort(scores);
+		while (scores.size() > 20) {
+			scores.remove(scores.size() - 1);
+		}
+		for (Score scoreI : scores) {
+			scoreElements.add(newScoreElement(score));
+		}
+		// Element newScore = newScoreElement(score);
+		// getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context,
+		// difficulte, niveau).addContent(newScore);
 	}
 
 	/**
@@ -361,6 +369,17 @@ public class GestionDeDonnee {
 			saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
 		}
 		return false;
+	}
+
+	private Element newScoreElement(Score score) {
+		Element scoreElement = new Element("score");
+		Element nameElement = new Element("name");
+		Element timeElement = new Element("time");
+		nameElement.setText(score.getName());
+		timeElement.setText(Integer.toString(score.getTime()));
+		scoreElement.addContent(nameElement);
+		scoreElement.addContent(timeElement);
+		return scoreElement;
 	}
 
 	/**

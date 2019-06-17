@@ -3,7 +3,7 @@
 <xsd:element name="niveau">
     	<xsd:complexType>
     		<xsd:sequence>
-    			<xsd:element name="score" type="score"></xsd:element>
+    			<xsd:element name="score" type="score" maxOccurs="20" minOccurs="0"></xsd:element>
     		</xsd:sequence>
     		<xsd:attribute name="nbNiveau" use="required">
     			<xsd:simpleType>

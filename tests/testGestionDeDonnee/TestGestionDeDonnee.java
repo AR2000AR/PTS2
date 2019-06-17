@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -46,6 +47,16 @@ public class TestGestionDeDonnee {
 			}
 		}
 		assertTrue(ok);
+	}
+
+	@Test
+	public void testSaveScoreMultiple() throws IOException {
+		Random r = new Random();
+		for (int i = 0; i < 30; i++) {
+			g.saveScore(0, 0, r.nextInt(60), "bob");
+		}
+		List<Score> scores = g.getScore(0, 0);
+		assertEquals(20, scores.size());
 	}
 
 }
