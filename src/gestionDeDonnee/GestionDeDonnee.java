@@ -110,6 +110,18 @@ public class GestionDeDonnee {
 	}
 
 	/**
+	 * @throws NoProfileException
+	 * @throws IOException
+	 *
+	 */
+	public void delProfil(String profilName) throws NoProfileException, IOException {
+		Element profil = getProfil(profilName);
+		List<Element> profilList = xmlProfiles.getRootElement().getChildren();
+		profilList.remove(profil);
+		saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
+	}
+
+	/**
 	 * Revoie un <b>FileWriter</b> pour le fichier dont le nom est passé en
 	 * paramètre
 	 *
@@ -398,7 +410,7 @@ public class GestionDeDonnee {
 
 	/**
 	 * Ajoute un score pour la difficulté induiqué en oaramètre et le sauvegarde
-	 * 
+	 *
 	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
 	 * @param difficulte - difficulte du niveau [0-3]
 	 * @param score      - <b>Score</b> à ajouter
@@ -471,8 +483,4 @@ public class GestionDeDonnee {
 		}
 		saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
 	}
-
-	/**
-	 *
-	 */
 }
