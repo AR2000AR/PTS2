@@ -64,6 +64,8 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	@FXML
 	private ImageView sectionStarter;
 
+	static boolean imported = false;
+
 	static Image im1ec = new Image("file:src/image/1enCours.png");
 	static Image im2ec = new Image("file:src/image/2enCours.png");
 	static Image im3ec = new Image("file:src/image/3enCours.png");
@@ -108,6 +110,36 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	public void initialize()
 			throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
+		if (!imported) {
+			im1ec = new Image(getClass().getResourceAsStream("image/1enCours.png"));
+			im2ec = new Image(getClass().getResourceAsStream("image/2enCours.png"));
+			im3ec = new Image(getClass().getResourceAsStream("image/3enCours.png"));
+			im4ec = new Image(getClass().getResourceAsStream("image/4enCours.png"));
+			im5ec = new Image(getClass().getResourceAsStream("image/5enCours.png"));
+			im6ec = new Image(getClass().getResourceAsStream("image/6enCours.png"));
+
+			im1f = new Image(getClass().getResourceAsStream("image/1enFait.png"));
+			im2f = new Image(getClass().getResourceAsStream("image/2enFait.png"));
+			im3f = new Image(getClass().getResourceAsStream("image/3enFait.png"));
+			im4f = new Image(getClass().getResourceAsStream("image/4enFait.png"));
+			im5f = new Image(getClass().getResourceAsStream("image/5enFait.png"));
+			im6f = new Image(getClass().getResourceAsStream("image/6enFait.png"));
+			
+			
+			imBtnDiurne = new Image(getClass().getResourceAsStream("imageBoutonDiurne.png"));
+			 imBtnNocturne = new Image(getClass().getResourceAsStream("imageBoutonNocturne.png"));
+
+			 imBtnStarter = new Image(getClass().getResourceAsStream("image/imageBoutonStarter.png"));
+			 imBtnJunior = new Image(getClass().getResourceAsStream("image/imageBoutonJunior.png"));
+			 imBtnExpert = new Image(getClass().getResourceAsStream("image/imageBoutonExpert.png"));
+			 imBtnMaster = new Image(getClass().getResourceAsStream("image/imageBoutonMaster.png"));
+
+			 imJouer = new Image(getClass().getResourceAsStream("image/imageBoutonJouer.png"));
+			 imRetour = new Image(getClass().getResourceAsStream("image/imageBoutonRetour.png"));
+			 imported = true;
+
+		}
+
 		nv1img.setImage(im1ec);
 		nv2img.setImage(im2ec);
 		nv3img.setImage(im3ec);
@@ -148,7 +180,6 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 	public void testRealiser()
 			throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
 
-
 		if (contexteSelect != -1 && diff != -1 && enProgression) {
 			GestionDeDonnee g = new GestionDeDonnee();
 
@@ -165,13 +196,13 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 			} else {
 				nv2img.setImage(im2ec);
 			}
-			
+
 			if (t[contexteSelect][diff][2]) {
 				nv3img.setImage(im3f);
 			} else {
 				nv3img.setImage(im3ec);
 			}
-			
+
 			if (t[contexteSelect][diff][3]) {
 				nv4img.setImage(im4f);
 			} else {

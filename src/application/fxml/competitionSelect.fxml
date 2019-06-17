@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="678.0" fitWidth="908.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@fond.png" />
+            <Image url="@/image/fond.png" />
          </image>
       </ImageView>
       <AnchorPane layoutY="-4.0" prefHeight="678.0" prefWidth="877.0">
@@ -24,7 +24,7 @@
             </Label>
             <ImageView fx:id="option" fitHeight="40.0" fitWidth="48.0" layoutX="815.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@cog.png" />
+                  <Image url="@/image/cog.png" />
                </image>
             </ImageView>
             <Button fx:id="diurne" layoutX="165.0" layoutY="219.0" mnemonicParsing="false" onMouseClicked="#clickOnDiurne" prefHeight="62.0" prefWidth="109.0" text="Diurne " />

@@ -33,10 +33,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class PlateauController extends Controller {
-	
-    @FXML
-    protected ImageView btnRenitialiser;
-	
+
+	@FXML
+	protected ImageView btnRenitialiser;
+
 	@FXML
 	protected ImageView p1;
 	int etatP1 = 1;
@@ -105,8 +105,7 @@ public class PlateauController extends Controller {
 
 	Image bravoImg = new Image("file:src/image/Bravo.png");
 	Image ReniImg = new Image("file:src/image/imageBoutonRenitialiser.png");
-	
-	
+
 	Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
 	Image tabImageP1err[] = { imgp11err, imgp12err, imgp13err, imgp14err };
 	Image tabImageP2[] = { imgp21, imgp22 };
@@ -140,8 +139,51 @@ public class PlateauController extends Controller {
 	// private int mode;
 	protected int diff;
 	protected int niveau;
+	static boolean imported = false;
 
 	public void initialize() {
+
+		
+		if(!imported) {
+					 imgPlateau = new Image(getClass().getResourceAsStream("image/plateau.png"));
+					 imgCochon = new Image(getClass().getResourceAsStream("image/pig.png"));
+					 imgLoup = new Image(getClass().getResourceAsStream("image/wolf.png"));
+
+					 imgp11 = new Image(getClass().getResourceAsStream("image/p11.png"));
+					 imgp12 = new Image(getClass().getResourceAsStream("image/p12.png"));
+					 imgp13 = new Image(getClass().getResourceAsStream("image/p13.png"));
+					 imgp14 = new Image(getClass().getResourceAsStream("image/p14.png"));
+
+					 imgp11err = new Image(getClass().getResourceAsStream("image/p11err.png"));
+					 imgp12err = new Image(getClass().getResourceAsStream("image/p12err.png"));
+					 imgp13err = new Image(getClass().getResourceAsStream("file:src/image/p13err.png"));
+					 imgp14err = new Image(getClass().getResourceAsStream("file:src/image/p14err.png"));
+
+					 imgp21 = new Image(getClass().getResourceAsStream("file:src/image/p21.png"));
+					 imgp22 = new Image(getClass().getResourceAsStream("file:src/image/p22.png"));
+
+					 imgp21err = new Image(getClass().getResourceAsStream("image/p21err.png"));
+					 imgp22err = new Image(getClass().getResourceAsStream("file:src/image/p22err.png"));
+
+					 imgp31 = new Image(getClass().getResourceAsStream("image/p31.png"));
+					 imgp32 = new Image(getClass().getResourceAsStream("image/p32.png"));
+					 imgp33 = new Image(getClass().getResourceAsStream("image/p33.png"));
+					 imgp34 = new Image(getClass().getResourceAsStream("image/p34.png"));
+
+					 imgp31err = new Image(getClass().getResourceAsStream("image/p31err.png"));
+					 imgp32err = new Image(getClass().getResourceAsStream("image/p32err.png"));
+					 imgp33err = new Image(getClass().getResourceAsStream("image/p33err.png"));
+					 imgp34err = new Image(getClass().getResourceAsStream("image/p34err.png"));
+
+					 imBtnSolution = new Image(getClass().getResourceAsStream("image/imageBoutonSolution.png"));
+					 imBtnRetour = new Image(getClass().getResourceAsStream("image/imageBoutonRetour.png"));
+					 imgFond = new Image(getClass().getResourceAsStream("image/fond.png"));
+
+					 bravoImg = new Image(getClass().getResourceAsStream("file:src/image/Bravo.png"));
+					 ReniImg = new Image(getClass().getResourceAsStream("file:src/image/imageBoutonRenitialiser.png"));
+					imported = true;
+		}
+		
 		gc1 = canvas1.getGraphicsContext2D();
 		gc2 = canvas2.getGraphicsContext2D();
 
@@ -476,11 +518,11 @@ public class PlateauController extends Controller {
 
 	private void peutEtrePoser(MouseEvent event) {
 		double[] emp = emplacementPlateau(event);
-		//System.out.println(Arrays.toString(emp));
+		// System.out.println(Arrays.toString(emp));
 		double x = emp[1];
 		double y = emp[0];
 		boolean t = (testDessusDessousPiece((int) y, (int) x));
-		//System.out.println(t);
+		// System.out.println(t);
 		if (t) {
 			switch (temoin) {
 			case 1:
@@ -561,7 +603,7 @@ public class PlateauController extends Controller {
 			}
 			if (k == 3) {
 				test = true;
-				//System.out.println("<#<|JEU FINI|>#>");
+				// System.out.println("<#<|JEU FINI|>#>");
 				canvas1.setVisible(false);
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
@@ -569,7 +611,7 @@ public class PlateauController extends Controller {
 				btnRetourMenuSelection.toFront();
 				btnRenitialiser.setOpacity(0);
 				btnSolution.setOpacity(0);
-				
+
 			}
 		}
 	}
@@ -810,11 +852,11 @@ public class PlateauController extends Controller {
 	int coorPestPlacer[][] = new int[3][2];
 
 	public void affPlateau() {
-		//System.out.println("");
+		// System.out.println("");
 		for (int i = 0; i < 4; i++) {
 			// System.out.println(Arrays.toString(plateau[i]));
 		}
-		//System.out.println("");
+		// System.out.println("");
 	}
 
 	public boolean testPlacer(double[] t) {
@@ -1139,7 +1181,7 @@ public class PlateauController extends Controller {
 		o2 = 0;
 		o3 = 0;
 
-		//System.out.println(code);
+		// System.out.println(code);
 
 		x1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(0))));
 		y1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(1))));
@@ -1227,14 +1269,13 @@ public class PlateauController extends Controller {
 	@FXML
 	void renitialiserP() throws SAXException, IOException, ParserConfigurationException, JDOMException {
 		for (int i = 0; i < 3; i++) {
-			//initialiserPlateau(gc1,0);
+			// initialiserPlateau(gc1,0);
 			listeP.get(i).setX(0);
 			listeP.get(i).setY(0);
-			
+
 		}
 	}
 
-	
 	@FXML
 	void clicRetourMenu() throws IOException {
 		getMainClass().chargerMenuSelectionEntrProg();
