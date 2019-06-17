@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.sun.javafx.geom.transform.GeneralTransform3D;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -232,9 +233,7 @@ public class MenuCompetitionController extends Controller {
 		if(contexteSelect != -1 && diff != -1) {
 			
 			if(valeurTemoin ==0) {
-				/*
-				 * On lance la competition 
-				 */
+				getMainClass().chargerComp(contexteSelect,diff);
 			}
 			else {
 				/*

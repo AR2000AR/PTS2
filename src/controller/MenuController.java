@@ -4,6 +4,7 @@
 
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,8 +37,8 @@ public class MenuController extends Controller {
 	}
 
 	@FXML
-	void comp() {
-
+	void comp() throws IOException {
+		getMainClass().choixComp();
 	}
 
 	@FXML

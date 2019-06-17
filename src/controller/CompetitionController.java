@@ -17,6 +17,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -30,7 +31,7 @@ public class CompetitionController extends PlateauController {
 	@FXML
 	private Label lblTime;
 	static Timer monTimer;
-	
+	Image imBtnPass = new Image("file:src/image/imageBoutonPasserNiveau.png");
 	protected String[] codeGeneration = new String[6];
 	protected String[] codeSolution = new String[6];
 	
@@ -65,6 +66,13 @@ public class CompetitionController extends PlateauController {
 		monTimer = new Timer(this);
 		Thread t = new Thread(monTimer);
 		t.start();
+		
+		
+		btnPasseNv.setImage(imBtnPass);
+		btnSolution.setImage(imBtnSolution);
+		btnRetourMenuSelection.setImage(imBtnRetour);
+		btnRenitialiser.setImage(ReniImg);
+		
 
 	}
 
@@ -227,6 +235,13 @@ public class CompetitionController extends PlateauController {
 				// System.out.println(Arrays.toString(plateau[n]));
 			}
 
+		}
+
+	
+
+		public void setParam(int contexteSelect, int diff) {
+			this.modeDiurne = contexteSelect;
+			this.diff = diff;			
 		}
 
 	

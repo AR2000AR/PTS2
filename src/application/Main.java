@@ -3,7 +3,9 @@ package application;
 import java.io.IOException;
 
 import controller.ChoixNiveauEntrainementProgressionController;
+import controller.CompetitionController;
 import controller.Controller;
+import controller.MenuCompetitionController;
 import controller.PlateauController;
 import controller.PlateauProgressionController;
 import javafx.application.Application;
@@ -47,8 +49,6 @@ public class Main extends Application {
 
 		try {
 		
-
-		
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ChoixNiveauEntrainementProgression.fxml"));
 				Pane root = (Pane) loader.load();
 				
@@ -58,10 +58,7 @@ public class Main extends Application {
 				primaryStage.setScene(scene);
 				primaryStage.show();
 				pc.setParam(mode);
-			
-			
-			
-			
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -140,19 +137,6 @@ public class Main extends Application {
 		showProfilSelection();
 	}
 
-	public void chargerNivEntrProg(int ctx, int diff, int nv) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Plateau.fxml"));
-        AnchorPane root = (AnchorPane) loader.load();
-        PlateauController pc = loader.getController();
-        Scene scene = new Scene(root, 1080, 720);
-        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
-        System.out.println("PAR ICI");
-        
-        pc.setParam(ctx, diff, nv);
-    }
 
 	public void chargerMenuSelectionEntrProg() throws IOException {
 		
@@ -174,11 +158,31 @@ public class Main extends Application {
 	        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
-	        
-	        System.out.println("ENTRAINEMENT");
-	        
 	        pc.setParam(contexteSelect, diff, nv);
 	    }
+
+	public void choixComp() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/MenuCompetition.fxml"));
+		Pane root = (Pane) loader.load();
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+		
+	}
+
+	public void chargerComp(int contexteSelect, int diff) throws IOException {
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Competition.fxml"));
+	        AnchorPane root = (AnchorPane) loader.load();
+	        CompetitionController pc = loader.getController();
+	        Scene scene = new Scene(root, 1080, 720);
+	        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+	        
+	        pc.setParam(contexteSelect, diff);
+	}
 		
 	
 
