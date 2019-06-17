@@ -193,6 +193,7 @@ public class GestionDeDonnee {
 		nouvNiveau.setAttribute("nbNiveau", Integer.toString(niveau));
 		nouvNiveau.setAttribute("nbContext", Integer.toString(context));
 		nouvNiveau.setAttribute("nbDifficulte", Integer.toString(difficulte));
+		listNiveaux.add(nouvNiveau);
 		return nouvNiveau;
 	}
 
@@ -418,7 +419,7 @@ public class GestionDeDonnee {
 	private void saveXML(org.jdom2.Document xmlDocument, FileWriter file) throws IOException {
 		XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
 		out.output(xmlDocument, file);
-		// out.output(xmlDocument, System.out);
+		//out.output(xmlDocument, System.out);
 	}
 
 	/**

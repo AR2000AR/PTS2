@@ -149,11 +149,12 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 		btnJouer.setImage(imJouer);
 		btnRetour.setImage(imRetour);
 		
+		
 	}
 
 	
 	public void testRealiser() throws SAXException, IOException, ParserConfigurationException, JDOMException, NoProfileException {
-	/*	if(contexteSelect != -1 && diff != -1 && enProgression) {
+		if(contexteSelect != -1 && diff != -1 && enProgression) {
 		GestionDeDonnee g = new GestionDeDonnee();
 		Boolean[][][] t = g.getProgression(getProfilName());
 		
@@ -165,7 +166,7 @@ public class ChoixNiveauEntrainementProgressionController extends Controller {
 				tabImV[i].setImage(tabIf[i]);
 			}
 		}
-		}*/
+		}
 	}
 	
 	@FXML

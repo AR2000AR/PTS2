@@ -23,8 +23,6 @@ public class PlateauProgressionController extends PlateauController{
 			}
 			if (k == 3) {
 				test = true;
-				 System.out.println("<#<|JEU FINI|>#>");
-				 System.out.println("YOLO MODE PROGRESSION");
 				canvas1.setVisible(false);
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
@@ -38,6 +36,7 @@ public class PlateauProgressionController extends PlateauController{
 				
 				if(!solutionDevoile) {
 					GestionDeDonnee g = new GestionDeDonnee();
+					System.out.println("NOM PROFIL :" +getProfilName() +"\n  diff : "+diff +"\n Niveau "+ niveau);
 					g.setProgression(getProfilName(), modeDiurne, diff, niveau, true);
 				}
 				
