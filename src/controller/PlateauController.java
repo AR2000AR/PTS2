@@ -69,42 +69,42 @@ public class PlateauController extends Controller {
 	@FXML
 	private ImageView imFond;
 
-	Image imgPlateau = new Image("file:src/image/plateau.png");
-	Image imgCochon = new Image("file:src/image/pig.png");
-	Image imgLoup = new Image("file:src/image/wolf.png");
+	Image imgPlateau = new Image("image/plateau.png");
+	Image imgCochon = new Image("image/pig.png");
+	Image imgLoup = new Image("image/wolf.png");
 
-	Image imgp11 = new Image("file:src/image/p11.png");
-	Image imgp12 = new Image("file:src/image/p12.png");
-	Image imgp13 = new Image("file:src/image/p13.png");
-	Image imgp14 = new Image("file:src/image/p14.png");
+	Image imgp11 = new Image("image/p11.png");
+	Image imgp12 = new Image("image/p12.png");
+	Image imgp13 = new Image("image/p13.png");
+	Image imgp14 = new Image("image/p14.png");
 
-	Image imgp11err = new Image("file:src/image/p11err.png");
-	Image imgp12err = new Image("file:src/image/p12err.png");
-	Image imgp13err = new Image("file:src/image/p13err.png");
-	Image imgp14err = new Image("file:src/image/p14err.png");
+	Image imgp11err = new Image("image/p11err.png");
+	Image imgp12err = new Image("image/p12err.png");
+	Image imgp13err = new Image("image/p13err.png");
+	Image imgp14err = new Image("image/p14err.png");
 
-	Image imgp21 = new Image("file:src/image/p21.png");
-	Image imgp22 = new Image("file:src/image/p22.png");
+	Image imgp21 = new Image("image/p21.png");
+	Image imgp22 = new Image("image/p22.png");
 
-	Image imgp21err = new Image("file:src/image/p21err.png");
-	Image imgp22err = new Image("file:src/image/p22err.png");
+	Image imgp21err = new Image("image/p21err.png");
+	Image imgp22err = new Image("image/p22err.png");
 
-	Image imgp31 = new Image("file:src/image/p31.png");
-	Image imgp32 = new Image("file:src/image/p32.png");
-	Image imgp33 = new Image("file:src/image/p33.png");
-	Image imgp34 = new Image("file:src/image/p34.png");
+	Image imgp31 = new Image("image/p31.png");
+	Image imgp32 = new Image("image/p32.png");
+	Image imgp33 = new Image("image/p33.png");
+	Image imgp34 = new Image("image/p34.png");
 
-	Image imgp31err = new Image("file:src/image/p31err.png");
-	Image imgp32err = new Image("file:src/image/p32err.png");
-	Image imgp33err = new Image("file:src/image/p33err.png");
-	Image imgp34err = new Image("file:src/image/p34err.png");
+	Image imgp31err = new Image("image/p31err.png");
+	Image imgp32err = new Image("image/p32err.png");
+	Image imgp33err = new Image("image/p33err.png");
+	Image imgp34err = new Image("image/p34err.png");
 
-	Image imBtnSolution = new Image("file:src/image/imageBoutonSolution.png");
-	Image imBtnRetour = new Image("file:src/image/imageBoutonRetour.png");
-	Image imgFond = new Image("file:src/image/fond.png");
+	Image imBtnSolution = new Image("image/imageBoutonSolution.png");
+	Image imBtnRetour = new Image("image/imageBoutonRetour.png");
+	Image imgFond = new Image("image/fond.png");
 
-	Image bravoImg = new Image("file:src/image/Bravo.png");
-	Image ReniImg = new Image("file:src/image/imageBoutonRenitialiser.png");
+	Image bravoImg = new Image("image/Bravo.png");
+	Image ReniImg = new Image("image/imageBoutonRenitialiser.png");
 
 	Image tabImageP1[] = { imgp11, imgp12, imgp13, imgp14 };
 	Image tabImageP1err[] = { imgp11err, imgp12err, imgp13err, imgp14err };
@@ -156,14 +156,14 @@ public class PlateauController extends Controller {
 
 					 imgp11err = new Image(getClass().getClassLoader().getResourceAsStream("image/p11err.png"));
 					 imgp12err = new Image(getClass().getClassLoader().getResourceAsStream("image/p12err.png"));
-					 imgp13err = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/p13err.png"));
-					 imgp14err = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/p14err.png"));
+					 imgp13err = new Image(getClass().getClassLoader().getResourceAsStream("image/p13err.png"));
+					 imgp14err = new Image(getClass().getClassLoader().getResourceAsStream("image/p14err.png"));
 
-					 imgp21 = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/p21.png"));
-					 imgp22 = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/p22.png"));
+					 imgp21 = new Image(getClass().getClassLoader().getResourceAsStream("image/p21.png"));
+					 imgp22 = new Image(getClass().getClassLoader().getResourceAsStream("image/p22.png"));
 
 					 imgp21err = new Image(getClass().getClassLoader().getResourceAsStream("image/p21err.png"));
-					 imgp22err = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/p22err.png"));
+					 imgp22err = new Image(getClass().getClassLoader().getResourceAsStream("image/p22err.png"));
 
 					 imgp31 = new Image(getClass().getClassLoader().getResourceAsStream("image/p31.png"));
 					 imgp32 = new Image(getClass().getClassLoader().getResourceAsStream("image/p32.png"));
@@ -179,8 +179,8 @@ public class PlateauController extends Controller {
 					 imBtnRetour = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonRetour.png"));
 					 imgFond = new Image(getClass().getClassLoader().getResourceAsStream("image/fond.png"));
 
-					 bravoImg = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/Bravo.png"));
-					 ReniImg = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/imageBoutonRenitialiser.png"));
+					 bravoImg = new Image(getClass().getClassLoader().getResourceAsStream("image/Bravo.png"));
+					 ReniImg = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonRenitialiser.png"));
 					imported = true;
 		}
 		

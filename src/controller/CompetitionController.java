@@ -41,7 +41,7 @@ public class CompetitionController extends PlateauController {
 		try {
 			
 			if(imBtnPass == null) {
-				 imBtnPass = new Image(getClass().getClassLoader().getResourceAsStream("file:src/image/imageBoutonPasserNiveau.png"));
+				 imBtnPass = new Image(getClass().getClassLoader().getResourceAsStream("image/imageBoutonPasserNiveau.png"));
 
 			}
 			
