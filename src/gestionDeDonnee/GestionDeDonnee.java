@@ -110,6 +110,18 @@ public class GestionDeDonnee {
 	}
 
 	/**
+	 * @throws NoProfileException
+	 * @throws IOException
+	 *
+	 */
+	public void delProfil(String profilName) throws NoProfileException, IOException {
+		Element profil = getProfil(profilName);
+		List<Element> profilList = xmlProfiles.getRootElement().getChildren();
+		profilList.remove(profil);
+		saveXML(xmlProfiles, getFileWriterFromName("profil.xml"));
+	}
+
+	/**
 	 * Revoie un <b>FileWriter</b> pour le fichier dont le nom est passé en
 	 * paramètre
 	 *
@@ -383,16 +395,29 @@ public class GestionDeDonnee {
 	}
 
 	/**
-	 * Ajoute un score et pour la difficulté indiqué en paramètre et sauvegarde dans
-	 * le fichier.
+	 * Ajoute un score pour la difficulté indiqué en paramètre et sauvegarde dans le
+	 * fichier.
+	 *
+	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
+	 * @param difficulte - difficulte du niveau [0-3]
+	 * @param score      - score à ajouter
+	 * @param pseudo     - Nom du profil
+	 * @throws IOException
+	 */
+	public void saveScore(int context, int difficulte, int score, String pseudo) throws IOException {
+		saveScore(context, difficulte, 6, score, pseudo);
+	}
+
+	/**
+	 * Ajoute un score pour la difficulté induiqué en oaramètre et le sauvegarde
 	 *
 	 * @param context    - <b>false</b> diurne ou <b>true</b> nocturne. [0-1]
 	 * @param difficulte - difficulte du niveau [0-3]
 	 * @param score      - <b>Score</b> à ajouter
 	 * @throws IOException
 	 */
-	public void saveScore(int context, int difficulte, int score, String pseudo) throws IOException {
-		saveScore(context, difficulte, 6, score, pseudo);
+	public void saveScore(int context, int difficulte, Score score) throws IOException {
+		saveScore(context, difficulte, 6, score);
 	}
 
 	/**
