@@ -36,7 +36,6 @@ public class PlateauProgressionController extends PlateauController{
 				
 				if(!solutionDevoile) {
 					GestionDeDonnee g = new GestionDeDonnee();
-					System.out.println("NOM PROFIL :" +getProfilName() +"\n  diff : "+diff +"\n Niveau "+ niveau);
 					g.setProgression(getProfilName(), modeDiurne, diff, niveau, true);
 				}
 				
@@ -49,7 +48,6 @@ public class PlateauProgressionController extends PlateauController{
 		this.modeDiurne = ctx;
 		this.niveau = nv;
 		this.diff = diff;
-		System.out.println("Pass par la ");
 	}
 
 }
