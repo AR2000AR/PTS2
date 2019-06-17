@@ -90,6 +90,14 @@ public class Main extends Application {
 		}
 	}
 
+	public void showOption() throws IOException {
+		Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/Options.fxml"));
+		Scene scene = new Scene(root, 1080, 720);
+		scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
 	public void showProfilSelection() {
 		try {
 			Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/profil/ProfilSelection.fxml"));

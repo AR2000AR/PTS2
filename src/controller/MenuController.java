@@ -56,8 +56,8 @@ public class MenuController extends Controller {
 	}
 
 	@FXML
-	void option() {
-
+	void option() throws IOException {
+		getMainClass().showOption();
 	}
 
 	@FXML
