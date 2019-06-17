@@ -19,9 +19,6 @@ import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
 public class GestionDeDonnee {
-	private static final boolean VERBOSE = true;
-	private static final String[] typeName = { "none", "Element", "Attr", "Text", "CDATA", "EntityRef", "Entity",
-			"ProcInstr", "Comment", "Document", "DocType", "DocFragment", "Notation", };
 	// ------------------------------------------
 	private static InputStream level_file = null;
 	private static Document xmlNiveaux = null;
@@ -104,7 +101,7 @@ public class GestionDeDonnee {
 			scores.remove(scores.size() - 1);
 		}
 		for (Score scoreI : scores) {
-			scoreElements.add(newScoreElement(score));
+			scoreElements.add(newScoreElement(scoreI));
 		}
 		// Element newScore = newScoreElement(score);
 		// getNiveauElement(xmlScores.getRootElement().getChildren("niveau"), context,
