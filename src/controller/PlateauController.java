@@ -476,11 +476,11 @@ public class PlateauController extends Controller {
 
 	private void peutEtrePoser(MouseEvent event) {
 		double[] emp = emplacementPlateau(event);
-		System.out.println(Arrays.toString(emp));
+		//System.out.println(Arrays.toString(emp));
 		double x = emp[1];
 		double y = emp[0];
 		boolean t = (testDessusDessousPiece((int) y, (int) x));
-		System.out.println(t);
+		//System.out.println(t);
 		if (t) {
 			switch (temoin) {
 			case 1:
@@ -561,7 +561,7 @@ public class PlateauController extends Controller {
 			}
 			if (k == 3) {
 				test = true;
-				System.out.println("<#<|JEU FINI|>#>");
+				//System.out.println("<#<|JEU FINI|>#>");
 				canvas1.setVisible(false);
 				imgBravo.setImage(bravoImg);
 				imgBravo.setVisible(true);
@@ -810,11 +810,11 @@ public class PlateauController extends Controller {
 	int coorPestPlacer[][] = new int[3][2];
 
 	public void affPlateau() {
-		System.out.println("");
+		//System.out.println("");
 		for (int i = 0; i < 4; i++) {
 			// System.out.println(Arrays.toString(plateau[i]));
 		}
-		System.out.println("");
+		//System.out.println("");
 	}
 
 	public boolean testPlacer(double[] t) {
@@ -1139,7 +1139,7 @@ public class PlateauController extends Controller {
 		o2 = 0;
 		o3 = 0;
 
-		System.out.println(code);
+		//System.out.println(code);
 
 		x1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(0))));
 		y1 = 100 * (Integer.parseInt(String.valueOf(code.charAt(1))));
@@ -1227,7 +1227,7 @@ public class PlateauController extends Controller {
 	@FXML
 	void renitialiserP() throws SAXException, IOException, ParserConfigurationException, JDOMException {
 		for (int i = 0; i < 3; i++) {
-			initialiserPlateau(gc1,0);
+			//initialiserPlateau(gc1,0);
 			listeP.get(i).setX(0);
 			listeP.get(i).setY(0);
 			

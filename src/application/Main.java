@@ -176,12 +176,12 @@ public class Main extends Application {
 		 FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Competition.fxml"));
 	        AnchorPane root = (AnchorPane) loader.load();
 	        CompetitionController pc = loader.getController();
+	        pc.setParam(contexteSelect, diff);
 	        Scene scene = new Scene(root, 1080, 720);
 	        scene.getStylesheets().add(getClass().getResource("fxml/application.css").toExternalForm());
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
-	        pc.setParam(contexteSelect, diff);
 	}
 		
 	

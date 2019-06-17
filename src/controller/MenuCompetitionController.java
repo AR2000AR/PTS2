@@ -233,6 +233,7 @@ public class MenuCompetitionController extends Controller {
 		if(contexteSelect != -1 && diff != -1) {
 			
 			if(valeurTemoin ==0) {
+				System.out.println("Mode Diurne : "+contexteSelect + "\n Difficulte = "+diff);
 				getMainClass().chargerComp(contexteSelect,diff);
 			}
 			else {
